@@ -120,13 +120,14 @@ function update ()
             player.setAcceleration(0);
             player.body.drag.x = 160;
             player.body.drag.y = 160;
+            this.physics.velocityFromRotation(player.rotation, 0, player.body.velocity);
         }
         if ((player.body.speed>15 && keyW.isUp) && (keyA.isDown || keyLEFT.isDown)) {
-            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+           
             player.setAngularVelocity(-100);
         }
         if ((player.body.speed>15 && keyW.isUp) && (keyD.isDown || keyRIGHT.isDown)) {
-            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            
             player.setAngularVelocity(100);
         }
 
