@@ -1,2 +1,2 @@
 # DriftR
-i like to driftR vghv
+i like to driftR
