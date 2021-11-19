@@ -1,5 +1,3 @@
-const map1 = import('./map1.js');
-
 var config = {
     type: Phaser.AUTO,
     width: 800,
