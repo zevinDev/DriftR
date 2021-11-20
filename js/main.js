@@ -25,6 +25,7 @@ var DriftR = new Phaser.Game(config);
 function preload ()
 {
         //Loads All The Images
+        this.load.image('track', 'assets/images/Sample_Track.png');
         this.load.image('border_u-d', 'assets/images/small_u-d.png');
         this.load.image('border_l-r', 'assets/images/small_l-r.png');
         this.load.image('back', 'assets/images/Back.png');
@@ -64,6 +65,9 @@ function create ()
         border.create(4096, 2048, 'border_u-d');
         border.create(2048, 0, 'border_l-r');
         border.create(2048, 4096, 'border_l-r');
+
+        //Creates Track
+        track = this.physics.add.sprite(2048,2048, 'track');
 
         //Defines All Of The Backgrounds Variables
         back = this.add.image(0,0, 'back');
