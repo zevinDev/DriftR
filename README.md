@@ -17,8 +17,8 @@ Will Do Later
 ```
 ## Acknowledgements
 
-#### - [Phaser](https://phaser.io/)
-#### - [Phaser 3 api](https://photonstorm.github.io/phaser3-docs/)
+#### - [Game Engine - Phaser](https://phaser.io/)
+#### - [Music - Tohomoko](https://soundcloud.com/tohomoko)
  
 ## Authors
 
