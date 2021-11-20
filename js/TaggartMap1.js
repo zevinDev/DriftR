@@ -1,5 +1,3 @@
-const map1 = import('./map1.js');
-
 var config = {
     type: Phaser.AUTO,
     width: 800,
@@ -133,8 +131,8 @@ function update ()
 
 
     //Speed Text And Coord Text (TEST)
-    text.setText('Speed: ' + speedp);
-    console.log('X: ' + player.x + 'Y: ' + player.y);
+    //text.setText('Speed: ' + speedp);
+    //console.log('X: ' + player.x + 'Y: ' + player.y);
 
 
 }
