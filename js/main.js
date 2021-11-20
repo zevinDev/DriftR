@@ -78,7 +78,7 @@ function create ()
 
         //Defines Layers And Border Physics
         const layer = this.add.layer();
-        layer.add([back, player]);
+        layer.add([back, track, player]);
         this.physics.add.collider(player, border);
         camera.setBounds(0, 0, xLimit, yLimit);
 
