@@ -131,8 +131,8 @@ function update ()
 
 
     //Speed Text And Coord Text (TEST)
-    text.setText('Speed: ' + speedp);
-    console.log('X: ' + player.x + 'Y: ' + player.y);
+    //text.setText('Speed: ' + speedp);
+    //console.log('X: ' + player.x + 'Y: ' + player.y);
 
 
 }
