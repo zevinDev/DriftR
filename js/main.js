@@ -21,6 +21,8 @@ var config = {
 //Defines 'DriftR' As The Game
 var DriftR = new Phaser.Game(config);
 
+var OnBack = false
+
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 function preload ()
 {
@@ -82,6 +84,10 @@ function create ()
         this.physics.add.collider(player, border);
         camera.setBounds(0, 0, xLimit, yLimit);
 
+        this.physics.add.overlap(player, back, function () {
+            OnBack = true;
+          });
+
         //Speed Text (TEST)
         text = this.add.text(100, 100, '', { font: '16px Courier', fill: '#00ff00' });
 }
@@ -133,7 +139,12 @@ function update ()
             player.setAngularVelocity(100);
         }
 
-
+        if (OnBack) {
+            player.body.setMaxSpeed(300);
+          }
+          
+        OnBack = false;
+        
     //Speed Text And Coord Text (TEST)
     //text.setText('Speed: ' + speedp);
     //console.log('X: ' + player.x + 'Y: ' + player.y);
