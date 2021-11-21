@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             //gravity: { y: 300 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -27,7 +27,12 @@ var OnBack = false
 function preload ()
 {
         //Loads All The Images
-        this.load.image('track', 'assets/images/Sample_Track.png');
+        this.load.image('turn1', 'assets/images/Turn1.png');
+        this.load.image('turn2', 'assets/images/Turn2.png');
+        this.load.image('turn3', 'assets/images/Turn3.png');
+        this.load.image('turn4', 'assets/images/Turn4.png');
+        this.load.image('verticle', 'assets/images/Verticle.png');
+        this.load.image('horizontal', 'assets/images/Horizontal.png');
         this.load.image('border_u-d', 'assets/images/small_u-d.png');
         this.load.image('border_l-r', 'assets/images/small_l-r.png');
         this.load.image('back', 'assets/images/Back.png');
@@ -68,19 +73,40 @@ function create ()
         border.create(2048, 0, 'border_l-r');
         border.create(2048, 4096, 'border_l-r');
 
-        //Creates Track
-        track = this.physics.add.sprite(2048,2048, 'track');
-
         //Defines All Of The Backgrounds Variables
-        back = this.add.image(0,0, 'back');
+        back = this.physics.add.image(0,0, 'back');
         back.x = back.displayWidth / 2;
         back.y = back.displayHeight / 2;
         xLimit = back.displayWidth;
         yLimit = back.displayHeight;
 
+        //Creates Track
+        track = this.add.group();
+        track1 = track.create(496,3696, 'turn4');
+        track2 = track.create(496,2896, 'verticle');
+        track3 = track.create(496,2096, 'turn1');
+        track4 = track.create(1296,2096, 'horizontal');
+        track5 = track.create(2096,2096, 'turn3');
+        track6 = track.create(2096,1296, 'turn2');
+        track7 = track.create(1296,1296,'turn4');
+        track8 = track.create(1296,496,'turn1');
+        track9 = track.create(2096,496, 'horizontal');
+        track10 = track.create(2896,496, 'turn2');
+        track11 = track.create(2896,1296, 'verticle');
+        track12 = track.create(2896,2096, 'turn4');
+        track13 = track.create(3696,2096, 'turn2');
+        track14 = track.create(3696,2896, 'verticle');
+        track15 = track.create(3696,3696, 'turn3');
+        track16 = track.create(2896,3696, 'turn4');
+        track17 = track.create(2896,2969, 'turn2');
+        track18 = track.create(2096,2969, 'horizontal');
+        track19 = track.create(1296,2969,'turn1');
+        track20 = track.create(1296,3696, 'turn3');
+
+        
         //Defines Layers And Border Physics
         const layer = this.add.layer();
-        layer.add([back, track, player]);
+        layer.add([back, track1, track2, track3, track4, track5, track6, track7, track8, track9, track10, track11, track12, track13, track14, track15, track16, track17, track18, track19, track20, player]);
         this.physics.add.collider(player, border);
         camera.setBounds(0, 0, xLimit, yLimit);
 
@@ -139,12 +165,6 @@ function update ()
             player.setAngularVelocity(100);
         }
 
-        if (OnBack) {
-            player.body.setMaxSpeed(300);
-          }
-          
-        OnBack = false;
-        
     //Speed Text And Coord Text (TEST)
     //text.setText('Speed: ' + speedp);
     //console.log('X: ' + player.x + 'Y: ' + player.y);
