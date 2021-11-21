@@ -1,9 +1,8 @@
-var menu = new Phaser.Class({
-    Extends: Phaser.Scene,
-initialize: function() {
-    Phaser.Scene.call(this, { "key": "menu" });
-},
-preload: function() {
+class menu extends Phaser.Scene {
+    constructor() { 
+        super({key: 'menu'}); 
+}
+preload() {
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
@@ -76,15 +75,14 @@ preload: function() {
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
-},
-create: function() {
+}
+create() {
         const helloButton = this.add.text(100, 100, 'Hello Phaser!', { fill: '#0f0' });
         helloButton.setInteractive();
-        helloButton.on('pointerdown',function(){
-            this.scene.add(map1,true);
-        });
-},
-update: function() {
+        helloButton.on('pointerdown', () =>
+        this.scene.start('map1'),
+    )
 
-    }
-});
+}
+};
+

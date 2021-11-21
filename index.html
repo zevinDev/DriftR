@@ -26,28 +26,10 @@
     <body>
 
     <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
-    <script type="text/javascript" src="js/map1.js"></script>
     <script type="text/javascript" src="js/phaser.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
-    <script>
-var config = {
-    type: Phaser.AUTO,
-    parent: "DriftR",
-    width: 800,
-    height: 800,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            //gravity: { y: 300 },
-            debug: true
-        }
-    },
-    scene: [ map1, menu ]
-    };
-
-//Defines 'DriftR' As The Game
-var DriftR = new Phaser.Game(config);
-    </script>
-
+    <script type="text/javascript" src="js/map1.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    
     </body>
 </html>
