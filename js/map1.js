@@ -187,7 +187,6 @@ update: function()
         if ((player.body.speed>15 && keyW.isUp) && (keyD.isDown || keyRIGHT.isDown)) {
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
             player.setAngularVelocity(100);
-        }
         }}
 });
 
