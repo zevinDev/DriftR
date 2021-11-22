@@ -78,9 +78,10 @@ preload() {
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
+    this.load.image('start', 'assets/images/Blank_Button.png.png');
 }
 create() {
-        const start = this.add.text(100, 100, 'Start', { fill: '#0f0' });
+        const start = this.add.image(100, 100, 'start');
         start.setInteractive();
         start.on('pointerdown', () =>
         this.scene.start('map1'),
