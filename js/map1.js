@@ -174,18 +174,19 @@ update: function()
             player.setAngularVelocity(0);
         }
         if (keyW.isDown || keyUP.isDown) {
-            this.physics.velocityFromRotation(player.rotation, 150, player.body.acceleration);
+            this.physics.velocityFromRotation(player.rotation, 350, player.body.acceleration);
         } else {
             player.setAcceleration(0);
             player.body.drag.x = 160;
             player.body.drag.y = 160;
+            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
         if ((player.body.speed>15 && keyW.isUp) && (keyA.isDown || keyLEFT.isDown)) {
-            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+           // this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
             player.setAngularVelocity(-100);
         }
         if ((player.body.speed>15 && keyW.isUp) && (keyD.isDown || keyRIGHT.isDown)) {
-            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            //this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
             player.setAngularVelocity(100);
         }}
 });
