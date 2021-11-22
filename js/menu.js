@@ -3,10 +3,13 @@ class menu extends Phaser.Scene {
         super({key: 'menu'}); 
 }
 preload() {
+    var backimage = this.add.graphics();
     var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(240, 270, 320, 50);
+    backimage.fillStyle(0xFFD966, 1);
+    backimage.fillRect(0, 0, 800, 800);
 
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
@@ -16,7 +19,7 @@ preload() {
     text: "Loading...",
     style: {
         font: "20px monospace",
-        fill: "#ffffff"
+        fill: "#000000"
     }
     });
     loadingText.setOrigin(0.5, 0.5);
@@ -27,7 +30,7 @@ preload() {
     text: "0%",
     style: {
         font: "18px monospace",
-        fill: "#ffffff"
+        fill: "#000000"
     }
     });
     percentText.setOrigin(0.5, 0.5);
@@ -38,7 +41,7 @@ preload() {
     text: "",
     style: {
             font: "18px monospace",
-            fill: "#ffffff"
+            fill: "#000000"
     }
     });
     assetText.setOrigin(0.5, 0.5);
@@ -58,10 +61,10 @@ preload() {
     progressBox.destroy();
     loadingText.destroy();
     percentText.destroy();
+    backimage.destroy();
     assetText.destroy();
         });
 
-    
         //Loads All The Images
     this.load.image('turn1', 'assets/images/Turn1.png');
     this.load.image('turn2', 'assets/images/Turn2.png');
@@ -77,9 +80,9 @@ preload() {
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 }
 create() {
-        const helloButton = this.add.text(100, 100, 'Hello Phaser!', { fill: '#0f0' });
-        helloButton.setInteractive();
-        helloButton.on('pointerdown', () =>
+        const start = this.add.text(100, 100, 'Start', { fill: '#0f0' });
+        start.setInteractive();
+        start.on('pointerdown', () =>
         this.scene.start('map1'),
     )
 
