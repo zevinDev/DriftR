@@ -174,7 +174,7 @@ update: function()
             player.setAngularVelocity(0);
         }
         if (keyW.isDown || keyUP.isDown) {
-            this.physics.velocityFromRotation(player.rotation, 550, player.body.acceleration);
+            this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
         } else {
             player.setAcceleration(0);
             player.body.drag.x = 160;
