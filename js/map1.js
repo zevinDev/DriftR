@@ -167,9 +167,9 @@ update: function()
 
         //Defines All The Movement Controls For The Player
         if (player.body.speed>15 && (keyA.isDown || keyLEFT.isDown)) {
-            player.setAngularVelocity(-120);
+            player.setAngularVelocity(-150);
         } else if (player.body.speed>15 && (keyD.isDown || keyRIGHT.isDown)) {
-            player.setAngularVelocity(120);
+            player.setAngularVelocity(150);
         } else {
             player.setAngularVelocity(0);
         }
