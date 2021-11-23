@@ -82,7 +82,7 @@ preload() {
     this.load.image('driftrr', 'assets', 'assets/sounds/Poggers.mp4');
 }
 create() {
-        backimage = this.add.graphics('driftrr');
+        var backimage = this.add.graphics('driftrr');
         var start = this.add.image(400,400, 'start');
         start.setInteractive();
         start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
