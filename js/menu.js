@@ -78,15 +78,20 @@ preload() {
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
-    this.load.image('start', 'assets/images/Blank_Button.png.png');
+    this.load.spritesheet('start', 'assets/images/button.png',{frameWidth: 153, frameHeight: 66});
 }
 create() {
-        const start = this.add.image(100, 100, 'start');
+        var start = this.add.image(400,400, 'start');
         start.setInteractive();
-        start.on('pointerdown', () =>
-        this.scene.start('map1'),
-    )
+        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            start.setFrame(1)
+        })
+        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            start.setFrame(0)
+        })
+        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.scene.start('map1')
+        })
 
 }
-};
-
+}
