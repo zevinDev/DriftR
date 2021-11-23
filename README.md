@@ -14,6 +14,7 @@ Will Do Later
 
 ```bash
   Info Goes Here
+  why isnt debug turning off
 ```
 ## Acknowledgements
 
