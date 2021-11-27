@@ -79,21 +79,57 @@ preload() {
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
     this.load.spritesheet('start', 'assets/images/button.png',{frameWidth: 153, frameHeight: 66});
-    this.load.element('driftrr', 'assets', 'assets/sounds/Poggers.mp4');
+    this.load.spritesheet('garageButton', 'assets/images/GarageButton.png',{frameWidth: 153, frameHeight: 66});
+    this.load.spritesheet('optionButton', 'assets/images/OptionsButton.png',{frameWidth: 153, frameHeight: 66} );
+    this.load.video('video1', 'assets/sounds/lol.mp4');
 }
 create() {
 
-        var start = this.add.image(400,400, 'start');
-        start.setInteractive();
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-            start.setFrame(1)
+        var startButton = this.add.image(400,400, 'start');
+        startButton.setInteractive();
+        startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            startButton.setFrame(1)
         })
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-            start.setFrame(0)
+        startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            startButton.setFrame(0)
         })
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('map1')
         })
 
-}
+            var garageButton = this.add.image(400,500, 'garageButton');
+            garageButton.setInteractive();
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                garageButton.setFrame(1)
+            })
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                garageButton.setFrame(0)
+            })
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.scene.start('options')
+            })
+
+                var optionButton = this.add.image(400,600, 'garageButton');
+                optionButton.setInteractive();
+                optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                    optionButton.setFrame(1)
+                })
+                optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                    optionButton.setFrame(0)
+                })
+                optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                    this.scene.start('garage')
+                })
+    //change this name to play a different video in the background of the menu screen and don't forget to preload it as well
+    var video1 = document.createElement('video1');
+
+    video1.playsinline = true;
+    video1.src = 'assets/sounds/lol.mp4';
+    video1.width = 800;
+    video1.height = 450;
+    video1.autoplay = true;
+
+        // const menuLayer = this.add.layer();
+        // menuLayer.add([menuVideo, start]);
+    }  
 }
