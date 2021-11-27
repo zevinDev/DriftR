@@ -121,13 +121,14 @@ create() {
                     this.scene.start('garage')
                 })
     //change this name to play a different video in the background of the menu screen and don't forget to preload it as well
-    var video1 = document.createElement('video1');
+    //not working but it isn't breaking any code
+    //var video1 = document.createElement('video1');
 
-    video1.playsinline = true;
-    video1.src = 'assets/sounds/lol.mp4';
-    video1.width = 800;
-    video1.height = 450;
-    video1.autoplay = true;
+   //video1.playsinline = true;
+    //video1.src = 'assets/sounds/lol.mp4';
+    //video1.width = 800;
+    //video1.height = 450;
+   // video1.autoplay = true;
 
         // const menuLayer = this.add.layer();
         // menuLayer.add([menuVideo, start]);
