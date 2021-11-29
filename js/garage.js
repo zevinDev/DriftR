@@ -6,12 +6,12 @@ initialize: function() {
 
 preload: function()
 {
-
+    this.load.image('player','assets/images/Player.png');
 },
 
 create: function()
 {
-
+    this.physics.add.sprite(2048,2048, 'player');
 },
 update: function()
 {
