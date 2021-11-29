@@ -75,13 +75,14 @@ preload() {
     this.load.image('border_u-d', 'assets/images/small_u-d.png');
     this.load.image('border_l-r', 'assets/images/small_l-r.png');
     this.load.image('player','assets/images/Player.png');
+    this.load.image('player', 'assets/images/player.png');
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
     this.load.spritesheet('start', 'assets/images/button.png',{frameWidth: 153, frameHeight: 66});
     this.load.spritesheet('garageButton', 'assets/images/GarageButton.png',{frameWidth: 153, frameHeight: 66});
     this.load.spritesheet('optionButton', 'assets/images/OptionsButton.png',{frameWidth: 153, frameHeight: 66} );
-    this.load.video('video1', 'assets/Poggers.mp4');
+    this.load.video('video1', 'assets/videos/GrassMenuVideo.mp4');
 }
 create() {
     var menuVideo = this.add.video(400,400, 'video1');
