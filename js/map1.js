@@ -84,9 +84,9 @@ preload: function()
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
-        cow = this.sound.add("cow", { loop: true });
+       // cow = this.sound.add("cow", { loop: true });
         //cow.play();
-        corgi = this.sound.add("corgi", { loop: true });
+       // corgi = this.sound.add("corgi", { loop: true });
       //  corgi.play();
      strack = this.sound.add("strack", { loop: true });
         strack.play();
