@@ -88,7 +88,7 @@ create: function()
         //cow.play();
        // corgi = this.sound.add("corgi", { loop: true });
       //  corgi.play();
-     strack = this.sound.add("strack", { loop: true });
+     strack = this.sound.add("corgi", { loop: true });
         strack.play();
         //Creates The Player
         player = this.physics.add.sprite(2048,2048, 'player');
