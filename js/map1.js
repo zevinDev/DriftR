@@ -78,15 +78,18 @@ preload: function()
         this.load.image('player','assets/images/Player.png');
         this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
+    this.load.audio('strack', 'assets/sounds/SCARY TRACK.mp3');
         this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
-        cow = this.sound.add("cow", { loop: true });
+       // cow = this.sound.add("cow", { loop: true });
         //cow.play();
-        corgi = this.sound.add("corgi", { loop: true });
-        corgi.play();
+       // corgi = this.sound.add("corgi", { loop: true });
+      //  corgi.play();
+     strack = this.sound.add("corgi", { loop: true });
+        strack.play();
         //Creates The Player
         player = this.physics.add.sprite(2048,2048, 'player');
 

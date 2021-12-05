@@ -75,25 +75,55 @@ preload() {
     this.load.image('border_u-d', 'assets/images/small_u-d.png');
     this.load.image('border_l-r', 'assets/images/small_l-r.png');
     this.load.image('player','assets/images/Player.png');
+    this.load.image('player', 'assets/images/player.png');
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
     this.load.spritesheet('start', 'assets/images/button.png',{frameWidth: 153, frameHeight: 66});
-    //this.load.element('driftrr', 'assets', 'assets/sounds/Poggers.mp4');
+    this.load.spritesheet('garageButton', 'assets/images/GarageButton.png',{frameWidth: 153, frameHeight: 66});
+    this.load.spritesheet('optionButton', 'assets/images/OptionsButton.png',{frameWidth: 153, frameHeight: 66} );
+    this.load.video('video1', 'assets/videos/GrassMenuVideo.mp4');
 }
 create() {
+    var menuVideo = this.add.video(400,400, 'video1');
+    menuVideo.play(true);
+    menuVideo.setPaused(false);
 
-        var start = this.add.image(400,400, 'start');
-        start.setInteractive();
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-            start.setFrame(1)
-        })
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-            start.setFrame(0)
-        })
-        start.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            this.scene.start('map1')
-        })
 
-}
+        var startButton = this.add.image(200,600, 'start');
+        startButton.setInteractive();
+            startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                startButton.setFrame(1)
+            })
+            startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                startButton.setFrame(0)
+            })
+            startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.scene.start('map1')
+            })
+
+            var garageButton = this.add.image(600,600, 'garageButton');
+            garageButton.setInteractive();
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                garageButton.setFrame(1)
+            })
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                garageButton.setFrame(0)
+            })
+            garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.scene.start('garage')
+            })
+
+            var optionButton = this.add.image(600,700, 'optionButton');
+            optionButton.setInteractive();
+            optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                optionButton.setFrame(1)
+            })
+            optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                optionButton.setFrame(0)
+            })
+            optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                this.scene.start('options')
+            })
+        }  
 }
