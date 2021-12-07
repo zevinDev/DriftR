@@ -74,7 +74,7 @@ preload: function()
         this.load.image('horizontal', 'assets/images/Horizontal.png');
         this.load.image('border_u-d', 'assets/images/small_u-d.png');
         this.load.image('border_l-r', 'assets/images/small_l-r.png');
-        this.load.image('back', 'assets/images/LavaBackGround.png');
+        this.load.image('back', 'assets/images/back.png');
         this.load.image('player','assets/images/Player.png');
         this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
