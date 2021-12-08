@@ -92,10 +92,10 @@ create() {
 let map = Phaser.Math.Between(1,3);
 if (map == 1) {
     map = 'map1';
-    console.log(1);
+
 } else if (map >= 2) {
     map = 'map2';
-    console.log(2);
+
 }
 
         var startButton = this.add.image(200,600, 'start');
