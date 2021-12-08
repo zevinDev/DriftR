@@ -3,7 +3,7 @@ var config = {
     parent: "DriftR",
     width: 800,
     height: 800,
-    scene: [ menu, map1 ],
+    scene: [ menu, map2, map1, garage ],
     physics: {
         default: 'arcade',
         arcade: {

@@ -88,7 +88,15 @@ create() {
     var menuVideo = this.add.video(400,400, 'video1');
     menuVideo.play(true);
     menuVideo.setPaused(false);
-
+//randomly chooses map
+let map = Phaser.Math.Between(1,3);
+if (map == 1) {
+    map = 'map1';
+    console.log(1);
+} else if (map >= 2) {
+    map = 'map2';
+    console.log(2);
+}
 
         var startButton = this.add.image(200,600, 'start');
         startButton.setInteractive();
@@ -99,7 +107,7 @@ create() {
                 startButton.setFrame(0)
             })
             startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                this.scene.start('map1')
+                this.scene.start(map)
             })
 
             var garageButton = this.add.image(600,600, 'garageButton');
