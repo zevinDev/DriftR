@@ -6,7 +6,7 @@ initialize: function() {
 
 preload: function()
 {
-    this.load.image('player','assets/images/Player.png');
+    this.load.image('player','assets/images/Cars/Player.png');
 },
 
 create: function()

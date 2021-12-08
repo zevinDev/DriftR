@@ -66,20 +66,20 @@ preload: function()
 
     
         //Loads All The Images
-        this.load.image('turn1', 'assets/images/Turn1.png');
-        this.load.image('turn2', 'assets/images/Turn2.png');
-        this.load.image('turn3', 'assets/images/Turn3.png');
-        this.load.image('turn4', 'assets/images/Turn4.png');
-        this.load.image('verticle', 'assets/images/Verticle.png');
-        this.load.image('horizontal', 'assets/images/Horizontal.png');
-        this.load.image('border_u-d', 'assets/images/small_u-d.png');
-        this.load.image('border_l-r', 'assets/images/small_l-r.png');
-        this.load.image('back', 'assets/images/Back.png');
-        this.load.image('player','assets/images/Player.png');
+        this.load.image('turn1', 'assets/images/Tracks/GrassPack/Turn1.png');
+        this.load.image('turn2', 'assets/images/Tracks/GrassPack/Turn2.png');
+        this.load.image('turn3', 'assets/images/Tracks/GrassPack/Turn3.png');
+        this.load.image('turn4', 'assets/images/Tracks/GrassPack/Turn4.png');
+        this.load.image('verticle', 'assets/images/Tracks/GrassPack/Verticle.png');
+        this.load.image('horizontal', 'assets/images/Tracks/GrassPack/Horizontal.png');
+        this.load.image('border_u-d', 'assets/images/msc/small_u-d.png');
+        this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
+        this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
+        this.load.image('player','assets/images/Cars/Player.png');
         this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.audio('strack', 'assets/sounds/SCARY TRACK.mp3');
-        this.load.spritesheet('button', 'assets/images/testbuttons.png',{frameWidth: 193, frameHeight: 71});
+        this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
