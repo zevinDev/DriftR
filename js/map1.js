@@ -76,19 +76,12 @@ preload: function()
         this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
         this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
         this.load.image('player','assets/images/Cars/Player.png');
-        this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
-        this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
+
         this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
-       // cow = this.sound.add("cow", { loop: true });
-        //cow.play();
-       // corgi = this.sound.add("corgi", { loop: true });
-      //  corgi.play();
-     strack = this.sound.add("corgi", { loop: true });
-        strack.play();
         //Creates The Player
         player = this.physics.add.sprite(2048,2048, 'player');
 

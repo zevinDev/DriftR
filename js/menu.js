@@ -80,8 +80,6 @@ preload() {
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
     this.load.image('player','assets/images/Cars/Player.png');
     this.load.image('player', 'assets/images/Cars/player.png');
-    this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
-    this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
     this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
     this.load.spritesheet('start', 'assets/images/UI/button.png',{frameWidth: 153, frameHeight: 66});
     this.load.spritesheet('garageButton', 'assets/images/UI/GarageButton.png',{frameWidth: 153, frameHeight: 66});

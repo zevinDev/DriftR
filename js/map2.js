@@ -79,19 +79,12 @@ preload: function()
         this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
         this.load.image('player','assets/images/Cars/Player.png');
         this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
-        this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
-        this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
+
         this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
-       // cow = this.sound.add("cow", { loop: true });
-        //cow.play();
-       // corgi = this.sound.add("corgi", { loop: true });
-      //  corgi.play();
-     strack = this.sound.add("corgi", { loop: true });
-        strack.play();
         //Creates The Player
         player = this.physics.add.sprite(400,3396, 'player');
 
