@@ -78,7 +78,6 @@ preload: function()
         this.load.image('player','assets/images/Cars/Player.png');
         this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
-    this.load.audio('strack', 'assets/sounds/SCARY TRACK.mp3');
         this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading

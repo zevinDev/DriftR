@@ -74,6 +74,10 @@ preload() {
     this.load.image('horizontal', 'assets/images/Tracks/GrassPack/Horizontal.png');
     this.load.image('border_u-d', 'assets/images/msc/small_u-d.png');
     this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
+    this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
+    this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
+    this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
+    this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
     this.load.image('player','assets/images/Cars/Player.png');
     this.load.image('player', 'assets/images/Cars/player.png');
     this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
@@ -88,15 +92,6 @@ create() {
     var menuVideo = this.add.video(400,400, 'video1');
     menuVideo.play(true);
     menuVideo.setPaused(false);
-//randomly chooses map
-let map = Phaser.Math.Between(1,3);
-if (map == 1) {
-    map = 'map1';
-
-} else if (map >= 2) {
-    map = 'map2';
-
-}
 
         var startButton = this.add.image(200,600, 'start');
         startButton.setInteractive();
@@ -107,7 +102,7 @@ if (map == 1) {
                 startButton.setFrame(0)
             })
             startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                this.scene.start(map)
+                this.scene.start('mapselect')
             })
 
             var garageButton = this.add.image(600,600, 'garageButton');
