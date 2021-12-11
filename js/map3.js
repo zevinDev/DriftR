@@ -1,7 +1,7 @@
-var map2 = new Phaser.Class({
+var map3 = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
-    Phaser.Scene.call(this, { "key": "map2" });
+    Phaser.Scene.call(this, { "key": "map3" });
 },
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
@@ -66,10 +66,7 @@ preload: function()
 
     
         //Loads All The Images
-        this.load.image('turn1', 'assets/images/Tracks/GrassPack/Turn1.png');
-        this.load.image('turn2', 'assets/images/Tracks/GrassPack/Turn2.png');
-        this.load.image('turn3', 'assets/images/Tracks/GrassPack/Turn3.png');
-        this.load.image('turn4', 'assets/images/Tracks/GrassPack/Turn4.png');
+
         this.load.image('verticle', 'assets/images/Tracks/GrassPack/Verticle.png');
         this.load.image('horizontal', 'assets/images/Tracks/GrassPack/Horizontal.png');
         this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
@@ -77,11 +74,10 @@ preload: function()
         this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
         this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
         this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
-        this.load.image('player',mainPlayer);
+        this.load.image('player', mainPlayer);
         this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
         this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
-    this.load.audio('strack', 'assets/sounds/SCARY TRACK.mp3');
         this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading

@@ -13,7 +13,7 @@ create: function()
         corgi = this.sound.add("corgi", { loop: true });
         corgi.play();
         //Creates The Player
-        player = this.physics.add.sprite(2048,2048, 'player');
+        player = this.physics.add.sprite(2048,2048, mainPlayer);
 
         //Sets Colliders And Bounce
         player.setBounce(0.2);
