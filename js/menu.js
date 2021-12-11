@@ -102,6 +102,7 @@ create() {
             })
             startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.scene.start('mapselect')
+                var socket = io();
             })
 
             var garageButton = this.add.image(600,600, 'garageButton');
