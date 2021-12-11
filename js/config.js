@@ -1,4 +1,4 @@
-const { Phaser } = require("./phaser");
+//const { Phaser } = require("./phaser");
 
 var config = {
     type: Phaser.AUTO,
