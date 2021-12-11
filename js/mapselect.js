@@ -21,31 +21,31 @@ mapback = this.add.image(400,198,'mapback')
 const layer = this.add.layer();
 layer.add([mapselectback, mapback, map2select, map1select, mapbio])
 mapbio.visible = false
+map1select.setInteractive();
+map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+    map1select.setFrame(1)
+})
+map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+    map1select.setFrame(0)
+})
+map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+    mapbio.visible = true
+    this.scene.start('map1')
+})
+
+map2select.setInteractive();
+map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+    map2select.setFrame(1)
+})
+map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+    map2select.setFrame(0)
+})
+map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+    mapbio.visible = true
+    this.scene.start('map2')
+})
 },
 update: function()
 {
-    map1select.setInteractive();
-    map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-        map1select.setFrame(1)
-    })
-    map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-        map1select.setFrame(0)
-    })
-    map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        mapbio.visible = true
-        this.scene.start('map1')
-    })
-
-    map2select.setInteractive();
-    map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-        map2select.setFrame(1)
-    })
-    map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-        map2select.setFrame(0)
-    })
-    map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        mapbio.visible = true
-        this.scene.start('map2')
-    })
 }
 })

@@ -85,6 +85,7 @@ preload() {
     this.load.spritesheet('garageButton', 'assets/images/UI/GarageButton.png',{frameWidth: 153, frameHeight: 66});
     this.load.spritesheet('optionButton', 'assets/images/UI/OptionsButton.png',{frameWidth: 153, frameHeight: 66} );
     this.load.video('video1', 'assets/videos/GrassMenuVideo.mp4');
+    this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
 }
 create() {
     var menuVideo = this.add.video(400,400, 'video1');
