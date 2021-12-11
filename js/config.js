@@ -1,3 +1,5 @@
+const { Phaser } = require("./phaser");
+
 var config = {
     type: Phaser.AUTO,
     parent: "DriftR",
