@@ -6,6 +6,7 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
+    this.load.image('player', 'images/Cars/Player.png')
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
@@ -13,7 +14,7 @@ create: function()
         corgi = this.sound.add("corgi", { loop: true });
         corgi.play();
         //Creates The Player
-        player = this.physics.add.sprite(2048,2048, mainPlayer);
+        player = this.physics.add.sprite(2048,2048, 'player');
 
         //Sets Colliders And Bounce
         player.setBounce(0.2);
