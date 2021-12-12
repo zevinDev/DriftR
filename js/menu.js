@@ -78,7 +78,7 @@ preload() {
     this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
-    this.load.image('player', mainPlayer);
+    this.load.image('player', Car);
     this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
     this.load.spritesheet('start', 'assets/images/UI/button.png',{frameWidth: 153, frameHeight: 66});
     this.load.spritesheet('garageButton', 'assets/images/UI/GarageButton.png',{frameWidth: 153, frameHeight: 66});
@@ -101,7 +101,10 @@ create() {
             })
             startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.scene.start('mapselect')
+<<<<<<< HEAD
                 //var socket = io();
+=======
+>>>>>>> 80f3fc710968ad1a47c7138d5174c1a1662c6d56
             })
 
             var garageButton = this.add.image(600,600, 'garageButton');

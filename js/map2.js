@@ -6,96 +6,13 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
-        var progressBar = this.add.graphics();
-        var progressBox = this.add.graphics();
-        progressBox.fillStyle(0x222222, 0.8);
-        progressBox.fillRect(240, 270, 320, 50);
-
-        var width = this.cameras.main.width;
-        var height = this.cameras.main.height;
-        var loadingText = this.make.text({
-        x: width / 2,
-        y: height / 2 - 50,
-        text: "Loading...",
-        style: {
-            font: "20px monospace",
-            fill: "#ffffff"
-        }
-        });
-        loadingText.setOrigin(0.5, 0.5);
-
-        var percentText = this.make.text({
-        x: width / 2,
-        y: height / 2 - 5,
-        text: "0%",
-        style: {
-            font: "18px monospace",
-            fill: "#ffffff"
-        }
-        });
-        percentText.setOrigin(0.5, 0.5);
-
-        var assetText = this.make.text({
-        x: width / 2,
-        y: height / 2 + 50,
-        text: "",
-        style: {
-            font: "18px monospace",
-            fill: "#ffffff"
-        }
-        });
-        assetText.setOrigin(0.5, 0.5);
-
-        this.load.on("progress", function (value) {
-        percentText.setText(parseInt(value * 100) + "%");
-        progressBar.clear();
-        progressBar.fillStyle(0xffffff, 1);
-        progressBar.fillRect(250, 280, 300 * value, 30);
-        });
-
-        this.load.on("fileprogress", function (file) {
-        assetText.setText("Loading asset: " + file.key);
-        });
-        this.load.on("complete", function () {
-        progressBar.destroy();
-        progressBox.destroy();
-        loadingText.destroy();
-        percentText.destroy();
-        assetText.destroy();
-        });
-
-    
-        //Loads All The Images
-        this.load.image('turn1', 'assets/images/Tracks/GrassPack/Turn1.png');
-        this.load.image('turn2', 'assets/images/Tracks/GrassPack/Turn2.png');
-        this.load.image('turn3', 'assets/images/Tracks/GrassPack/Turn3.png');
-        this.load.image('turn4', 'assets/images/Tracks/GrassPack/Turn4.png');
-        this.load.image('verticle', 'assets/images/Tracks/GrassPack/Verticle.png');
-        this.load.image('horizontal', 'assets/images/Tracks/GrassPack/Horizontal.png');
-        this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
-        this.load.image('border_u-d', 'assets/images/msc/small_u-d.png');
-        this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
-        this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
-        this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
-        this.load.image('player',mainPlayer);
-        this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
-        this.load.audio('cow', 'assets/sounds/Cow_Banger.wav');
-        this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
-    this.load.audio('strack', 'assets/sounds/SCARY TRACK.mp3');
-        this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
-       // cow = this.sound.add("cow", { loop: true });
-        //cow.play();
-       // corgi = this.sound.add("corgi", { loop: true });
-      //  corgi.play();
-     strack = this.sound.add("corgi", { loop: true });
-        strack.play();
         //Creates The Player
         player = this.physics.add.sprite(400,3396, 'player');
-        
+
         //Sets Colliders And Bounce
         player.setBounce(0.2);
         player.setCollideWorldBounds(false);
@@ -127,7 +44,7 @@ create: function()
         //CheckPoint
         CheckPoint = this.physics.add.image(400,3396,'checkpoint')
 
-         //Defines Layers And Border Physics
+        // //Defines Layers And Border Physics
          const layer = this.add.layer();
          layer.add([LavaBack, Track, CheckPoint, player]);
          this.physics.add.collider(player, border);
@@ -138,7 +55,6 @@ create: function()
 },
 update: function()
 {
-    
     //Defines Keyboard Keys
     keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -169,7 +85,6 @@ update: function()
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
-
         }
 });
 
