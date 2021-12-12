@@ -14,4 +14,5 @@ var config = {
     };
 
 //Defines 'DriftR' As The Game
+var Car = 'assets/images/Cars/player.png'
 var DriftR = new Phaser.Game(config);
