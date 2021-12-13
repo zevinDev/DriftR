@@ -21,18 +21,24 @@ create: function()
 {
     //(TEST) still needs code for clicking on them and adding a button
     GarageBack = this.physics.add.sprite(400,400, 'GarageBack');
-    player1 = this.physics.add.sprite(200,600, 'player1');
-    GarageIcon1 = this.add.image(200,600,'garageIcon');
-    player2 = this.physics.add.sprite(400,600, 'player2');
-    GarageIcon2 = this.add.image(400,600,'garageIcon');
-    player3 = this.physics.add.sprite(600,600, 'player3');
-    GarageIcon3 = this.add.image(600,600,'garageIcon');
-    player4 = this.physics.add.sprite(200,500, 'player4');
-    GarageIcon4 = this.add.image(200,500,'garageIcon');
-    darkbirdmobile = this.physics.add.sprite(400,500, 'darkbirdmobile');
-    GarageIcon5 = this.add.image(400,500,'garageIcon');
-    mgcar = this.add.image(600, 500, 'mgcar');
-    GarageIcon6 = this.add.image(600,500,'garageIcon');
+
+    player1 = this.physics.add.sprite(200,650, 'player1');
+    GarageIcon1 = this.add.image(200,650,'garageIcon');
+
+    player2 = this.physics.add.sprite(400,650, 'player2');
+    GarageIcon2 = this.add.image(400,650,'garageIcon');
+
+    player3 = this.physics.add.sprite(600,650, 'player3');
+    GarageIcon3 = this.add.image(600,650,'garageIcon');
+
+    player4 = this.physics.add.sprite(200,450, 'player4');
+    GarageIcon4 = this.add.image(200,450,'garageIcon');
+
+    darkbirdmobile = this.physics.add.sprite(400,450, 'darkbirdmobile');
+    GarageIcon5 = this.add.image(400,450,'garageIcon');
+
+    mgcar = this.add.image(600, 450, 'mgcar');
+    GarageIcon6 = this.add.image(600,450,'garageIcon');
     mgcar.scaleX = 0.33;
     mgcar.scaleY = 0.33;
 
