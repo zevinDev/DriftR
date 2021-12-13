@@ -3,6 +3,16 @@ var map1 = new Phaser.Class({
 initialize: function() {
     Phaser.Scene.call(this, { "key": "map1" });
 },
+    //atempt at timer 
+    var timer = scene.time.addEvent({
+    delay: 500,                // ms
+    callback: callback,
+    //args: [],
+    callbackScope: thisArg,
+    repeat: 4
+});
+    
+    
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
