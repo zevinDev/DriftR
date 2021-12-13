@@ -14,7 +14,6 @@ Will Do Later
 
 ```bash
   Info Goes Here
-  why isnt debug turning off
 ```
 ## Acknowledgements
 
@@ -30,7 +29,7 @@ Will Do Later
 ## Feedback
 
 ```
-If you have any feedback, please reach out to me on discord REALziez#5887
+If you have any feedback, please reach out to me on discord REALziez#5887 or if you have any graphics you would like to include into game contact my partner on discord FunkyMonkey#2248
 ```
 
 

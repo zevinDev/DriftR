@@ -1,4 +1,4 @@
-var garage = new Phaser.Class({
+var options = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
     Phaser.Scene.call(this, { "key": "options" });
