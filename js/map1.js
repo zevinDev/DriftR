@@ -6,7 +6,6 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
-    this.load.image('player', Car)
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()

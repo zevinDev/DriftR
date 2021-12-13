@@ -11,6 +11,9 @@ preload: function()
 
 create: function()
 {
+back = this.add.image(400,400, 'back')
+
+        this.scale.startFullscreen();
 
 },
 update: function()
