@@ -79,7 +79,7 @@ preload() {
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
     this.load.image('SnowBack', 'assets/images/Tracks/SnowPack/CompletedSnowBack.png');
-    this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowtrackHalfScale.png');
+    this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
 
     this.load.image('player', Car);
     this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
