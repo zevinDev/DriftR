@@ -35,7 +35,7 @@ create: function()
         //Defines All Of The Backgrounds Variables
         SnowBack = this.physics.add.image(0,0, 'SnowBack');
         SnowBack.x = SnowBack.displayWidth / 2;
-        SnowBack.y = Snowback.displayHeight / 2;
+        SnowBack.y = SnowBack.displayHeight / 2;
         xLimit = SnowBack.displayWidth;
         yLimit = SnowBack.displayHeight;
         
@@ -49,7 +49,7 @@ create: function()
 
         // //Defines Layers And Border Physics
          const layer = this.add.layer();
-         layer.add([SnowBack, Track, CheckPoint, player]);
+         layer.add([SnowBack, SnowTrack, player]);
          this.physics.add.collider(player, border);
          camera.setBounds(0, 0, xLimit, yLimit);
 
