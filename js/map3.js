@@ -11,7 +11,7 @@ preload: function()
 create: function()
 {
         //Creates The Player
-        player = this.physics.add.sprite(400,3396, 'player');
+        player = this.physics.add.sprite(4490,4994, 'player');
 
         //Sets Colliders And Bounce
         player.setBounce(0.2);
@@ -27,29 +27,42 @@ create: function()
 
         //Defines The Border
         border = this.physics.add.staticGroup();
+        border.create(0,4096, 'border_u-d');
+        border.create(0,6144, 'border_u-d');
         border.create(0,2048, 'border_u-d');
-        border.create(4096, 2048, 'border_u-d');
+
+        border.create(8192,4096, 'border_u-d');
+        border.create(8192,6144, 'border_u-d');
+        border.create(8192,2048, 'border_u-d');
+
+        border.create(4096, 0, 'border_l-r');
+        border.create(6144, 0, 'border_l-r');
         border.create(2048, 0, 'border_l-r');
-        border.create(2048, 4096, 'border_l-r');
+
+        border.create(4096, 8192, 'border_l-r');
+        border.create(6144, 8192, 'border_l-r');
+        border.create(2048, 8192, 'border_l-r');
 
         //Defines All Of The Backgrounds Variables
-        SnowBack = this.physics.add.image(0,0, 'SnowBack');
+        SnowBack = this.physics.add.image(4096,4096, 'SnowBack');
+        SnowBack.scaleX = 2;
+        SnowBack.scaleY = 2;
         SnowBack.x = SnowBack.displayWidth / 2;
         SnowBack.y = SnowBack.displayHeight / 2;
         xLimit = SnowBack.displayWidth;
         yLimit = SnowBack.displayHeight;
         
         //Adds in the main track
-        SnowTrack = this.physics.add.image(2048,2048, 'SnowTrack');
-        // Track.x = Track.displayWidth / 2;
-        // Track.y = Track.displayHeight / 2;
-        // Track.scaleX(2);
-        // Track.scaleY(2);
+        SnowTrack = this.physics.add.image(4096,4096, 'SnowTrack');
+        SnowTrack.scaleX = 2;
+        SnowTrack.scaleY = 2;
 
+        //Adds a checkpoint
+        CheckPoint = this.physics.add.image(4490,4994, 'checkpoint');
 
         // //Defines Layers And Border Physics
          const layer = this.add.layer();
-         layer.add([SnowBack, SnowTrack, player]);
+         layer.add([SnowBack, SnowTrack, CheckPoint, player]);
          this.physics.add.collider(player, border);
          camera.setBounds(0, 0, xLimit, yLimit);
 
