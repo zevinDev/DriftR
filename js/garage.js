@@ -65,7 +65,7 @@ var MGC = false;
 
     //Defines Layers And Border Physics
     const layer = this.add.layer();
-    layer.add([GarageBack, GarageIcon1, player1, player2, player3, player4, darkbirdmobile, mgcar, GarageIconLocked2, GarageIconLocked3, GarageIconLocked4, GarageIconLocked5, GarageIconLocked6]);
+    layer.add([GarageBack, player1, player2, player3, player4, darkbirdmobile, mgcar, GarageIconLocked1, GarageIconLocked2, GarageIconLocked3, GarageIconLocked4, GarageIconLocked5, GarageIconLocked6]);
 
 },
 update: function()
