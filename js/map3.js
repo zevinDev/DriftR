@@ -27,26 +27,29 @@ create: function()
 
         //Defines The Border
         border = this.physics.add.staticGroup();
-        border.create(0,4096, 'border_u-d');
+        border.create(0,2048, 'border_u-d');
         border.create(4096, 2048, 'border_u-d');
         border.create(2048, 0, 'border_l-r');
         border.create(2048, 4096, 'border_l-r');
 
         //Defines All Of The Backgrounds Variables
-        SnowBack = this.physics.add.image(0,0, 'CompletedSnowBack');
+        SnowBack = this.physics.add.image(0,0, 'SnowBack');
         SnowBack.x = SnowBack.displayWidth / 2;
         SnowBack.y = Snowback.displayHeight / 2;
         xLimit = SnowBack.displayWidth;
         yLimit = SnowBack.displayHeight;
         
         //Adds in the main track
-        Track = this.physics.add.image(2048,2048, 'LavaTrack')
-        //CheckPoint
-        CheckPoint = this.physics.add.image(400,3396,'checkpoint')
+        SnowTrack = this.physics.add.image(2048,2048, 'SnowTrack');
+        // Track.x = Track.displayWidth / 2;
+        // Track.y = Track.displayHeight / 2;
+        // Track.scaleX(2);
+        // Track.scaleY(2);
+
 
         // //Defines Layers And Border Physics
          const layer = this.add.layer();
-         layer.add([LavaBack, Track, CheckPoint, player]);
+         layer.add([SnowBack, Track, CheckPoint, player]);
          this.physics.add.collider(player, border);
          camera.setBounds(0, 0, xLimit, yLimit);
 
