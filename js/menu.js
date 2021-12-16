@@ -80,6 +80,7 @@ preload() {
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
     this.load.image('SnowBack', 'assets/images/Tracks/SnowPack/CompletedSnowBack.png');
     this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
+    this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
 
     this.load.image('player', Car);
     this.load.spritesheet('start', 'assets/images/UI/START.png',{frameWidth: 213, frameHeight: 80});
@@ -88,6 +89,8 @@ preload() {
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
 }
 create() {
+
+   var back = this.add.image(400,400, 'mapselectback')
 
         var startButton = this.add.image(200,600, 'start');
         startButton.setInteractive();
@@ -124,5 +127,9 @@ create() {
             optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 this.scene.start('options')
             })
+
+            const layer = this.add.layer();
+            layer.add([back, startButton, garageButton, optionButton])
+
         }  
 }
