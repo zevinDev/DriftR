@@ -82,17 +82,12 @@ preload() {
     this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
 
     this.load.image('player', Car);
-    this.load.spritesheet('button', 'assets/images/UI/testbuttons.png',{frameWidth: 193, frameHeight: 71});
-    this.load.spritesheet('start', 'assets/images/UI/button.png',{frameWidth: 153, frameHeight: 66});
+    this.load.spritesheet('start', 'assets/images/UI/START.png',{frameWidth: 213, frameHeight: 80});
     this.load.spritesheet('garageButton', 'assets/images/UI/GarageButton.png',{frameWidth: 153, frameHeight: 66});
-    this.load.spritesheet('optionButton', 'assets/images/UI/OptionsButton.png',{frameWidth: 153, frameHeight: 66} );
-    this.load.video('video1', 'assets/videos/GrassMenuVideo.mp4');
+    this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png',{frameWidth: 213, frameHeight: 80} );
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
 }
 create() {
-    var menuVideo = this.add.video(400,400, 'video1');
-    menuVideo.play(true);
-    menuVideo.setPaused(false);
 
         var startButton = this.add.image(200,600, 'start');
         startButton.setInteractive();
@@ -118,7 +113,7 @@ create() {
                 this.scene.start('garage')
             })
 
-            var optionButton = this.add.image(600,700, 'optionButton');
+            var optionButton = this.add.image(600,700, 'options');
             optionButton.setInteractive();
             optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
                 optionButton.setFrame(1)
