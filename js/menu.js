@@ -84,7 +84,7 @@ preload() {
 
     this.load.image('player', Car);
     this.load.spritesheet('start', 'assets/images/UI/START.png',{frameWidth: 213, frameHeight: 80});
-    this.load.spritesheet('garageButton', 'assets/images/UI/GarageButton.png',{frameWidth: 153, frameHeight: 66});
+    this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png',{frameWidth: 213, frameHeight: 80});
     this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png',{frameWidth: 213, frameHeight: 80} );
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
 }
@@ -104,7 +104,7 @@ create() {
                 this.scene.start('mapselect')
             })
 
-            var garageButton = this.add.image(600,600, 'garageButton');
+            var garageButton = this.add.image(600,600, 'garage');
             garageButton.setInteractive();
             garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
                 garageButton.setFrame(1)
