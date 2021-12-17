@@ -121,8 +121,8 @@ update: function()
                
                if (timez >= 60){
                    timez = 0;
-clocks = clocks + 1;
-console.log(clocks/1000); //The console log for the timer 
+clocks = (clocks + 1)/1000;
+console.log(clocks); //The console log for the timer 
                } 
            }
            
