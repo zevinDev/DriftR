@@ -123,6 +123,9 @@ update: function()
                    timez = 0;
 clocks = (clocks + 1)/1000;
 console.log(clocks); //The console log for the timer 
+                   if (clocks >= 60){
+                       clocks = 0;
+                       
                } 
            }
            
