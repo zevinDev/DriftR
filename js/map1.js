@@ -1,3 +1,6 @@
+var timer = 0; //miliseconds
+var timez = 0; //idk
+var clocks = 0; //seconds
 var map1 = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
@@ -110,29 +113,25 @@ update: function()
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
     //This is the code for the timer function
-     var timer = 0; //miliseconds
-       var timez = 0; //idk
-       var clocks = 0; //seconds
-       while (timer <= 1000){ //The while loop infinitely counts up
+       while (timer <= 100){ //The while loop infinitely counts up
            timer = timer + 1;
-           if (timer >= 1000){
+       }
+           if (timer >= 100){
                timer = 0; 
                timez = timez + 1; 
-               
+           }
                if (timez >= 60){
                    timez = 0;
-clocks = (clocks + 1)/1000;
-console.log(clocks); //The console log for the timer 
-                   if (clocks >= 60){
-                       clocks = 0;
-                       
-               } 
-           }
+                clocks = clocks + 1;
+               }
+//Add me On Discord REALziez#5887
+console.log(timez); //The console log for the timer 
+                   
            
-       }
+           
     
     
     
-        }
-});
-
+        
+}}
+);
