@@ -109,6 +109,27 @@ update: function()
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
+    //This is the code for the timer function
+     var timer = 0; //miliseconds
+       var timez = 0; //idk
+       var clocks = 0; //seconds
+       while (timer <= 1000){ //The while loop infinitely counts up
+           timer = timer + 1;
+           if (timer >= 1000){
+               timer = 0; 
+               timez = timez + 1; 
+               
+               if (timez >= 60){
+                   timez = 0;
+clocks = clocks + 1;
+console.log(clocks/1000); //The console log for the timer 
+               } 
+           }
+           
+       }
+    
+    
+    
         }
 });
 
