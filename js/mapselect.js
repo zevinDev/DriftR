@@ -13,6 +13,7 @@ this.load.image('mapback', 'assets/images/UI/mapback.png');
 },
 create: function()
 {
+this.cameras.main.fadeIn(1000, 0, 0, 0)
 var mapselect;
 mapselectback = this.add.image(400,400,'mapselectback')
 map3select = this. add.image(631,198,'map1select')
