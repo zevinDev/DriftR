@@ -1,6 +1,7 @@
 var timer = 0; //miliseconds
 var timez = 0; //idk
 var clocks = 0; //seconds
+var test3 = 0;
 var map1 = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
@@ -124,8 +125,9 @@ update: function()
                    timez = 0;
                 clocks = clocks + 1;
                }
+test3 = (timez*1.666666666666667).toFixed(0)
 //Add me On Discord REALziez#5887
-console.log(timez); //The console log for the timer 
+console.log(clocks + "." + test3); //The console log for the timer 
                    
            
            
