@@ -10,6 +10,7 @@ this.load.image('map2select', 'assets/images/UI/map2select.png');
 this.load.image('map1select', 'assets/images/UI/map1select.png');
 this.load.image('mapbio', 'assets/images/UI/mapbio.png');
 this.load.image('mapback', 'assets/images/UI/mapback.png');
+this.load.spritesheet('backButton','assets/images/UI/BackButton.png', {frameWidth: 164, frameHeight: 80});
 },
 create: function()
 {
@@ -71,6 +72,21 @@ mapbio.setInteractive();
         this.scene.start('map3')
     }
 })
+//backgrond UI
+backButton = this.add.image(100,50, 'backButton');
+backButton.setInteractive();   
+    backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        backButton.setFrame(1)
+    })
+    backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        backButton.setFrame(0)
+    })
+    backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        this.cameras.main.fadeOut(1000, 0, 0, 0)
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+        this.scene.start('menu')
+        })
+    })
 },
 update: function()
 {

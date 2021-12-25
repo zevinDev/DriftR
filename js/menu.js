@@ -89,7 +89,7 @@ preload() {
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
 }
 create() {
-
+    this.cameras.main.fadeIn(1000, 0, 0, 0)
    var back = this.add.image(400,400, 'mapselectback')
 
         var startButton = this.add.image(200,600, 'start');
