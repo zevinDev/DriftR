@@ -198,7 +198,7 @@ if (P1 == true)
 
 
 
-player2 = this.physics.add.sprite(400,650, 'player2');
+player2 = this.physics.add.sprite(400,642, 'player2');
 GarageIcon2 = this.add.image(400,650, 'garageIcon');
 GarageIconLocked2 = this.add.image(400,650, 'lockedIcon')
 if (Car == 'assets/images/Cars/RedCar.png'){
@@ -285,7 +285,7 @@ if (P2 == true)
 }
 
 
-    player3 = this.physics.add.sprite(600,650, 'player3');
+    player3 = this.physics.add.sprite(600,642, 'player3');
     GarageIcon3 = this.add.image(600,650, 'garageIcon');
     GarageIconLocked3 = this.add.image(600,650,'lockedIcon');
     //change what happens if == to the car
@@ -373,7 +373,7 @@ if (P2 == true)
     }
     
 
-    player4 = this.physics.add.sprite(200,450, 'player4');
+    player4 = this.physics.add.sprite(200,442, 'player4');
     GarageIcon4 = this.add.image(200,450, 'garageIcon');
     GarageIconLocked4 = this.add.image(200,450,'lockedIcon');
     if (Car == 'assets/images/Cars/LimeCar.png'){
@@ -460,7 +460,7 @@ if (P2 == true)
     }
     
 
-    darkbirdmobile = this.physics.add.sprite(400,450, 'darkbirdmobile');
+    darkbirdmobile = this.physics.add.sprite(400,442, 'darkbirdmobile');
     GarageIcon5 = this.add.image(400,450, 'garageIcon');
     GarageIconLocked5 = this.add.image(400,450,'lockedIcon');
     //change what happens if == to the car
@@ -547,7 +547,7 @@ if (P2 == true)
         })
     }
 
-    mgcar = this.physics.add.sprite(600, 450, 'mgcar');
+    mgcar = this.physics.add.sprite(600, 442, 'mgcar');
     GarageIcon6 = this.add.image(600,450, 'garageIcon');
     GarageIconLocked6 = this.add.image(600,450,'lockedIcon');
     mgcar.scaleX = 0.33;
