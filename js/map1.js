@@ -13,12 +13,14 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
+    this.cameras.main.fadeIn(1000, 0, 0, 0)
     this.load.image('map1_pallet', '../assets/tilesets/map1_pallet.png')
     this.load.tilemapTiledJSON('map1', '../assets/tilesets/map1.json')
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
 {
+        
         corgi = this.sound.add("corgi", { loop: true });
         corgi.play();
         //Creates The Player
@@ -36,25 +38,25 @@ create: function()
         camera = this.cameras.main;
         camera.startFollow(player);
 
-        const map1 = this.make.tilemap({ key: 'map1', Height: 512, Width: 512})
+        const tilemap1 = this.make.tilemap({ key: 'map1', Height: 512, Width: 512})
 
-        const map1_pallet = map1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)
+        const map1_pallet = tilemap1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)
 
-        Border = map1.createLayer('Border', map1_pallet)
-        Back = map1.createLayer('Back', map1_pallet)
-        Track = map1.createLayer('Track', map1_pallet)
+        
+        BackLayer = tilemap1.createLayer('Back', map1_pallet)
+        TrackLayer = tilemap1.createLayer('Track', map1_pallet)
+        BorderLayer = tilemap1.createLayer('Border', map1_pallet)
+        tilemap1.setCollisionByProperty({ collides: true })
         //Defines Layers And Border Physics
         const layer = this.add.layer();
-        layer.add([Back, Track, Border, player])
-        
-      
+        layer.add([TrackLayer, BackLayer, BorderLayer, player]) 
         //camera.setBounds(0, 0, xLimit, yLimit);
 
 
-        
 },
 update: function()
 {
+    this.physics.add.collider(player, BorderLayer);
     //Defines Keyboard Keys
     keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -99,7 +101,7 @@ update: function()
                }
 test3 = (timez*1.666666666666667).toFixed(0)
 //Add me On Discord REALziez#5887
-console.log(clocks + "." + test3); //The console log for the timer 
+//console.log(clocks + "." + test3); //The console log for the timer 
                    
            
            
