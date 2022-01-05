@@ -66,16 +66,9 @@ preload() {
         });
 
         //Loads All The Images
-    this.load.image('turn1', 'assets/images/Tracks/GrassPack/Turn1.png');
-    this.load.image('turn2', 'assets/images/Tracks/GrassPack/Turn2.png');
-    this.load.image('turn3', 'assets/images/Tracks/GrassPack/Turn3.png');
-    this.load.image('turn4', 'assets/images/Tracks/GrassPack/Turn4.png');
-    this.load.image('verticle', 'assets/images/Tracks/GrassPack/Verticle.png');
-    this.load.image('horizontal', 'assets/images/Tracks/GrassPack/Horizontal.png');
-    this.load.image('border_u-d', 'assets/images/msc/small_u-d.png');
-    this.load.image('border_l-r', 'assets/images/msc/small_l-r.png');
+
+
     this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
-    this.load.image('back', 'assets/images/Tracks/GrassPack/Back.png');
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
     this.load.image('SnowBack', 'assets/images/Tracks/SnowPack/CompletedSnowBack.png');
