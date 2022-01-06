@@ -14,8 +14,6 @@ initialize: function() {
 preload: function()
 {
     this.cameras.main.fadeIn(1000, 0, 0, 0)
-    this.load.image('map1_pallet', '../assets/tilesets/map1_pallet.png')
-    this.load.tilemapTiledJSON('map1', '../assets/tilesets/map1.json')
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()

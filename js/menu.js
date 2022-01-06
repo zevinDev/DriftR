@@ -67,7 +67,8 @@ preload() {
 
         //Loads All The Images
 
-
+    this.load.image('map1_pallet', '../assets/tilesets/map1_pallet.png')
+    this.load.tilemapTiledJSON('map1', '../assets/tilesets/map1.json')
     this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
