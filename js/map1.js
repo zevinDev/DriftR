@@ -46,7 +46,6 @@ create: function()
         BackLayer = tilemap1.createLayer('Back', map1_pallet)
         TrackLayer = tilemap1.createLayer('Track', map1_pallet)
         BorderLayer = tilemap1.createLayer('Border', map1_pallet)
-        tilemap1.setCollisionByProperty({ collides: true })
         //Defines Layers And Border Physics
         const layer = this.add.layer();
         layer.add([TrackLayer, BackLayer, BorderLayer, player]) 
