@@ -67,8 +67,7 @@ preload() {
 
         //Loads All The Images
 
-    this.load.image('map1_pallet', '../assets/tilesets/map1_pallet.png')
-    this.load.tilemapTiledJSON('tilemap1', '../assets/tilesets/map1.json')
+    
     this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
     this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
@@ -81,6 +80,8 @@ preload() {
     this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png',{frameWidth: 213, frameHeight: 80});
     this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png',{frameWidth: 213, frameHeight: 80} );
     this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
+    this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
+    this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json')
 }
 create() {
     this.cameras.main.fadeIn(1000, 0, 0, 0)
