@@ -38,7 +38,7 @@ create: function()
         camera = this.cameras.main;
         camera.startFollow(player);
 
-        const tilemap1 = this.make.tilemap({ key: 'map1', Height: 512, Width: 512})
+        const tilemap1 = this.make.tilemap({ key: 'map1' })
 
         const map1_pallet = tilemap1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)
 
