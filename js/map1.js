@@ -13,7 +13,7 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
-    this.cameras.main.fadeIn(1000, 0, 0, 0)
+    //this.cameras.main.fadeIn(1000, 0, 0, 0)
 },
 //Creates Anything When The Game Is Finished Preloading
 create: function()
@@ -36,7 +36,7 @@ create: function()
         camera = this.cameras.main;
         camera.startFollow(player);
 
-        const tilemap1 = this.make.tilemap({ key: 'map1' })
+        const tilemap1 = this.make.tilemap({ key: 'tilemap1' })
 
         const map1_pallet = tilemap1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)
 
