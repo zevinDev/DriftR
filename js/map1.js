@@ -47,8 +47,9 @@ create: function()
         TrackLayer = tilemap1.createLayer('Track', map1_pallet)
         BorderLayer = tilemap1.createLayer('Border', map1_pallet)
         //Defines Layers And Border Physics
+        tilemap1.setCollisionByProperty({ collides: true })
         const layer = this.add.layer();
-        layer.add([TrackLayer, BackLayer, BorderLayer, player]) 
+        layer.add([player]) 
         //camera.setBounds(0, 0, xLimit, yLimit);
 
 
