@@ -19,7 +19,6 @@ var config = {
     };
 
 //Defines 'DriftR' As The Game
-var Car = 'assets/images/Cars/Player.png'
 var DriftR = new Phaser.Game(config);
 //Variable for Currency (TEST) CAN BE CHANGED
 var Dbucks = 2000;

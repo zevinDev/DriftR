@@ -13,6 +13,8 @@ initialize: function() {
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function()
 {
+    var car = localStorage.getItem('car');
+    this.load.image('player', car);
     //this.cameras.main.fadeIn(1000, 0, 0, 0)
 },
 //Creates Anything When The Game Is Finished Preloading

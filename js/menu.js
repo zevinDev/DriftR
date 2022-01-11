@@ -1,3 +1,4 @@
+var car
 class menu extends Phaser.Scene {
     constructor() { 
         super({key: 'menu'}); 
@@ -67,6 +68,16 @@ preload() {
 
         //Loads All The Images
 
+    var firstTime = localStorage.getItem("first_time");
+        if(!firstTime) {
+            // first time loaded!
+            localStorage.setItem("first_time","1");
+            localStorage.setItem("car","assets/images/Cars/Player.png");
+            console.log('First');
+        } else {
+            console.log('Not first time loaded')
+        }
+        car = localStorage.getItem('car');
     
     this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
@@ -75,7 +86,7 @@ preload() {
     this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
     this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
 
-    this.load.image('player', Car);
+    
     this.load.spritesheet('start', 'assets/images/UI/START.png',{frameWidth: 213, frameHeight: 80});
     this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png',{frameWidth: 213, frameHeight: 80});
     this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png',{frameWidth: 213, frameHeight: 80} );
@@ -128,6 +139,8 @@ create() {
 
             const layer = this.add.layer();
             layer.add([back, startButton, garageButton, optionButton])
+
+            console.log(car)
 
         }  
 }

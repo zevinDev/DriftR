@@ -1,3 +1,8 @@
+//For Taggy
+//localStorage.setItem("car","assets/images/Cars/LimeCar.png");
+//var car = localStorage.getItem('car');
+
+
 var garage = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
@@ -420,7 +425,7 @@ if (P2 == true)
             mgcar.y = 442
                 GarageIcon4.setFrame(3)
                 player4.y = 450
-                Car = 'assets/images/Cars/LimeCar.png';
+                localStorage.setItem("car","assets/images/Cars/LimeCar.png");
         })
     } else if (P4 == false) 
     {
