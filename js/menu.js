@@ -73,7 +73,7 @@ preload() {
             // first time loaded!
             localStorage.setItem("first_time","1");
             localStorage.setItem("car","assets/images/Cars/Player.png");
-            var map1leader = []
+            var map1leader = ["1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.", "10."]
             localStorage.setItem('test', JSON.stringify(map1leader));
             console.log('First');
         } else {
@@ -82,6 +82,7 @@ preload() {
         car = localStorage.getItem('car');
         var map1leader = localStorage.getItem('test');
         map1leader = JSON.parse(map1leader);
+        map1leader.splice(0, 1, "Test");
         console.log(map1leader)
         localStorage.setItem('test', JSON.stringify(map1leader));
 
