@@ -67,17 +67,26 @@ preload() {
         });
 
         //Loads All The Images
-
+        
     var firstTime = localStorage.getItem("first_time");
         if(!firstTime) {
             // first time loaded!
             localStorage.setItem("first_time","1");
             localStorage.setItem("car","assets/images/Cars/Player.png");
+            var map1leader = []
+            localStorage.setItem('test', JSON.stringify(map1leader));
             console.log('First');
         } else {
             console.log('Not first time loaded')
         }
         car = localStorage.getItem('car');
+        var map1leader = localStorage.getItem('test');
+        map1leader = JSON.parse(map1leader);
+        console.log(map1leader)
+        localStorage.setItem('test', JSON.stringify(map1leader));
+
+        
+        
     
     this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
     this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
@@ -140,7 +149,6 @@ create() {
             const layer = this.add.layer();
             layer.add([back, startButton, garageButton, optionButton])
 
-            console.log(car)
 
         }  
 }
