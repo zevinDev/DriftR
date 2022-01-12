@@ -76,7 +76,6 @@ var map1 = new Phaser.Class({
         //player.setFriction(30,30);
         //player.setMass(100);
         player.setMaxVelocity(1000, 1000);
-        var countDown = 60;
         //Defines All The Movement Controls For The Player
         if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
@@ -88,16 +87,10 @@ var map1 = new Phaser.Class({
         if (keyW.isDown || keyUP.isDown) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
         } else {
-            while (countDown > 0) {
-                this.physics.velocityFromRotation(player.rotation, 700, 1000);
-                countDown = countDown - 1;
-            }
-            if (countDown < 0) {
                 player.setAcceleration(0);
                 player.body.drag.x = 160;
                 player.body.drag.y = 160;
                 this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
-            }
         }
         //This is the code for the timer function
         while (timer <= 100) { //The while loop infinitely counts up
@@ -114,12 +107,6 @@ var map1 = new Phaser.Class({
         test3 = (timez * 1.666666666666667).toFixed(0)
         //Add me On Discord REALziez#5887
         //console.log(clocks + "." + test3); //The console log for the timer 
-
-
-        console.log(camera.x, camera.y)
-
-
-
 
     }
 });
