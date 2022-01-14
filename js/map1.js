@@ -107,8 +107,6 @@ var map1 = new Phaser.Class({
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
         FinalTime = clocks + "." + test3
-        //Add me On Discord REALziez#5887
-        //console.log(clocks + "." + test3); //The console log for the timer 
         Timertext.setText(FinalTime);
         Timertext.x = player.x - 200;
         Timertext.y = player.y - 200;
