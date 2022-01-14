@@ -111,7 +111,7 @@ var map1 = new Phaser.Class({
             minutes = minutes + 1; 
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
-        FinalTime = minutes + "." + clocks + "." + test3
+        FinalTime = minutes + "." + clocks + "." + test3;
         Timertext.setText(FinalTime);
         Timertext.x = player.x - 200;
         Timertext.y = player.y - 200;
