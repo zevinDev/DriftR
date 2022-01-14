@@ -111,11 +111,11 @@ var map1 = new Phaser.Class({
             minutes = minutes + 1; 
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
-        if(clocks>0){
-        FinalTime = clocks + "." + test3;
-        }
-        else if(minutes>0){
+        if(minutes>0){
         FinalTime = minutes + "." + clocks + "." + test3;
+        }
+        else if(clocks>0){
+        FinalTime = clocks + "." + test3;
         }else{
         FinalTime = test3;
         }
