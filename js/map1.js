@@ -1,7 +1,8 @@
-var timer = 0; //miliseconds
-var timez = 0; //idk
+var timer = 0;
+var timez = 0; 
 var clocks = 0; //seconds
-var test3 = 0;
+var test3 = 0; // milliseconds
+var FinalTime= 0;
 var map1 = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -59,7 +60,7 @@ var map1 = new Phaser.Class({
 
         this.physics.add.collider(player, BorderLayer);
 
-
+        Timertext = this.add.text();
 
     },
     update: function() {
@@ -105,8 +106,11 @@ var map1 = new Phaser.Class({
             clocks = clocks + 1;
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
+        FinalTime = clocks + "." + test3
         //Add me On Discord REALziez#5887
         //console.log(clocks + "." + test3); //The console log for the timer 
-
+        Timertext.setText(FinalTime);
+        Timertext.x = player.x - 200;
+        Timertext.y = player.y - 200;
     }
 });
