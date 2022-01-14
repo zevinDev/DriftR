@@ -1,6 +1,7 @@
 var timer = 0;
 var timez = 0; 
 var clocks = 0; //seconds
+var minutes = 0; //minutes 
 var test3 = 0; // milliseconds
 var FinalTime= 0;
 var map1 = new Phaser.Class({
@@ -105,10 +106,14 @@ var map1 = new Phaser.Class({
             timez = 0;
             clocks = clocks + 1;
         }
+        if (clocks >= 60){
+            clocks = 0;
+            minutes = minutes + 1; 
+        }
         test3 = (timez * 1.666666666666667).toFixed(0)
-        FinalTime = clocks + "." + test3
+        FinalTime = minutes + "."+ clocks + "." + test3
         Timertext.setText(FinalTime);
         Timertext.x = player.x - 200;
         Timertext.y = player.y - 200;
-    }
+        
 });
