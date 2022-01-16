@@ -1,9 +1,3 @@
-var timer = 0;
-var timez = 0; 
-var clocks = 0; //seconds
-var minutes = 0; //minutes 
-var test3 = 0; // milliseconds
-var FinalTime= 0;
 var map1 = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -12,16 +6,18 @@ var map1 = new Phaser.Class({
         });
     },
 
-
-
     //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
     preload: function() {
+
         var car = localStorage.getItem('car');
         this.load.image('player', car);
         //this.cameras.main.fadeIn(1000, 0, 0, 0)
+
     },
+  
     //Creates Anything When The Game Is Finished Preloading
     create: function() {
+
         corgi = this.sound.add("corgi", {
             loop: true
         });
@@ -52,19 +48,34 @@ var map1 = new Phaser.Class({
         TrackLayer = tilemap1.createLayer('Track', map1_pallet)
         BorderLayer = tilemap1.createLayer('Border', map1_pallet)
         //Defines Layers And Border Physics
-        tilemap1.setCollisionByProperty({
+        BorderLayer.setCollisionByProperty({
+            collides: true
+        })
+        BackLayer.setCollisionByProperty({
             collides: true
         })
         const layer = this.add.layer();
         layer.add([player])
         //camera.setBounds(0, 0, xLimit, yLimit);
-
         this.physics.add.collider(player, BorderLayer);
 
+        console.log(this)
         Timertext = this.add.text();
+        timer = 0;
+        timez = 0;
+        clocks = 0; //seconds
+        minutes = 0; //minutes 
+        test3 = 0; // milliseconds
+        FinalTime = 0;
 
     },
+  
     update: function() {
+        
+        tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+            console.log("On grass")
+        }
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -89,10 +100,10 @@ var map1 = new Phaser.Class({
         if (keyW.isDown || keyUP.isDown) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
         } else {
-                player.setAcceleration(0);
-                player.body.drag.x = 160;
-                player.body.drag.y = 160;
-                this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            player.setAcceleration(0);
+            player.body.drag.x = 160;
+            player.body.drag.y = 160;
+            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
         //This is the code for the timer function
         while (timer <= 100) { //The while loop infinitely counts up
@@ -106,22 +117,21 @@ var map1 = new Phaser.Class({
             timez = 0;
             clocks = clocks + 1;
         }
-        if (clocks >= 60){
+        if (clocks >= 60) {
             clocks = 0;
-            minutes = minutes + 1; 
+            minutes = minutes + 1;
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
-        if(minutes>0){
-        FinalTime = minutes + "." + clocks + "." + test3;
-        }
-        else if(clocks>0){
-        FinalTime = clocks + "." + test3;
-        }else{
-        FinalTime = test3;
+        if (minutes > 0) {
+            FinalTime = minutes + "." + clocks + "." + test3;
+        } else if (clocks > 0) {
+            FinalTime = clocks + "." + test3;
+        } else {
+            FinalTime = test3;
         }
         Timertext.setText(FinalTime);
         Timertext.x = player.x - 200;
         Timertext.y = player.y - 200;
 
-        
-}});
+    }
+});
