@@ -105,6 +105,24 @@ var map1 = new Phaser.Class({
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
+        //this slows down the car in grass 
+        if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+            if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
+                player.setAngularVelocity(-50);
+            } else if (player.body.speed > 15 && (keyD.isDown || keyRIGHT.isDown)) {
+                player.setAngularVelocity(50);
+            } else {
+                player.setAngularVelocity(0);
+            }
+            if (keyW.isDown || keyUP.isDown) {
+                this.physics.velocityFromRotation(player.rotation, 100, player.body.acceleration);
+            } else {
+                player.setAcceleration(0);
+                player.body.drag.x = 300;
+                player.body.drag.y = 300;
+                this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            }
+        }
         //This is the code for the timer function
         while (timer <= 100) { //The while loop infinitely counts up
             timer = timer + 1;
