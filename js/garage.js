@@ -1,6 +1,5 @@
 //For Taggy
 //localStorage.setItem("car","assets/images/Cars/LimeCar.png");
-
 var garage = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -38,23 +37,22 @@ var garage = new Phaser.Class({
     },
 
     create: function() {
-
-        var Car = localStorage.getItem('car');
+        Dbucks = localStorage.getItem('Dbucks');
 
         //this is for displaying current cash
         currency = this.add.text(25, 75, "Dbucks: " + Dbucks, {
             font: '32px Courier Bold',
             fill: '#000000'
-        })
+        });
         var price = 0;
         //Background UI
         GarageBack = this.physics.add.sprite(400, 400, 'GarageBack');
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(25,200, "You do not have enough Dbucks", {
+        var notEnoughMoney = this.add.text(25, 200, "You do not have enough Dbucks", {
             font: '56px Courier Bold',
             fill: '#e34d4d'
-            
+
         });
         notEnoughMoney.visible = false;
 
@@ -102,28 +100,30 @@ var garage = new Phaser.Class({
         buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
 
             if (Dbucks - price >= 0) {
-            Dbucks = Dbucks - price;
-            currency.setText("Dbucks: " + Dbucks)
+                Dbucks = Dbucks - price;
+                var Dbucks2 = localStorage.getItem('Dbucks');
+                currency.setText("Dbucks: " + Dbucks2)
 
-            infoPopUp.visible = false;
-            cancelButton.visible = false;
-            buyButton.visible = false;
-            popUpText.visible = false;
+                infoPopUp.visible = false;
+                cancelButton.visible = false;
+                buyButton.visible = false;
+                popUpText.visible = false;
 
-            //code below resets scene because buying something breaks the current scene but after restarting it seems fine
-            //found it online
-            //i found the problem but it would just be easier to restart the scene, it's because i dont create interactives for the rest of
-            //the visuals since its only done if the car has been bought
-            this.registry.destroy(); // destroy registry
-            this.events.off(); // disable all active events
-            this.scene.restart(); // restart current scene
-        } else {
-            infoPopUp.visible = false;
-            cancelButton.visible = false;
-            buyButton.visible = false;
-            popUpText.visible = false;
-            notEnoughMoney.visible = true;
-        }}); 
+                //code below resets scene because buying something breaks the current scene but after restarting it seems fine
+                //found it online
+                //i found the problem but it would just be easier to restart the scene, it's because i dont create interactives for the rest of
+                //the visuals since its only done if the car has been bought
+                this.registry.destroy(); // destroy registry
+                this.events.off(); // disable all active events
+                this.scene.restart(); // restart current scene
+            } else {
+                infoPopUp.visible = false;
+                cancelButton.visible = false;
+                buyButton.visible = false;
+                popUpText.visible = false;
+                notEnoughMoney.visible = true;
+            }
+        });
 
 
 
@@ -195,59 +195,59 @@ var garage = new Phaser.Class({
                 mgcar.y = 442
                 GarageIcon1.setFrame(3)
                 player1.y = 650
-                    //sets the sprite to current car
-                    localStorage.setItem("car","assets/images/Cars/Player.png");
+                //sets the sprite to current car
+                localStorage.setItem("car", "assets/images/Cars/Player.png");
             })
             //check for if the car isn't unlocked
         } else if (P1 == false) {
             //sets locked icon interactive
             GarageIconLocked1.setInteractive();
             //when icon clicked
-            GarageIconLocked1.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => { 
+            GarageIconLocked1.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 //sets not enough money text to not visible
                 notEnoughMoney.visible = false;
                 //the if statement prevents the user from buying multiple cars for the price of one
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 0;
-                //popup appears varifying if you want to buy the car
-                //all other buttons are defined beforehand in the beggining
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 0;
+                    //popup appears varifying if you want to buy the car
+                    //all other buttons are defined beforehand in the beggining
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                //when buy button is pressed it selects that car to be current car
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    //i couldve prevented this a numerous amount of ways but i just did this cuz why not
-                    if (notEnoughMoney.visible = false){
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    //sets the locked icon to false
-                    GarageIconLocked1.visible = false;
-                    //sets the Unlocked/Locked variable to true
-                    P1 = true;
-                    //selects that car to be current car
-                    GarageIcon1.setFrame(3);
-                    player1.y = 650
-                    localStorage.setItem("car","assets/images/Cars/Player.png");
-                    } else {
-                        //sets the not enough money text
-                        notEnoughMoney.visible = true;  
-                    }
-                })
-               }
+                    //when buy button is pressed it selects that car to be current car
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        //i couldve prevented this a numerous amount of ways but i just did this cuz why not
+                        if (notEnoughMoney.visible = false) {
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            //sets the locked icon to false
+                            GarageIconLocked1.visible = false;
+                            //sets the Unlocked/Locked variable to true
+                            P1 = true;
+                            //selects that car to be current car
+                            GarageIcon1.setFrame(3);
+                            player1.y = 650
+                            localStorage.setItem("car", "assets/images/Cars/Player.png");
+                        } else {
+                            //sets the not enough money text
+                            notEnoughMoney.visible = true;
+                        }
+                    })
+                }
             })
         }
 
@@ -296,47 +296,47 @@ var garage = new Phaser.Class({
                 mgcar.y = 442
                 GarageIcon2.setFrame(3)
                 player2.y = 650
-                localStorage.setItem("car","assets/images/Cars/RedCar.png");
-                
+                localStorage.setItem("car", "assets/images/Cars/RedCar.png");
+
             })
         } else if (P2 == false) {
             GarageIconLocked2.setInteractive();
             GarageIconLocked2.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 100;
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 100;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    if (notEnoughMoney.visible = false){
-                    //things that need to be changed for every car
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    GarageIconLocked2.visible = false;
-                    P2 = true;
-                    GarageIcon2.setFrame(3);
-                    player2.y = 650
-                    localStorage.setItem("car","assets/images/Cars/RedCar.png");
-                    } else {
-                        notEnoughMoney.visible = true;  
-                    }
-                })
-            }
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible = false) {
+                            //things that need to be changed for every car
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            GarageIconLocked2.visible = false;
+                            P2 = true;
+                            GarageIcon2.setFrame(3);
+                            player2.y = 650
+                            localStorage.setItem("car", "assets/images/Cars/RedCar.png");
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
+                }
             })
         }
 
@@ -385,46 +385,46 @@ var garage = new Phaser.Class({
                 mgcar.y = 442
                 GarageIcon3.setFrame(3)
                 player3.y = 650
-                localStorage.setItem("car","assets/images/Cars/MagentaCar.png");
+                localStorage.setItem("car", "assets/images/Cars/MagentaCar.png");
             })
         } else if (P3 == false) {
             GarageIconLocked3.setInteractive();
             GarageIconLocked3.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 150;
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 150;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    if (notEnoughMoney.visible = false){
-                    //things that need to be changed for every car
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    GarageIconLocked3.visible = false;
-                    P3 = true;
-                    GarageIcon3.setFrame(3);
-                    player3.y = 650
-                    localStorage.setItem("car","assets/images/Cars/MagentaCar.png");
-                } else {
-                    notEnoughMoney.visible = true;  
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible = false) {
+                            //things that need to be changed for every car
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            GarageIconLocked3.visible = false;
+                            P3 = true;
+                            GarageIcon3.setFrame(3);
+                            player3.y = 650
+                            localStorage.setItem("car", "assets/images/Cars/MagentaCar.png");
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
                 }
-                })
-            }
             })
         }
 
@@ -479,39 +479,39 @@ var garage = new Phaser.Class({
             GarageIconLocked4.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 150;
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 150;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    if (notEnoughMoney.visible = false){
-                    //things that need to be changed for every car
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    GarageIconLocked4.visible = false;
-                    P4 = true;
-                    GarageIcon4.setFrame(3);
-                    player4.y = 450
-                    localStorage.setItem("car", "assets/images/Cars/LimeCar.png");
-                } else {
-                    notEnoughMoney.visible = true;  
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible = false) {
+                            //things that need to be changed for every car
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            GarageIconLocked4.visible = false;
+                            P4 = true;
+                            GarageIcon4.setFrame(3);
+                            player4.y = 450
+                            localStorage.setItem("car", "assets/images/Cars/LimeCar.png");
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
                 }
-                })
-            }
             })
         }
 
@@ -567,39 +567,39 @@ var garage = new Phaser.Class({
             GarageIconLocked5.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 500;
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 500;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    if (notEnoughMoney.visible = false){
-                    //things that need to be changed for every car
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    GarageIconLocked5.visible = false;
-                    DBM = true;
-                    GarageIcon5.setFrame(3);
-                    darkbirdmobile.y = 450
-                    localStorage.setItem("car", "assets/images/Cars/DarkBirdMobile.png");
-                    } else {
-                        notEnoughMoney.visible = true;  
-                    }
-                })
-            }
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible = false) {
+                            //things that need to be changed for every car
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            GarageIconLocked5.visible = false;
+                            DBM = true;
+                            GarageIcon5.setFrame(3);
+                            darkbirdmobile.y = 450
+                            localStorage.setItem("car", "assets/images/Cars/DarkBirdMobile.png");
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
+                }
             })
         }
 
@@ -654,39 +654,39 @@ var garage = new Phaser.Class({
             GarageIconLocked6.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                //price also changed per car
-                price = 1000;
-                popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
-                infoPopUp.visible = true;
-                cancelButton.visible = true;
-                buyButton.visible = true;
-                popUpText.visible = true;
+                    //price also changed per car
+                    price = 1000;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Dbucks?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
 
-                buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                    if (notEnoughMoney.visible = false){
-                    //things that need to be changed for every car
-                    GarageIcon1.setFrame(0);
-                    player1.y = 642
-                    GarageIcon2.setFrame(0);
-                    player2.y = 642
-                    GarageIcon3.setFrame(0);
-                    player3.y = 642
-                    GarageIcon4.setFrame(0);
-                    player4.y = 442
-                    GarageIcon5.setFrame(0);
-                    darkbirdmobile.y = 442
-                    GarageIcon6.setFrame(0);
-                    mgcar.y = 442
-                    GarageIconLocked6.visible = false;
-                    MGC = true;
-                    GarageIcon6.setFrame(3);
-                    mgcar.y = 450
-                    localStorage.setItem("car", "assets/images/Cars/MGKCar.png");
-                } else {
-                    notEnoughMoney.visible = true;  
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible = false) {
+                            //things that need to be changed for every car
+                            GarageIcon1.setFrame(0);
+                            player1.y = 642
+                            GarageIcon2.setFrame(0);
+                            player2.y = 642
+                            GarageIcon3.setFrame(0);
+                            player3.y = 642
+                            GarageIcon4.setFrame(0);
+                            player4.y = 442
+                            GarageIcon5.setFrame(0);
+                            darkbirdmobile.y = 442
+                            GarageIcon6.setFrame(0);
+                            mgcar.y = 442
+                            GarageIconLocked6.visible = false;
+                            MGC = true;
+                            GarageIcon6.setFrame(3);
+                            mgcar.y = 450
+                            localStorage.setItem("car", "assets/images/Cars/MGKCar.png");
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
                 }
-                })
-            }
             })
         }
 
@@ -699,6 +699,6 @@ var garage = new Phaser.Class({
 
     },
     update: function() {
-
+        console.log(Dbucks)
     }
 });

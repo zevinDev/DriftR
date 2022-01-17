@@ -30,4 +30,3 @@ var MGC = false;
 var DBM = false;
 
 //Currency (also needs to be made a global variable)
-var Dbucks = 1000;
