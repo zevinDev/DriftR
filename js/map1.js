@@ -119,7 +119,7 @@ var map1 = new Phaser.Class({
                 player.setAngularVelocity(0);
             }
             if (keyW.isDown || keyUP.isDown) {
-                this.physics.velocityFromRotation(player.rotation, 100, player.body.acceleration);
+                this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
             } else {
                 player.setAcceleration(0);
                 player.body.drag.x = 300;
