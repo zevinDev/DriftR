@@ -66,7 +66,8 @@ var map1 = new Phaser.Class({
         clocks = 0; //seconds
         minutes = 0; //minutes 
         test3 = 0; // milliseconds
-        FinalTime = 0;
+        FinalTime = 0; //Time that's displayed
+        var SCORETime; //Final score time that's added to leaderboard
 
     },
   
@@ -84,6 +85,7 @@ var map1 = new Phaser.Class({
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //SPACEKEY TEST for leaderboard
 
         //Defines Friction, Mass, and Velocity For The Player
         //player.setFriction(30,30);
@@ -107,6 +109,8 @@ var map1 = new Phaser.Class({
         }
         //this slows down the car in grass 
         if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+            player.setMaxVelocity(100,100); //Player cannot accelerate past 100
+            player.setAcceleration(0); 
             if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
                 player.setAngularVelocity(-50);
             } else if (player.body.speed > 15 && (keyD.isDown || keyRIGHT.isDown)) {
@@ -150,6 +154,29 @@ var map1 = new Phaser.Class({
         Timertext.setText(FinalTime);
         Timertext.x = player.x - 200;
         Timertext.y = player.y - 200;
+        
+            if (keySPACE.isDown && minutes > 0){
+    SCORETime = FinalTime;
+    timer = 0;
+    timez = 0;
+    clocks = 0;
+    minutes = 0;
+    test3 = 0; 
+    console.log(SCORETime); 
+        }
+        
+        if (keySPACE.isDown && clocks > 0){
+            SCORETime = FinalTime;
+            timer = 0;
+            timez = 0;
+            clocks = 0;
+            minutes = 0;
+            test3 = 0; 
+            console.log(SCORETime); 
+            
+            
+                }
+ 
 
     }
 });
