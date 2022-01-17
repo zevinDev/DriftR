@@ -20,3 +20,14 @@ var config = {
 
 //Defines 'DriftR' As The Game
 var DriftR = new Phaser.Game(config);
+
+//Unlocked/Locked variables for garage (needs to be made a global variable)
+var P1 = true;
+var P2 = false;
+var P3 = false;
+var P4 = false;
+var MGC = false;
+var DBM = false;
+
+//Currency (also needs to be made a global variable)
+var Dbucks = 0;
