@@ -59,10 +59,10 @@ var garage = new Phaser.Class({
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
-        infoPopUp = this.add.image(400, 450, 'infoPopUp');
-        cancelButton = this.add.image(250, 675, 'cancelButton');
-        buyButton = this.add.image(550, 675, 'buyButton');
-        popUpText = this.add.text(150, 200, "Are you sure you want to buy \n this car for " + price + " Dbucks?", {
+        infoPopUp = this.add.image(400, 400, 'infoPopUp');
+        cancelButton = this.add.image(250, 625, 'cancelButton');
+        buyButton = this.add.image(550, 625, 'buyButton');
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy \n this car for " + price + " Dbucks?", {
             font: '64px Courier Bold',
             fill: '#000000'
         });
