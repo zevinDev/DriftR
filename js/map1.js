@@ -75,7 +75,6 @@ var map1 = new Phaser.Class({
         
         tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
 
-
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -84,6 +83,8 @@ var map1 = new Phaser.Class({
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //SPACEKEY TEST for leaderboard
+
+        keyESCAPE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESCAPE); // test for exit game
 
         //Defines Friction, Mass, and Velocity For The Player
         //player.setFriction(30,30);
@@ -143,7 +144,7 @@ var map1 = new Phaser.Class({
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
         if (minutes > 0) {
-            FinalTime = minutes + "." + clocks + "." + test3;
+            FinalTime = minutes + ":" + clocks + "." + test3;
         } else if (clocks > 0) {
             FinalTime = clocks + "." + test3;
         } else {
@@ -175,6 +176,8 @@ var map1 = new Phaser.Class({
             
                 }
  
-
+                //if (keyESCAPE.isDown) {
+                    //this.scene.start('menu');
+                //}
     }
 });
