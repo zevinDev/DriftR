@@ -699,6 +699,6 @@ var garage = new Phaser.Class({
 
     },
     update: function() {
-        console.log(Dbucks)
+
     }
 });
