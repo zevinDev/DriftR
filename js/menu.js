@@ -78,6 +78,12 @@ class menu extends Phaser.Scene {
             localStorage.setItem("MainVolume", 50);
             localStorage.setItem("MusicVolume", 50);
             localStorage.setItem("Dbucks", 1000);
+            localStorage.setItem("P1", true);
+            localStorage.setItem("P2", false);
+            localStorage.setItem("P3", false);
+            localStorage.setItem("P4", false);
+            localStorage.setItem("MGC", false);
+            localStorage.setItem("DBM", false);
             var map1leader = ["1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.", "10."]
             localStorage.setItem('test', JSON.stringify(map1leader));
             console.log('First');

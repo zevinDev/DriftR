@@ -74,9 +74,7 @@ var map1 = new Phaser.Class({
     update: function() {
         
         tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
-        if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
-            console.log("On grass")
-        }
+
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
