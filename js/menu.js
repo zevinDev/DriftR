@@ -97,7 +97,7 @@ class menu extends Phaser.Scene {
         console.log(map1leader)
         localStorage.setItem('test', JSON.stringify(map1leader));
 
-
+        console.log(localStorage.getItem('Race1Time'));
 
 
         this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')

@@ -23,7 +23,7 @@ var map1 = new Phaser.Class({
         });
         corgi.play();
         //Creates The Player
-        player = this.physics.add.sprite(2048, 2048, 'player');
+        player = this.physics.add.sprite(396, 3300, 'player');
 
         //Sets Colliders And Bounce
         player.setBounce(0.2);
@@ -46,6 +46,10 @@ var map1 = new Phaser.Class({
 
         BackLayer = tilemap1.createLayer('Back', map1_pallet)
         TrackLayer = tilemap1.createLayer('Track', map1_pallet)
+        StartLine = tilemap1.createLayer('Start', map1_pallet)
+        Check1 = tilemap1.createLayer('Check1', map1_pallet)
+        Check2 = tilemap1.createLayer('Check2', map1_pallet)
+        Check3 = tilemap1.createLayer('Check3', map1_pallet)
         BorderLayer = tilemap1.createLayer('Border', map1_pallet)
         //Defines Layers And Border Physics
         BorderLayer.setCollisionByProperty({
@@ -59,13 +63,19 @@ var map1 = new Phaser.Class({
         //camera.setBounds(0, 0, xLimit, yLimit);
         this.physics.add.collider(player, BorderLayer);
 
-        console.log(this)
         Timertext = this.add.text();
         timer = 0;
         timez = 0;
         clocks = 0; //seconds
         minutes = 0; //minutes 
         test3 = 0; // milliseconds
+        timeon = false;
+        testspeed = 0;
+        Check1pass = true;
+        Check2pass = true;
+        Check3pass = true;
+        LapCount = 0;
+        accel = player.body.acceleration;
         FinalTime = 0; //Time that's displayed
         var SCORETime; //Final score time that's added to leaderboard
 
@@ -74,6 +84,10 @@ var map1 = new Phaser.Class({
     update: function() {
         
         tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        tile2 = StartLine.getTileAtWorldXY(player.x, player.y, true);
+        Check1tile = Check1.getTileAtWorldXY(player.x, player.y, true);
+        Check2tile = Check2.getTileAtWorldXY(player.x, player.y, true);
+        Check3tile = Check3.getTileAtWorldXY(player.x, player.y, true);
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -90,6 +104,7 @@ var map1 = new Phaser.Class({
         //player.setFriction(30,30);
         //player.setMass(100);
         player.setMaxVelocity(1000, 1000);
+        this.physics.velocityFromRotation(player.rotation, testspeed, accel);
         //Defines All The Movement Controls For The Player
         if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
@@ -99,13 +114,41 @@ var map1 = new Phaser.Class({
             player.setAngularVelocity(0);
         }
         if (keyW.isDown || keyUP.isDown) {
-            this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
+            testspeed = 700;
+            accel = player.body.acceleration;
         } else {
             player.setAcceleration(0);
             player.body.drag.x = 160;
             player.body.drag.y = 160;
-            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            testspeed = 0
+            accel = player.body.acceleration;
         }
+
+        if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
+            if(Check2pass == false && Check3pass == false){
+                Check1pass = true;
+                console.log("Check 1 passed")
+            }
+        }
+
+        if (Check2tile.index == 6 || Check2tile.index == 0 || Check2tile.index == 1) {
+            if(Check1pass == true && Check3pass == false){
+                Check2pass = true;
+                console.log("Check 2 passed")
+            }
+        }
+
+        if (Check3tile.index == 6 || Check3tile.index == 0 || Check3tile.index == 1) {
+            if(Check1pass == true && Check2pass == true){
+                Check3pass = true;
+                console.log("Check 3 passed")
+            }
+        }
+
+
+
+
+
         //this slows down the car in grass 
         if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
             player.setMaxVelocity(100,100); //Player cannot accelerate past 100
@@ -127,9 +170,11 @@ var map1 = new Phaser.Class({
             }
         }
         //This is the code for the timer function
+        if(timeon == true){
         while (timer <= 100) { //The while loop infinitely counts up
             timer = timer + 1;
         }
+    }
         if (timer >= 100) {
             timer = 0;
             timez = timez + 1;
@@ -144,9 +189,9 @@ var map1 = new Phaser.Class({
         }
         test3 = (timez * 1.666666666666667).toFixed(0)
         if (minutes > 0) {
-            FinalTime = minutes + ":" + clocks + "." + test3;
+            FinalTime = minutes + ":" + clocks + ":" + test3;
         } else if (clocks > 0) {
-            FinalTime = clocks + "." + test3;
+            FinalTime = clocks + ":" + test3;
         } else {
             FinalTime = test3;
         }
@@ -164,6 +209,32 @@ var map1 = new Phaser.Class({
     console.log(SCORETime); 
         }
         
+
+        if (tile2.index == 9 || tile2.index == 10) {
+            if(LapCount == 0){
+                timeon = true
+                Check1pass = false;
+                Check2pass = false;
+                Check3pass = false;
+                LapCount = LapCount + 1;
+            } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                Check1pass = false;
+                Check2pass = false;
+                Check3pass = false;
+                LapCount = LapCount + 1;
+                console.log(LapCount);
+            } else if(LapCount == 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                Check1pass = false;
+                Check2pass = false;
+                Check3pass = false;
+                timeon = false
+                localStorage.setItem('Race1Time', FinalTime);
+                console.log("Race Finished")
+            }
+            
+        }
+
+
         if (keySPACE.isDown && clocks > 0){
             SCORETime = FinalTime;
             timer = 0;
@@ -172,8 +243,6 @@ var map1 = new Phaser.Class({
             minutes = 0;
             test3 = 0; 
             console.log(SCORETime); 
-            
-            
                 }
  
                 //if (keyESCAPE.isDown) {

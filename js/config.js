@@ -1,5 +1,4 @@
 var config = {
-    plugins: PhaserPluginInspector.DefaultPluginsConfig,
     type: Phaser.AUTO,
     scale: {
         mode: Phaser.Scale.FIT,
