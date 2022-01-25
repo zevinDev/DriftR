@@ -137,7 +137,7 @@ var map1 = new Phaser.Class({
                     for(var i=0; i<map1leader.length; i++){
                         if(done == false)
                         if(FinalTime < map1leader[i]){
-                            map1leader.splice(i, (i+1), FinalTime);
+                            map1leader.splice(i, 0, FinalTime);
                             localStorage.setItem('map1leader', JSON.stringify(map1leader));
                             done = true;
                         } else if(map1leader[i] == 0){
