@@ -7,24 +7,38 @@ var mapselect = new Phaser.Class({
     },
     preload: function() {
         this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
-        this.load.image('map2select', 'assets/images/UI/map2select.png');
-        this.load.image('map1select', 'assets/images/UI/map1select.png');
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
-        this.load.image('mapback', 'assets/images/UI/mapback.png');
+        this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
             frameWidth: 164,
             frameHeight: 80
         });
+        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap1Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
     },
     create: function() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)
-        var mapselect;
+        mapselect;
+        testvar = true;
+        test2var = true;
+        test3var = true;
         mapselectback = this.add.image(400, 400, 'mapselectback')
-        map3select = this.add.image(631, 198, 'map1select')
-        map2select = this.add.image(400, 198, 'map2select')
-        map1select = this.add.image(169, 198, 'map1select')
+        map3select = this.add.image(600, 208, 'selectmap1')
+        map1select = this.add.image(200, 208, 'selectmap1')
+        map2select = this.add.image(400, 208, 'map2select')
+
         mapbio = this.add.image(400, 570, 'mapbio')
-        mapback = this.add.image(400, 198, 'mapback')
+        mapback = this.add.image(400, 216, 'mapback')
         const layer = this.add.layer();
         layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio])
         mapbio.visible = false
@@ -39,6 +53,7 @@ var mapselect = new Phaser.Class({
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             mapbio.visible = true
             mapselect = 1;
+            testvar = true;
         })
         //interactive for map 2
         map2select.setInteractive();
@@ -51,6 +66,7 @@ var mapselect = new Phaser.Class({
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             mapbio.visible = true
             mapselect = 2;
+            test2var = true;
         });
         //interactive for map 3
         map3select.setInteractive();
@@ -63,6 +79,7 @@ var mapselect = new Phaser.Class({
         map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             mapbio.visible = true
             mapselect = 3;
+            test3var = true;
         });
         //interactive for starting the map
         mapbio.setInteractive();
@@ -94,5 +111,26 @@ var mapselect = new Phaser.Class({
             })
         })
     },
-    update: function() {}
+    update: function() {
+        if (mapselect == 1){
+            map1select.setFrame(2)
+        } else if(mapselect == 2){
+            map2select.setFrame(2)
+        } else if(mapselect == 3){
+            map3select.setFrame(2)
+        }
+        if(mapselect != 1 && testvar == true){
+            testvar = false
+            map1select.setFrame(0)
+
+        }else if(mapselect != 2 && test2var == true){
+            test2var = false
+            map2select.setFrame(0)
+
+        } if(mapselect != 3 && test3var == true){
+            test3var = false
+            map3select.setFrame(0)
+
+        }
+    }
 })

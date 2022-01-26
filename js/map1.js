@@ -90,21 +90,21 @@ var map1 = new Phaser.Class({
 
         laps = function(){
             if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
-                if(Check2pass == false && Check3pass == false){
+                if(Check1pass = false && Check2pass == false && Check3pass == false){
                     Check1pass = true;
                     console.log("Check 1 passed")
                 }
             }
     
             if (Check2tile.index == 6 || Check2tile.index == 0 || Check2tile.index == 1) {
-                if(Check1pass == true && Check3pass == false){
+                if(Check1pass == true && Check2pass == false && Check3pass == false){
                     Check2pass = true;
                     console.log("Check 2 passed")
                 }
             }
     
             if (Check3tile.index == 6 || Check3tile.index == 0 || Check3tile.index == 1) {
-                if(Check1pass == true && Check2pass == true){
+                if(Check1pass == true && Check2pass == true && Check3pass == false){
                     Check3pass = true;
                     console.log("Check 3 passed")
                 }
