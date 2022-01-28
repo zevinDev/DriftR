@@ -90,7 +90,7 @@ var map1 = new Phaser.Class({
 
         laps = function(){
             if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
-                if(Check1pass = false && Check2pass == false && Check3pass == false){
+                if(Check1pass == false && Check2pass == false && Check3pass == false){
                     Check1pass = true;
                     console.log("Check 1 passed")
                 }
