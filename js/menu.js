@@ -77,7 +77,7 @@ class menu extends Phaser.Scene {
             localStorage.setItem("car", "assets/images/Cars/Player.png");
             localStorage.setItem("MainVolume", 50);
             localStorage.setItem("MusicVolume", 50);
-            localStorage.setItem("Dbucks", 1000);
+            localStorage.setItem("Dbucks", 000);
             localStorage.setItem("P1", true);
             localStorage.setItem("P2", false);
             localStorage.setItem("P3", false);
@@ -94,6 +94,7 @@ class menu extends Phaser.Scene {
         var map1leader = localStorage.getItem('map1leader');
         console.log(map1leader)
 
+        localStorage.setItem("paused", "0");
 
 
         this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
@@ -119,6 +120,7 @@ class menu extends Phaser.Scene {
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
         this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json')
+
     }
     create() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)
