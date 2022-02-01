@@ -97,75 +97,6 @@ var map1 = new Phaser.Class({
         FinalTime = 0; //Time that's displayed
         var SCORETime; //Final score time that's added to leaderboard
 
-        laps = function(){
-            
-            if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
-                if(Check1pass == false && Check2pass == false && Check3pass == false){
-                    Check1pass = true;
-                    console.log("Check 1 passed")
-                }
-            }
-    
-            if (Check2tile.index == 6 || Check2tile.index == 0 || Check2tile.index == 1) {
-                if(Check1pass == true && Check2pass == false && Check3pass == false){
-                    Check2pass = true;
-                    console.log("Check 2 passed")
-                }
-            }
-    
-            if (Check3tile.index == 6 || Check3tile.index == 0 || Check3tile.index == 1) {
-                if(Check1pass == true && Check2pass == true && Check3pass == false){
-                    Check3pass = true;
-                    console.log("Check 3 passed")
-                }
-            }
-
-            if (tile2.index == 9 || tile2.index == 10) {
-                if(LapCount == 0){
-                    timeon = true
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    LapCount = LapCount + 1;
-                } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    LapCount = LapCount + 1;
-                    console.log(LapCount);
-                } else if(LapCount == 3 && Check1pass == true && Check2pass == true && Check3pass == true){
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    timeon = false
-                    var map1leader = localStorage.getItem('map1leader');
-                    map1leader = JSON.parse(map1leader);
-                    var map1leadername = localStorage.getItem('map1leadername');
-                    map1leadername = JSON.parse(map1leadername);
-                    var done = false;
-                    for(var i=0; i<map1leader.length; i++){
-                        if(done == false){
-                        if(FinalTime < map1leader[i]){
-                            map1leader.splice(i, 0, FinalTime);
-                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
-                            done = true;
-                        } else if(map1leader[i] == 0){
-                            map1leader.splice(i, 0, FinalTime);
-                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
-                            done = true;
-                        }
-                        }
-                        if(done==true){
-                            
-                            
-                        }
-                    }
-                    localStorage.setItem('Race1Time', FinalTime);
-                    console.log("Race Finished")
-                }
-                
-            }
-        }
 
         getTile = function(){
         tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
@@ -278,7 +209,7 @@ var map1 = new Phaser.Class({
        } if(keyUP.isUp && keyDOWN.isUp){
            test6 = true;
        }
-        laps();
+
         if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
             if(Check1pass == false && Check2pass == false && Check3pass == false){
                 Check1pass = true;
@@ -318,7 +249,6 @@ var map1 = new Phaser.Class({
                 Check2pass = false;
                 Check3pass = false;
                 timeon = false
-                this.scene.launch("lapsComplete");
                 var map1leader = localStorage.getItem('map1leader');
                 map1leader = JSON.parse(map1leader);
                 //map1leader.splice(0, 1, "Test");
@@ -339,7 +269,7 @@ var map1 = new Phaser.Class({
                 }
                 localStorage.setItem('Race1Time', FinalTime);
                 console.log("Race Finished");
-            
+                this.scene.launch("lapsComplete");
             }
             
         }
