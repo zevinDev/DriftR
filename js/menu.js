@@ -85,7 +85,9 @@ class menu extends Phaser.Scene {
             localStorage.setItem("MGC", false);
             localStorage.setItem("DBM", false);
             var map1leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map1leadername = [null, null, null, null, null, null, null, null, null, null]
             localStorage.setItem('map1leader', JSON.stringify(map1leader));
+            localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
             console.log('First');
         } else {
             console.log('Not first time loaded')
@@ -93,6 +95,8 @@ class menu extends Phaser.Scene {
         car = localStorage.getItem('car');
         var map1leader = localStorage.getItem('map1leader');
         console.log(map1leader)
+        var map1leadername = localStorage.getItem('map1leadername');
+        console.log(map1leadername)
 
         localStorage.setItem("paused", "0");
 

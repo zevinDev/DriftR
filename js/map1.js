@@ -11,6 +11,10 @@ var map1 = new Phaser.Class({
 
         var car = localStorage.getItem('car');
         this.load.image('player', car);
+        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
+            frameWidth: 56,
+            frameHeight: 60
+        });
         //this.cameras.main.fadeIn(1000, 0, 0, 0)
         
     },
@@ -37,6 +41,10 @@ var map1 = new Phaser.Class({
         camera = this.cameras.main;
         camera.startFollow(player);
 
+        ABC1 = this.add.image(396,3300, "ABC");
+        testvar5 = 0;
+        test6 = true;
+
         const tilemap1 = this.make.tilemap({
             key: 'tilemap1'
         })
@@ -59,7 +67,7 @@ var map1 = new Phaser.Class({
             collides: true
         })
         const layer = this.add.layer();
-        layer.add([player])
+        layer.add([player, ABC1])
         //camera.setBounds(0, 0, xLimit, yLimit);
         this.physics.add.collider(player, BorderLayer);
 
@@ -69,6 +77,7 @@ var map1 = new Phaser.Class({
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //SPACEKEY TEST for leaderboard
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // test for exit game
         Timertext = this.add.text();
@@ -90,6 +99,72 @@ var map1 = new Phaser.Class({
 
         laps = function(){
             
+            if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
+                if(Check1pass == false && Check2pass == false && Check3pass == false){
+                    Check1pass = true;
+                    console.log("Check 1 passed")
+                }
+            }
+    
+            if (Check2tile.index == 6 || Check2tile.index == 0 || Check2tile.index == 1) {
+                if(Check1pass == true && Check2pass == false && Check3pass == false){
+                    Check2pass = true;
+                    console.log("Check 2 passed")
+                }
+            }
+    
+            if (Check3tile.index == 6 || Check3tile.index == 0 || Check3tile.index == 1) {
+                if(Check1pass == true && Check2pass == true && Check3pass == false){
+                    Check3pass = true;
+                    console.log("Check 3 passed")
+                }
+            }
+
+            if (tile2.index == 9 || tile2.index == 10) {
+                if(LapCount == 0){
+                    timeon = true
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    LapCount = LapCount + 1;
+                } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    LapCount = LapCount + 1;
+                    console.log(LapCount);
+                } else if(LapCount == 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    timeon = false
+                    var map1leader = localStorage.getItem('map1leader');
+                    map1leader = JSON.parse(map1leader);
+                    var map1leadername = localStorage.getItem('map1leadername');
+                    map1leadername = JSON.parse(map1leadername);
+                    var done = false;
+                    for(var i=0; i<map1leader.length; i++){
+                        if(done == false){
+                        if(FinalTime < map1leader[i]){
+                            map1leader.splice(i, 0, FinalTime);
+                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                            done = true;
+                        } else if(map1leader[i] == 0){
+                            map1leader.splice(i, 0, FinalTime);
+                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                            done = true;
+                        }
+                        }
+                        if(done==true){
+                            
+                            
+                        }
+                    }
+                    localStorage.setItem('Race1Time', FinalTime);
+                    console.log("Race Finished")
+                }
+                
+            }
         }
 
         getTile = function(){
@@ -184,6 +259,25 @@ var map1 = new Phaser.Class({
         //}
     } 
 
+        
+       
+       ABC1.setFrame(testvar5);
+       
+       if(keyUP.isDown && (testvar5 == 25 && test6 == true)){
+           testvar5 = 0;
+           test6 = false;
+       } else if(keyDOWN.isDown && (testvar5 == 0 && test6 == true)){
+           testvar5 = 25;
+           test6 = false;
+       } else if(keyUP.isDown && test6 == true){
+           testvar5 = testvar5 + 1;
+           test6 = false;
+       } else if(keyDOWN.isDown && test6 == true){
+           testvar5 = testvar5 - 1;
+           test6 = false;
+       } if(keyUP.isUp && keyDOWN.isUp){
+           test6 = true;
+       }
         laps();
         if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
             if(Check1pass == false && Check2pass == false && Check3pass == false){
