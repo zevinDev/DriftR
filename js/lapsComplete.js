@@ -6,7 +6,7 @@ initialize: function() {
 
 preload: function()
 {
-this.load.image('pauseMenu', 'assets/images/UI/pauseScreen.png');
+this.load.image('pauseMenu', 'assets/images/UI/EndScreen.png');
 },
 
 create: function()
