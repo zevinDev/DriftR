@@ -11,16 +11,13 @@ var map1 = new Phaser.Class({
 
         var car = localStorage.getItem('car');
         this.load.image('player', car);
-        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
-            frameWidth: 56,
-            frameHeight: 60
-        });
         //this.cameras.main.fadeIn(1000, 0, 0, 0)
         
     },
   
     //Creates Anything When The Game Is Finished Preloading
     create: function() {
+        placevalue = 0;
         test56 = false;
         // corgi = this.sound.add("corgi", {
         //     loop: true
@@ -41,9 +38,7 @@ var map1 = new Phaser.Class({
         camera = this.cameras.main;
         camera.startFollow(player);
 
-        ABC1 = this.add.image(396,3300, "ABC");
-        testvar5 = 0;
-        test6 = true;
+
 
         const tilemap1 = this.make.tilemap({
             key: 'tilemap1'
@@ -67,7 +62,7 @@ var map1 = new Phaser.Class({
             collides: true
         })
         const layer = this.add.layer();
-        layer.add([player, ABC1])
+        layer.add([player])
         //camera.setBounds(0, 0, xLimit, yLimit);
         this.physics.add.collider(player, BorderLayer);
 
@@ -80,7 +75,7 @@ var map1 = new Phaser.Class({
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //SPACEKEY TEST for leaderboard
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // test for exit game
-        Timertext = this.add.text();
+        Timertext = this.add.text(0,0,"",{ fontFamily: 'Dogica' });
         timer = 0;
         timez = 0;
         clocks = 0; //seconds
@@ -169,12 +164,13 @@ var map1 = new Phaser.Class({
             }
             test3 = (timez * 1.666666666666667).toFixed(0)
             if (minutes > 0) {
-                FinalTime = minutes + ":" + clocks + ":" + test3;
+                FinalTime = minutes + "." + clocks + "." + test3;
             } else if (clocks > 0) {
-                FinalTime = clocks + ":" + test3;
+                FinalTime = clocks + "." + test3;
             } else {
                 FinalTime = test3;
             }
+            LeaderTime = (minutes*60) + clocks + (test3/100);
        Timertext.setText(FinalTime);
        Timertext.x = player.x - 200;
        Timertext.y = player.y - 200;
@@ -192,23 +188,7 @@ var map1 = new Phaser.Class({
 
         
        
-       ABC1.setFrame(testvar5);
-       
-       if(keyUP.isDown && (testvar5 == 25 && test6 == true)){
-           testvar5 = 0;
-           test6 = false;
-       } else if(keyDOWN.isDown && (testvar5 == 0 && test6 == true)){
-           testvar5 = 25;
-           test6 = false;
-       } else if(keyUP.isDown && test6 == true){
-           testvar5 = testvar5 + 1;
-           test6 = false;
-       } else if(keyDOWN.isDown && test6 == true){
-           testvar5 = testvar5 - 1;
-           test6 = false;
-       } if(keyUP.isUp && keyDOWN.isUp){
-           test6 = true;
-       }
+
 
         if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
             if(Check1pass == false && Check2pass == false && Check3pass == false){
@@ -251,29 +231,34 @@ var map1 = new Phaser.Class({
                 timeon = false
                 var map1leader = localStorage.getItem('map1leader');
                 map1leader = JSON.parse(map1leader);
-                //map1leader.splice(0, 1, "Test");
-                //console.log(map1leader)
-                //localStorage.setItem('test', JSON.stringify(map1leader));
+                var LeaderList = localStorage.getItem('LeaderList');
+                LeaderList = JSON.parse(LeaderList);
                 var done = false;
                 for(var i=0; i<map1leader.length; i++){
-                    if(done == false)
-                    if(FinalTime < map1leader[i]){
+                    if(done == false){
+                    if(LeaderTime < map1leader[i]){
                         map1leader.splice(i, 0, FinalTime);
+                        LeaderList.splice(i, 0, LeaderTime);
+                        localStorage.setItem('map1leader', JSON.stringify(LeaderList));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                        placevalue = i+1;
+                        this.scene.launch("LeaderBoardEnter");
                         done = true;
                     } else if(map1leader[i] == 0){
                         map1leader.splice(i, 0, FinalTime);
+                        LeaderList.splice(i, 0, LeaderTime);
+                        localStorage.setItem('map1leader', JSON.stringify(LeaderList));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                        placevalue = i+1;
+                        this.scene.launch("LeaderBoardEnter");
                         done = true;
                     }
+                    }
                 }
-                localStorage.setItem('Race1Time', FinalTime);
-                console.log("Race Finished");
-                this.scene.launch("lapsComplete");
-            }
-            
+                if(done != true){
+                    this.scene.launch("lapsComplete");
+                }
+            }  
         }
-
-
     }   
 });

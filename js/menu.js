@@ -69,7 +69,6 @@ class menu extends Phaser.Scene {
         });
 
         //Loads All The Images
-
         var firstTime = localStorage.getItem("first_time");
         if (!firstTime) {
             // first time loaded!
@@ -86,8 +85,10 @@ class menu extends Phaser.Scene {
             localStorage.setItem("DBM", false);
             var map1leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var map1leadername = [null, null, null, null, null, null, null, null, null, null]
+            var LeaderList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             localStorage.setItem('map1leader', JSON.stringify(map1leader));
             localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
+            localStorage.setItem('LeaderList', JSON.stringify(LeaderList));
             console.log('First');
         } else {
             console.log('Not first time loaded')
