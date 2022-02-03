@@ -231,23 +231,23 @@ var map1 = new Phaser.Class({
                 timeon = false
                 var map1leader = localStorage.getItem('map1leader');
                 map1leader = JSON.parse(map1leader);
-                var LeaderList = localStorage.getItem('LeaderList');
-                LeaderList = JSON.parse(LeaderList);
+                var map1leaderlist = localStorage.getItem('map1leaderlist');
+                map1leaderlist = JSON.parse(map1leaderlist);
                 var done = false;
                 for(var i=0; i<map1leader.length; i++){
                     if(done == false){
                     if(LeaderTime < map1leader[i]){
                         map1leader.splice(i, 1, FinalTime);
-                        LeaderList.splice(i, 1, LeaderTime);
-                        localStorage.setItem('map1leader', JSON.stringify(LeaderList));
+                        map1leaderlist.splice(i, 1, LeaderTime);
+                        localStorage.setItem('map1leader', JSON.stringify(map1leaderlist));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;
                         this.scene.launch("LeaderBoardEnter");
                         done = true;
                     } else if(map1leader[i] == 0){
                         map1leader.splice(i, 1, FinalTime);
-                        LeaderList.splice(i, 1, LeaderTime);
-                        localStorage.setItem('map1leader', JSON.stringify(LeaderList));
+                        map1leaderlist.splice(i, 1, LeaderTime);
+                        localStorage.setItem('map1leader', JSON.stringify(map1leaderlist));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;
                         this.scene.launch("LeaderBoardEnter");

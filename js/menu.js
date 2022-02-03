@@ -84,21 +84,28 @@ class menu extends Phaser.Scene {
             localStorage.setItem("MGC", false);
             localStorage.setItem("DBM", false);
             var map1leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            var map1leadername = [null, null, null, null, null, null, null, null, null, null]
-            var LeaderList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map1leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
+            var map1leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             localStorage.setItem('map1leader', JSON.stringify(map1leader));
             localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
-            localStorage.setItem('LeaderList', JSON.stringify(LeaderList));
+            localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
+            var map2leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map2leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
+            var map2leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            localStorage.setItem('map2leader', JSON.stringify(map2leader));
+            localStorage.setItem('map2leadername', JSON.stringify(map2leadername));
+            localStorage.setItem('map2leaderlist', JSON.stringify(map2leaderlist));
+            var map3leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map3leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
+            var map3leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            localStorage.setItem('map3leader', JSON.stringify(map3leader));
+            localStorage.setItem('map3leadername', JSON.stringify(map3leadername));
+            localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
             console.log('First');
         } else {
             console.log('Not first time loaded')
         }
         car = localStorage.getItem('car');
-        var map1leader = localStorage.getItem('map1leader');
-        console.log(map1leader)
-        var map1leadername = localStorage.getItem('map1leadername');
-        console.log(map1leadername)
-
         localStorage.setItem("paused", "0");
 
 
