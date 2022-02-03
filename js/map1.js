@@ -237,16 +237,16 @@ var map1 = new Phaser.Class({
                 for(var i=0; i<map1leader.length; i++){
                     if(done == false){
                     if(LeaderTime < map1leader[i]){
-                        map1leader.splice(i, 0, FinalTime);
-                        LeaderList.splice(i, 0, LeaderTime);
+                        map1leader.splice(i, 1, FinalTime);
+                        LeaderList.splice(i, 1, LeaderTime);
                         localStorage.setItem('map1leader', JSON.stringify(LeaderList));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;
                         this.scene.launch("LeaderBoardEnter");
                         done = true;
                     } else if(map1leader[i] == 0){
-                        map1leader.splice(i, 0, FinalTime);
-                        LeaderList.splice(i, 0, LeaderTime);
+                        map1leader.splice(i, 1, FinalTime);
+                        LeaderList.splice(i, 1, LeaderTime);
                         localStorage.setItem('map1leader', JSON.stringify(LeaderList));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;

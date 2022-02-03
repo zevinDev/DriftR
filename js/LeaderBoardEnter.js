@@ -65,7 +65,7 @@ update: function()
         testvar5 = 0;
         var map1leadername = localStorage.getItem('map1leadername');
         map1leadername = JSON.parse(map1leadername);
-        map1leadername.splice((placevalue-1), 0, UserName);
+        map1leadername.splice((placevalue-1), 1, UserName);
         localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
         this.scene.launch("lapsComplete");
         this.scene.stop("LeaderBoardEnter");
