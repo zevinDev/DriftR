@@ -1,4 +1,4 @@
-var map1 = new Phaser.Class({
+var map1 = new Phaser.Class({            //initalizes and creates the scene for map1
     Extends: Phaser.Scene,
     initialize: function() {
         Phaser.Scene.call(this, {
@@ -9,8 +9,8 @@ var map1 = new Phaser.Class({
     //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
     preload: function() {
 
-        var car = localStorage.getItem('car');
-        this.load.image('player', car);
+        var car = localStorage.getItem('car');          //variable for car that's used to assign the sprite to 
+        this.load.image('player', car);                 //Sprite is being assigned to the player variable
         //this.cameras.main.fadeIn(1000, 0, 0, 0)
         
     },
@@ -24,14 +24,14 @@ var map1 = new Phaser.Class({
         // });
         // corgi.play();
         //Creates The Player
-        player = this.physics.add.sprite(396, 3300, 'player');
+        player = this.physics.add.sprite(396, 3300, 'player');         //physics is added to player sprite 
 
         //Sets Colliders And Bounce
-        player.setBounce(0.2);
-        player.setCollideWorldBounds(false);
+        player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
+        player.setCollideWorldBounds(false);                         //player is not allowed to exit out of the boundry
 
         //Defines Player MaxSpeed And Start Angle
-        player.body.setMaxSpeed(500);
+        player.body.setMaxSpeed(500);              
         player.angle = -90;
 
         //Creates Camera And Sets It To Follow Player
@@ -40,22 +40,22 @@ var map1 = new Phaser.Class({
 
 
 
-        const tilemap1 = this.make.tilemap({
-            key: 'tilemap1'
+        const tilemap1 = this.make.tilemap({                        //Constant tile map is initialized 
+            key: 'tilemap1'                                         
         })
 
-        const map1_pallet = tilemap1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)
+        const map1_pallet = tilemap1.addTilesetImage('map1_pallet', 'map1_pallet', 8, 8, 1, 2)  //The color values of the tile map are numbered so as to enable detection 
 
 
-        BackLayer = tilemap1.createLayer('Back', map1_pallet)
-        TrackLayer = tilemap1.createLayer('Track', map1_pallet)
-        StartLine = tilemap1.createLayer('Start', map1_pallet)
-        Check1 = tilemap1.createLayer('Check1', map1_pallet)
-        Check2 = tilemap1.createLayer('Check2', map1_pallet)
-        Check3 = tilemap1.createLayer('Check3', map1_pallet)
-        BorderLayer = tilemap1.createLayer('Border', map1_pallet)
+        BackLayer = tilemap1.createLayer('Back', map1_pallet)                  //This is the tilemap for the grass 
+        TrackLayer = tilemap1.createLayer('Track', map1_pallet)                //This is the tilemap for the track 
+        StartLine = tilemap1.createLayer('Start', map1_pallet)                   //This is the tilemap for the starting/finish line
+        Check1 = tilemap1.createLayer('Check1', map1_pallet)                    //This is the tilemap for checkpoint 1
+        Check2 = tilemap1.createLayer('Check2', map1_pallet)                    //This is the tilemap for checkpoint 2
+        Check3 = tilemap1.createLayer('Check3', map1_pallet)                    //This is the tilemap for checkpoint 3
+        BorderLayer = tilemap1.createLayer('Border', map1_pallet)               //This is the tilemap for the outside border
         //Defines Layers And Border Physics
-        BorderLayer.setCollisionByProperty({
+        BorderLayer.setCollisionByProperty({                                   //Boundry detection is declared true. 
             collides: true
         })
         BackLayer.setCollisionByProperty({
