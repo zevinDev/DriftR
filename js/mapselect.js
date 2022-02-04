@@ -25,6 +25,10 @@ var mapselect = new Phaser.Class({
             frameWidth: 186,
             frameHeight: 184
         });
+        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
     },
     create: function() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)
@@ -51,42 +55,29 @@ var mapselect = new Phaser.Class({
         map3leader = localStorage.getItem('map3leader');
         map3leader = JSON.parse(map3leader);
 
-        firstPlace = this.add.text(179, 524, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 9, color: '#ffbe00' });
+        firstPlace = this.add.text(198, 512, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlace.visible = false;
 
-        secondPlace = this.add.text(179, 545, map1leadername[1] + "-" + map1leader[1],{ fontFamily: 'Dogica', fontSize: 9, color: '#C0C0C0' });
+        secondPlace = this.add.text(198, 538, map1leadername[1] + "-" + map1leader[1],{ fontFamily: 'Dogica', fontSize: 16, color: '#C0C0C0' });
         secondPlace.visible = false;
 
-        thirdPlace = this.add.text(179, 566, map1leadername[2] + "-" + map1leader[2],{ fontFamily: 'Dogica', fontSize: 9, color: '#CD7F32' });
+        thirdPlace = this.add.text(198, 564, map1leadername[2] + "-" + map1leader[2],{ fontFamily: 'Dogica', fontSize: 16, color: '#CD7F32' });
         thirdPlace.visible = false;
 
-        fourthPlace = this.add.text(179, 587, map1leadername[3] + "-" + map1leader[3],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
+        fourthPlace = this.add.text(198, 590, map1leadername[3] + "-" + map1leader[3],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
         fourthPlace.visible = false;
 
-        fifthPlace = this.add.text(179, 608, map1leadername[4] + "-" + map1leader[4],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
+        fifthPlace = this.add.text(198, 614, map1leadername[4] + "-" + map1leader[4],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
         fifthPlace.visible = false;
 
-        sixthPlace = this.add.text(331, 524, map1leadername[5] + "-" + map1leader[5],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
-        sixthPlace.visible = false;
 
-        seventhPlace = this.add.text(331, 545, map1leadername[6] + "-" + map1leader[6],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
-        seventhPlace.visible = false;
-
-        eighthPlace = this.add.text(331, 566, map1leadername[7] + "-" + map1leader[7],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
-        eighthPlace.visible = false;
-
-        ninethPlace = this.add.text(331, 587, map1leadername[8] + "-" + map1leader[8],{ fontFamily: 'Dogica', fontSize: 9, color: '#000000' });
-        ninethPlace.visible = false;
-
-        tenthPlace = this.add.text(345, 608, map1leadername[9] + "-" + map1leader[9],{ fontFamily: 'Dogica', fontSize: 8, color: '#000000' });
-        tenthPlace.visible = false;
 
         textvisible = false;
 
         mapbio = this.add.image(400, 570, 'mapbio')
         mapback = this.add.image(400, 216, 'mapback')
         const layer = this.add.layer();
-        layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio, firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace, sixthPlace, seventhPlace, eighthPlace, ninethPlace, tenthPlace])
+        layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio, firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace])
         mapbio.visible = false;
         //interactive for map1
         map1select.setInteractive();
@@ -127,20 +118,6 @@ var mapselect = new Phaser.Class({
             mapselect = 3;
             test3var = true;
         });
-        //interactive for starting the map
-        mapbio.setInteractive();
-        mapbio.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            if (mapselect == 1) {
-                this.cameras.main.fadeOut(1000, 0, 0, 0)
-                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.start('map1')
-                })
-            } else if (mapselect == 2) {
-                this.scene.start('map2')
-            } else if (mapselect == 3) {
-                this.scene.start('map3')
-            }
-        })
         //backgrond UI
         backButton = this.add.image(100, 50, 'backButton');
         backButton.setInteractive();
@@ -156,6 +133,27 @@ var mapselect = new Phaser.Class({
                 this.scene.start('menu')
             })
         })
+        mapstart = this.add.image(579, 483, 'mapstart');
+        mapstart.setInteractive();
+        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            mapstart.setFrame(1)
+        })
+        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            mapstart.setFrame(0)
+        })
+        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if (mapselect == 1) {
+                this.cameras.main.fadeOut(1000, 0, 0, 0)
+                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.scene.start('map1')
+                })
+            } else if (mapselect == 2) {
+                this.scene.start('map2')
+            } else if (mapselect == 3) {
+                this.scene.start('map3')
+            }
+        })
+        mapstart.visible = false;
     },
     update: function() {
         if (mapselect == 1){
@@ -195,15 +193,6 @@ var mapselect = new Phaser.Class({
 
         fifthPlace.setText(leadername[4] + "-" + leadertime[4]);
 
-        sixthPlace.setText(leadername[5] + "-" + leadertime[5]);
-
-        seventhPlace.setText(leadername[6] + "-" + leadertime[6]);
-
-        eighthPlace.setText(leadername[7] + "-" + leadertime[7]);
-
-        ninethPlace.setText(leadername[8] + "-" + leadertime[8]);
-
-        tenthPlace.setText(leadername[9] + "-" + leadertime[9]);
 
         if(textvisible == true){
             firstPlace.visible = true;
@@ -211,12 +200,10 @@ var mapselect = new Phaser.Class({
             thirdPlace.visible = true;
             fourthPlace.visible = true;
             fifthPlace.visible = true;
-            sixthPlace.visible = true;
-            seventhPlace.visible = true;
-            eighthPlace.visible = true;
-            ninethPlace.visible = true;
-            tenthPlace.visible = true;
+            mapstart.visible = true;
             mapbio.visible = true
         }
+
+
     }
 })
