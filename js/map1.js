@@ -163,11 +163,13 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 minutes = minutes + 1;
             }
             test3 = (timez * 1.666666666666667).toFixed(0)
-            if (minutes > 0) {
+             if (minutes > 0) {
                 FinalTime = minutes + "." + clocks + "." + test3;
-            } else if (clocks > 0) {
+            } else if (clocks < 10){
+                FinalTime = ".0"+ clocks + "." + test3;
+            } else if (clocks >= 10){
                 FinalTime = clocks + "." + test3;
-            } else {
+            }else {
                 FinalTime = test3;
             }
             LeaderTime = (minutes*60) + clocks + (test3/100);
