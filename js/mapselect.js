@@ -157,6 +157,7 @@ var mapselect = new Phaser.Class({
                 this.scene.stop();
             }
         })
+        console.log(map1leader)
         mapstart.visible = false;
     },
     update: function() {
@@ -207,7 +208,6 @@ var mapselect = new Phaser.Class({
             mapstart.visible = true;
             mapbio.visible = true
         }
-
 
     }
 })
