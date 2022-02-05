@@ -128,7 +128,7 @@ preload: function() {
             localStorage.setItem("car", "assets/images/Cars/Player.png");
             localStorage.setItem("MainVolume", 50);
             localStorage.setItem("MusicVolume", 50);
-            localStorage.setItem("Dbucks", 2000);
+            localStorage.setItem("Stars", 1);
             localStorage.setItem("P1", true);
             localStorage.setItem("P2", false);
             localStorage.setItem("P3", false);
