@@ -1,11 +1,10 @@
 var car
-class menu extends Phaser.Scene {
-    constructor() {
-        super({
-            key: 'menu'
-        });
-    }
-    preload() {
+var menu = new Phaser.Class({
+    Extends: Phaser.Scene,
+initialize: function() {
+    Phaser.Scene.call(this, { "key": "menu" });
+},
+preload: function() {
         var backimage = this.add.graphics();
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
@@ -135,8 +134,8 @@ class menu extends Phaser.Scene {
         this.load.image('map2_pallet', 'assets/tilesets/map2_pallet.png')
         this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json')
 
-    }
-    create() {
+    },
+    create: function() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)
         var back = this.add.image(400, 400, 'mapselectback')
 
@@ -185,3 +184,4 @@ class menu extends Phaser.Scene {
 
     }
 }
+)

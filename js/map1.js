@@ -181,12 +181,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
        if (keyESC.isDown && localStorage.getItem('paused') == "0") {
         localStorage.setItem("paused", "1");
         this.scene.pause();
-        //if (test56 == false) {
-            //test56 = true;
-            this.scene.launch("pauseMenu");
-        //} else {
-            //this.scene.wake("pauseMenu");
-        //}
+        this.scene.launch("pauseMenu");
     } 
 
         

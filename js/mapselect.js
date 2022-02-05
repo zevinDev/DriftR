@@ -32,7 +32,6 @@ var mapselect = new Phaser.Class({
     },
     create: function() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)
-        mapselect;
         leadertime = [];
         leadername = [];
         testvar = true;
@@ -89,7 +88,7 @@ var mapselect = new Phaser.Class({
         })
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            mapselect = 1;
+            localStorage.setItem('mapselect', 1);
             testvar = true;
         })
         //interactive for map 2
@@ -102,7 +101,7 @@ var mapselect = new Phaser.Class({
         })
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            mapselect = 2;
+            localStorage.setItem('mapselect', 2);
             test2var = true;
         });
         //interactive for map 3
@@ -115,7 +114,7 @@ var mapselect = new Phaser.Class({
         })
         map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            mapselect = 3;
+            localStorage.setItem('mapselect', 3);
             test3var = true;
         });
         //backgrond UI
@@ -142,42 +141,42 @@ var mapselect = new Phaser.Class({
             mapstart.setFrame(0)
         })
         mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            if (mapselect == 1) {
+            if (localStorage.getItem('mapselect') == 1) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.start('map1')
+                    this.scene.launch('map1')
                 })
-            } else if (mapselect == 2) {
-                this.scene.start('map2')
-            } else if (mapselect == 3) {
-                this.scene.start('map3')
+            } else if (localStorage.getItem('mapselect') == 2) {
+                this.scene.launch('map2')
+            } else if (localStorage.getItem('mapselect') == 3) {
+                this.scene.launch('map3')
             }
         })
         mapstart.visible = false;
     },
     update: function() {
-        if (mapselect == 1){
+        if (localStorage.getItem('mapselect') == 1){
             leadername = map1leadername;
             leadertime = map1leader;
             map1select.setFrame(2)
-        } else if(mapselect == 2){
+        } else if(localStorage.getItem('mapselect') == 2){
             leadername = map2leadername;
             leadertime = map2leader;
             map2select.setFrame(2)
-        } else if(mapselect == 3){
+        } else if(localStorage.getItem('mapselect') == 3){
             leadername = map3leadername;
             leadertime = map3leader;
             map3select.setFrame(2)
         }
-        if(mapselect != 1 && testvar == true){
+        if(localStorage.getItem('mapselect') != 1 && testvar == true){
             testvar = false
             map1select.setFrame(0)
 
-        }else if(mapselect != 2 && test2var == true){
+        }else if(localStorage.getItem('mapselect') != 2 && test2var == true){
             test2var = false
             map2select.setFrame(0)
 
-        } if(mapselect != 3 && test3var == true){
+        } if(localStorage.getItem('mapselect') != 3 && test3var == true){
             test3var = false
             map3select.setFrame(0)
 
