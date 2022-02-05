@@ -17,7 +17,7 @@ var mapselect = new Phaser.Class({
             frameWidth: 186,
             frameHeight: 184
         });
-        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap1Test.png', {
+        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {
             frameWidth: 186,
             frameHeight: 184
         });
