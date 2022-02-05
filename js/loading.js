@@ -105,6 +105,7 @@ preload: function() {
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
         this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
         this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
         this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
         this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', { frameWidth: 32.2, frameHeight: 52 });
