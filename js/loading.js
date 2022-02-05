@@ -112,7 +112,7 @@ preload: function() {
         this.load.spritesheet('exit', 'assets/images/UI/exit.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('resume', 'assets/images/UI/resume.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', { frameWidth: 56, frameHeight: 60 });
-        this.load.spritesheet('pauseMenu', 'assets/images/UI/EndScreen.png', { frameWidth: 800, frameHeight: 800 });
+        this.load.spritesheet('endScreen', 'assets/images/UI/EndScreen.png', { frameWidth: 800, frameHeight: 800 });
         this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', { frameWidth: 264, frameHeight: 104 });
         this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', { frameWidth: 264, frameHeight: 104 });
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 165, frameHeight: 80 });

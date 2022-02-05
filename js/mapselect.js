@@ -33,20 +33,20 @@ var mapselect = new Phaser.Class({
         map3leader = JSON.parse(map3leader);
         localStorage.setItem('mapselect', 0);
 
-        firstPlace = this.add.text(198, 512, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
-        firstPlace.visible = false;
+        firstPlaceT = this.add.text(198, 512, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
+        firstPlaceT.visible = false;
 
-        secondPlace = this.add.text(198, 538, map1leadername[1] + "-" + map1leader[1],{ fontFamily: 'Dogica', fontSize: 16, color: '#C0C0C0' });
-        secondPlace.visible = false;
+        secondPlaceT = this.add.text(198, 538, map1leadername[1] + "-" + map1leader[1],{ fontFamily: 'Dogica', fontSize: 16, color: '#C0C0C0' });
+        secondPlaceT.visible = false;
 
-        thirdPlace = this.add.text(198, 564, map1leadername[2] + "-" + map1leader[2],{ fontFamily: 'Dogica', fontSize: 16, color: '#CD7F32' });
-        thirdPlace.visible = false;
+        thirdPlaceT = this.add.text(198, 564, map1leadername[2] + "-" + map1leader[2],{ fontFamily: 'Dogica', fontSize: 16, color: '#CD7F32' });
+        thirdPlaceT.visible = false;
 
-        fourthPlace = this.add.text(198, 590, map1leadername[3] + "-" + map1leader[3],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
-        fourthPlace.visible = false;
+        fourthPlaceT = this.add.text(198, 590, map1leadername[3] + "-" + map1leader[3],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
+        fourthPlaceT.visible = false;
 
-        fifthPlace = this.add.text(198, 614, map1leadername[4] + "-" + map1leader[4],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
-        fifthPlace.visible = false;
+        fifthPlaceT = this.add.text(198, 614, map1leadername[4] + "-" + map1leader[4],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
+        fifthPlaceT.visible = false;
 
 
 
@@ -55,7 +55,7 @@ var mapselect = new Phaser.Class({
         mapbio = this.add.image(400, 570, 'mapbio')
         mapback = this.add.image(400, 216, 'mapback')
         const layer = this.add.layer();
-        layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio, firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace])
+        layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT])
         mapbio.visible = false;
         //interactive for map1
         map1select.setInteractive();
@@ -166,23 +166,23 @@ var mapselect = new Phaser.Class({
 
         }
 
-        firstPlace.setText(leadername[0] + "-" + leadertime[0]);
+        firstPlaceT.setText(leadername[0] + "-" + leadertime[0]);
 
-        secondPlace.setText(leadername[1] + "-" + leadertime[1]);
+        secondPlaceT.setText(leadername[1] + "-" + leadertime[1]);
 
-        thirdPlace.setText(leadername[2] + "-" + leadertime[2]);
+        thirdPlaceT.setText(leadername[2] + "-" + leadertime[2]);
 
-        fourthPlace.setText(leadername[3] + "-" + leadertime[3]);
+        fourthPlaceT.setText(leadername[3] + "-" + leadertime[3]);
 
-        fifthPlace.setText(leadername[4] + "-" + leadertime[4]);
+        fifthPlaceT.setText(leadername[4] + "-" + leadertime[4]);
 
 
         if(textvisible == true){
-            firstPlace.visible = true;
-            secondPlace.visible = true;
-            thirdPlace.visible = true;
-            fourthPlace.visible = true;
-            fifthPlace.visible = true;
+            firstPlaceT.visible = true;
+            secondPlaceT.visible = true;
+            thirdPlaceT.visible = true;
+            fourthPlaceT.visible = true;
+            fifthPlaceT.visible = true;
             mapstart.visible = true;
             mapbio.visible = true
         }

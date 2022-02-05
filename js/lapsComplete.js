@@ -11,7 +11,7 @@ preload: function()
 
 create: function()
 {
-    pauseScene = this.add.image(400,400, 'pauseMenu');
+    pauseScene = this.add.image(400,400, 'endScreen');
     if(currentmap == "map1"){
         var map1leader = localStorage.getItem('map1leader');
         maptop = JSON.parse(map1leader);
