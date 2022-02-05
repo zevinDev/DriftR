@@ -32,6 +32,7 @@ preload: function() {
             optionButton.visible = true;
             exithelp.visible = false;
             howimage.visible = false;
+            howto = false;
         })
         }else{
             howimage = this.add.image(400,400,'howto')
