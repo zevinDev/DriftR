@@ -53,6 +53,7 @@ var mapselect = new Phaser.Class({
         map3leadername = JSON.parse(map3leadername);
         map3leader = localStorage.getItem('map3leader');
         map3leader = JSON.parse(map3leader);
+        localStorage.setItem('mapselect', 0);
 
         firstPlace = this.add.text(198, 512, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlace.visible = false;
@@ -130,6 +131,7 @@ var mapselect = new Phaser.Class({
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('menu')
+                this.scene.stop();
             })
         })
         mapstart = this.add.image(579, 483, 'mapstart');
@@ -144,12 +146,15 @@ var mapselect = new Phaser.Class({
             if (localStorage.getItem('mapselect') == 1) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.launch('map1')
+                    this.scene.start('map1')
+                    this.scene.stop();
                 })
             } else if (localStorage.getItem('mapselect') == 2) {
-                this.scene.launch('map2')
+                this.scene.start('map2')
+                this.scene.stop();
             } else if (localStorage.getItem('mapselect') == 3) {
-                this.scene.launch('map3')
+                this.scene.start('map3')
+                this.scene.stop();
             }
         })
         mapstart.visible = false;

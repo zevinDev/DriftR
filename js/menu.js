@@ -151,6 +151,7 @@ preload: function() {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('mapselect')
+                this.scene.stop();
             })
         })
 
@@ -164,6 +165,7 @@ preload: function() {
         })
         garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('garage')
+            this.scene.stop();
         })
 
         var optionButton = this.add.image(600, 700, 'options');
@@ -176,6 +178,7 @@ preload: function() {
         })
         optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('options')
+            this.scene.stop();
         })
 
         const layer = this.add.layer();

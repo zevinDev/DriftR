@@ -167,7 +167,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
              if (minutes > 0) {
                 FinalTime = minutes + "." + clocks + "." + test3;
             } else if (clocks < 10){
-                FinalTime = ".0"+ clocks + "." + test3;
+                FinalTime = clocks + "." + test3;
             } else if (clocks >= 10){
                 FinalTime = clocks + "." + test3;
             }else {
@@ -255,6 +255,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 }
                 if(done != true){
                     this.scene.launch("lapsComplete");
+                    this.scene.pause();
                 }
             }  
         }
