@@ -6,29 +6,7 @@ var mapselect = new Phaser.Class({
         });
     },
     preload: function() {
-        this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
-        this.load.image('mapbio', 'assets/images/UI/mapbio.png');
-        this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
-            frameWidth: 164,
-            frameHeight: 80
-        });
-        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
+ 
     },
     create: function() {
         this.cameras.main.fadeIn(1000, 0, 0, 0)

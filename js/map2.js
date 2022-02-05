@@ -5,11 +5,9 @@ initialize: function() {
 },
 //Loads Stuff Before The Game Fully Loads So No Content Is missing While Playing Game
 preload: function() {
-
     var car = localStorage.getItem('car');          //variable for car that's used to assign the sprite to 
     this.load.image('player', car);                 //Sprite is being assigned to the player variable
     //this.cameras.main.fadeIn(1000, 0, 0, 0)
-    
 },
 
 //Creates Anything When The Game Is Finished Preloading

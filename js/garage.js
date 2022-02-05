@@ -8,34 +8,7 @@ var garage = new Phaser.Class({
         });
     },
     preload: function() {
-        this.load.image('lockedIcon', 'assets/images/Garage/LockedCar.png');
-        this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', {
-            frameWidth: 264,
-            frameHeight: 104
-        });
-        this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', {
-            frameWidth: 264,
-            frameHeight: 104
-        });
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
-            frameWidth: 165,
-            frameHeight: 80
-        });
-        this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', {
-            frameWidth: 144,
-            frameHeight: 160
-        });
-        this.load.image('player1', 'assets/images/Cars/Player.png');
-        this.load.image('player2', 'assets/images/Cars/LimeCar.png');
-        this.load.image('player3', 'assets/images/Cars/MagentaCar.png');
-        this.load.image('player4', 'assets/images/Cars/InitialDCar.png');
-        this.load.image('darkbirdmobile', 'assets/images/Cars/DarkBirdMobile.png');
-        this.load.image('mgcar', 'assets/images/Cars/MGKCar.png');
-
-        this.load.image('infoPopUp', 'assets/images/Garage/InfoPopUp.png');
-        this.load.image('GarageBack', 'assets/images/UI/mapselectback.png');
-
-        
+     
     },
 
     create: function() {

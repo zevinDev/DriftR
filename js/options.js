@@ -7,14 +7,7 @@ initialize: function() {
 
 preload: function()
 {
-    this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', {
-        frameWidth: 32.2,
-        frameHeight: 52
-    });
-    this.load.image('Ind', 'assets/images/UI/Indicator.png', {
-        frameWidth: 32.2,
-        frameHeight: 52
-    });
+
 },
 
 create: function()

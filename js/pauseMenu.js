@@ -6,15 +6,7 @@ initialize: function() {
 
 preload: function()
 {
-this.load.image('pauseMenu', 'assets/images/UI/pauseScreen.png');
-this.load.spritesheet('exit', 'assets/images/UI/exit.png', {
-    frameWidth: 213,
-    frameHeight: 80
-});
-this.load.spritesheet('resume', 'assets/images/UI/resume.png', {
-    frameWidth: 213,
-    frameHeight: 80
-});
+
 },
 
 create: function()

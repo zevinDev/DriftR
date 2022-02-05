@@ -6,11 +6,7 @@ initialize: function() {
 
 preload: function()
 {
-this.load.image('redo', 'assets/images/UI/redo.png')
-this.load.spritesheet('pauseMenu', 'assets/images/UI/EndScreen.png', {
-    frameWidth: 800,
-    frameHeight: 800
-});
+
 },
 
 create: function()

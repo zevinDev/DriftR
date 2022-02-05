@@ -7,7 +7,7 @@ var config = {
         width: 800,
         height: 800
     },
-    scene: [menu, mapselect, map3, map2, map1, garage, lapsComplete, LeaderBoardEnter, pauseMenu, options],
+    scene: [loading, menu, mapselect, map3, map2, map1, garage, lapsComplete, LeaderBoardEnter, pauseMenu, options],
     physics: {
         default: 'arcade',
         arcade: {

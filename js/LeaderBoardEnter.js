@@ -6,11 +6,7 @@ initialize: function() {
 
 preload: function()
 {
-this.load.image('LeaderBoardEnterBox', 'assets/images/UI/LeaderBoardScreen.png');
-this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
-    frameWidth: 56,
-    frameHeight: 60
-});
+
 },
 
 create: function()
