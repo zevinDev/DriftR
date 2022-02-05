@@ -42,7 +42,7 @@ if (localStorage.getItem('mapselect') == 1) {
 if (keyESC1.isDown && localStorage.getItem("paused", "1")) {
     localStorage.setItem("paused", "0");
     this.scene.resume("map1");
-    this.scene.stop("pauseMenu");
+    this.scene.stop();
 } 
 exit = this.add.image(400,350, 'exit');
 resume = this.add.image(400, 450, 'resume');
@@ -55,9 +55,9 @@ exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
     exit.setFrame(0)
 })
 exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-    this.scene.start('menu');
+    this.scene.start('mapselect');
     localStorage.setItem("paused", "0");
-    this.scene.stop("pauseMenu");
+    this.scene.stop();
     this.scene.stop(selectedMap);
 })
 
@@ -71,8 +71,8 @@ resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
 })
 resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
     localStorage.setItem("paused", "0");
-    this.scene.resume(selectedMap);
-    this.scene.stop("pauseMenu");
+    this.scene.start(selectedMap);
+    this.scene.stop();
 })
 },
 update: function()
@@ -81,6 +81,6 @@ update: function()
         localStorage.setItem("paused", "0");
         this.scene.resume(currentmap);
         //this.scene.sleep("pauseMenu");
-        this.scene.stop("pauseMenu");
+        this.scene.stop();
     } 
 }});

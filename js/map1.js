@@ -164,13 +164,11 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 minutes = minutes + 1;
             }
             test3 = (timez * 1.666666666666667).toFixed(0)
-             if (minutes > 0) {
+            if (minutes > 0) {
                 FinalTime = minutes + "." + clocks + "." + test3;
-            } else if (clocks < 10){
-                FinalTime = ".0"+ clocks + "." + test3;
-            } else if (clocks >= 10){
+            } else if (clocks > 0) {
                 FinalTime = clocks + "." + test3;
-            }else {
+            } else {
                 FinalTime = test3;
             }
             LeaderTime = (minutes*60) + clocks + (test3/100);
@@ -232,29 +230,32 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 var map1leaderlist = localStorage.getItem('map1leaderlist');
                 map1leaderlist = JSON.parse(map1leaderlist);
                 var done = false;
-                for(var i=0; i<map1leader.length; i++){
+                for(var i=0; i<5; i++){
                     if(done == false){
                     if(LeaderTime < map1leaderlist[i]){
-                        map1leaderlist.splice(i, 1, FinalTime);
-                        map1leader.splice(i, 1, LeaderTime);
+                        map1leader.splice(i, 0, FinalTime);
+                        map1leaderlist.splice(i, 0, LeaderTime);
                         localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;
                         this.scene.launch("LeaderBoardEnter");
+                        this.scene.pause();
                         done = true;
                     } else if(map1leaderlist[i] == 0){
-                        map1leaderlist.splice(i, 1, FinalTime);
-                        map1leader.splice(i, 1, LeaderTime);
+                        map1leader.splice(i, 0, FinalTime);
+                        map1leaderlist.splice(i, 0, LeaderTime);
                         localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
                         localStorage.setItem('map1leader', JSON.stringify(map1leader));
                         placevalue = i+1;
                         this.scene.launch("LeaderBoardEnter");
+                        this.scene.pause();
                         done = true;
                     }
                     }
                 }
                 if(done != true){
                     this.scene.launch("lapsComplete");
+                    this.scene.pause();
                 }
             }  
         }

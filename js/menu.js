@@ -82,30 +82,33 @@ preload: function() {
             localStorage.setItem("P4", false);
             localStorage.setItem("MGC", false);
             localStorage.setItem("DBM", false);
-            var map1leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            var map1leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
-            var map1leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map1leader = [0, 0, 0, 0, 0]
+            var map1leadername = ["none", "none", "none", "none", "none"]
+            var map1leaderlist = [0, 0, 0, 0, 0]
             localStorage.setItem('map1leader', JSON.stringify(map1leader));
             localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
             localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
-            var map2leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            var map2leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
-            var map2leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map2leader = [0, 0, 0, 0, 0]
+            var map2leadername = ["none", "none", "none", "none", "none"]
+            var map2leaderlist = [0, 0, 0, 0, 0]
             localStorage.setItem('map2leader', JSON.stringify(map2leader));
             localStorage.setItem('map2leadername', JSON.stringify(map2leadername));
             localStorage.setItem('map2leaderlist', JSON.stringify(map2leaderlist));
             var map3leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            var map3leadername = ["none", "none", "none", "none", "none", "none", "none", "none", "none", "none"]
-            var map3leaderlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var map3leadername = ["none", "none", "none", "none", "none"]
+            var map3leaderlist = [0, 0, 0, 0, 0]
             localStorage.setItem('map3leader', JSON.stringify(map3leader));
             localStorage.setItem('map3leadername', JSON.stringify(map3leadername));
             localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
+            howto = true;
             console.log('First');
         } else {
             console.log('Not first time loaded')
+            howto = false;
         }
         car = localStorage.getItem('car');
         localStorage.setItem("paused", "0");
+
 
 
         this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
@@ -114,6 +117,8 @@ preload: function() {
         this.load.image('SnowBack', 'assets/images/Tracks/SnowPack/CompletedSnowBack.png');
         this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
         this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
+        this.load.image('howto', 'assets/images/UI/howto.png');
+        this.load.image('X', 'assets/images/UI/X.png')
 
 
         this.load.spritesheet('start', 'assets/images/UI/START.png', {
@@ -136,11 +141,39 @@ preload: function() {
 
     },
     create: function() {
+
+        
         this.cameras.main.fadeIn(1000, 0, 0, 0)
         var back = this.add.image(400, 400, 'mapselectback')
-
         var startButton = this.add.image(200, 600, 'start');
-        startButton.setInteractive();
+        var garageButton = this.add.image(600, 600, 'garage');
+        var optionButton = this.add.image(600, 700, 'options');
+        var exithelp = this.add.image(640,150,'X');
+        
+
+        
+        exithelp.visible = false;
+        if(howto == true) {
+            startButton.visible = false;
+            garageButton.visible = false;
+            optionButton.visible = false;
+            howimage = this.add.image(400,400,'howto')
+            exithelp.visible = true;
+            exithelp.setInteractive();
+            exithelp.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            startButton.visible = true;
+            garageButton.visible = true;
+            optionButton.visible = true;
+            exithelp.visible = false;
+            howimage.visible = false;
+        })
+        }else{
+            howimage = this.add.image(400,400,'howto')
+            howimage.visible = false;
+        }
+
+
+            startButton.setInteractive();
         startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             startButton.setFrame(1)
         })
@@ -151,10 +184,9 @@ preload: function() {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('mapselect')
+                this.scene.stop();
             })
         })
-
-        var garageButton = this.add.image(600, 600, 'garage');
         garageButton.setInteractive();
         garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             garageButton.setFrame(1)
@@ -164,9 +196,8 @@ preload: function() {
         })
         garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('garage')
+            this.scene.stop();
         })
-
-        var optionButton = this.add.image(600, 700, 'options');
         optionButton.setInteractive();
         optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             optionButton.setFrame(1)
@@ -176,10 +207,11 @@ preload: function() {
         })
         optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('options')
+            this.scene.stop();
         })
-
+        
         const layer = this.add.layer();
-        layer.add([back, startButton, garageButton, optionButton])
+        layer.add([back, startButton, garageButton, optionButton, howimage, exithelp])
 
 
     }
