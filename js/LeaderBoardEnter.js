@@ -15,7 +15,13 @@ this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
 
 create: function()
 {
-
+if(currentmap == "map1"){
+    maplist = "map1leadername"
+}else if(currentmap == "map2"){
+    maplist = "map2leadername"
+}else if(currentmap == "map3"){
+    maplist = "map3leadername"
+}
 ABC1 = this.add.image(300,440, "ABC");
 ABC2 = this.add.image(400,440, "ABC");
 ABC3 = this.add.image(500,440, "ABC");
@@ -63,10 +69,10 @@ update: function()
         UserName = Letter1 + Letter2 + Letter3;
         test7 = false
         testvar5 = 0;
-        var map1leadername = localStorage.getItem('map1leadername');
+        var map1leadername = localStorage.getItem(maplist);
         map1leadername = JSON.parse(map1leadername);
         map1leadername.splice((placevalue-1), 1, UserName);
-        localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
+        localStorage.setItem(maplist, JSON.stringify(map1leadername));
         this.scene.launch("lapsComplete");
         this.scene.stop("LeaderBoardEnter");
     } else if(keyENTER.isDown && (ABC == ABC2 && test7 == true)){

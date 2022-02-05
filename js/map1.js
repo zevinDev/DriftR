@@ -17,6 +17,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
   
     //Creates Anything When The Game Is Finished Preloading
     create: function() {
+        currentmap = "map1"
         placevalue = 0;
         test56 = false;
         // corgi = this.sound.add("corgi", {

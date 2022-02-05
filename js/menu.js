@@ -132,6 +132,8 @@ class menu extends Phaser.Scene {
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
         this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json')
+        this.load.image('map2_pallet', 'assets/tilesets/map2_pallet.png')
+        this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json')
 
     }
     create() {

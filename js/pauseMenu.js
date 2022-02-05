@@ -21,7 +21,7 @@ update: function()
 {
     if (keyESC1.isDown && localStorage.getItem("paused", "1")) {
         localStorage.setItem("paused", "0");
-        this.scene.resume("map1");
+        this.scene.resume(currentmap);
         //this.scene.sleep("pauseMenu");
         this.scene.stop("pauseMenu");
     } 
