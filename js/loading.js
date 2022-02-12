@@ -97,11 +97,11 @@ preload: function() {
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
         this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
 
-        this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json')
-        this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json')
+        this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json');
+        this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json');
 
-        this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
-        this.load.audio('snowmap','assets/sounds/metro beat.mp3')
+        this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
+        this.load.audio('snowmap','assets/sounds/metro beat.mp3');
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
         this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
