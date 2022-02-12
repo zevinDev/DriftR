@@ -23,7 +23,7 @@ create: function() {
     track = this.sound.add("snowmap",{
         loop:true
     });
-    snowmap.play(); 
+    track.play(); 
     //Creates The Player
     player = this.physics.add.sprite(396, 3300, 'player');         //physics is added to player sprite 
 
