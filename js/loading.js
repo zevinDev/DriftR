@@ -101,7 +101,7 @@ preload: function() {
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json')
 
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav')
-        this.load.audio('snowmap',assets/sounds/metro beat.mp3')
+        this.load.audio('snowmap','assets/sounds/metro beat.mp3')
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
         this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
