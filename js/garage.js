@@ -8,10 +8,10 @@ var garage = new Phaser.Class({
         });
     },
     preload: function() {
-        Stars = localStorage.getItem('Stars');
     },
 
     create: function() {
+        Stars = parseInt(localStorage.getItem('Stars'));
         P1 = localStorage.getItem('P1');
         P2 = localStorage.getItem('P2');
         P3 = localStorage.getItem('P3');

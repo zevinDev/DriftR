@@ -224,8 +224,10 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 timeon = false
                 var map1leader = localStorage.getItem('map1leader');
                 map1leader = JSON.parse(map1leader);
+                map1leader = map1leader.slice(0, 5);
                 var map1leaderlist = localStorage.getItem('map1leaderlist');
                 map1leaderlist = JSON.parse(map1leaderlist);
+                map1leaderlist = map1leaderlist.slice(0, 5);
                 var done = false;
                 for(var i=0; i<5; i++){
                     if(done == false){
