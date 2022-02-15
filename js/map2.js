@@ -230,34 +230,36 @@ update: function() {
             Check2pass = false;
             Check3pass = false;
             timeon = false
-            var map2leader = localStorage.getItem('map2leader');
-            map2leader = JSON.parse(map2leader);
-            var map2leaderlist = localStorage.getItem('map2leaderlist');
-            map2leaderlist = JSON.parse(map2leaderlist);
-            var done = false;
-            for(var i=0; i<map2leader.length; i++){
-                if(done == false){
-                if(LeaderTime < map2leader[i]){
-                    map2leader.splice(i, 1, FinalTime);
-                    map2leaderlist.splice(i, 1, LeaderTime);
-                    localStorage.setItem('map2leader', JSON.stringify(map2leaderlist));
-                    localStorage.setItem('map2leader', JSON.stringify(map2leader));
-                    placevalue = i+1;
-                    this.scene.pause();
-                    this.scene.launch("LeaderBoardEnter");
-                    done = true;
-                } else if(map2leader[i] == 0){
-                    map2leader.splice(i, 1, FinalTime);
-                    map2leaderlist.splice(i, 1, LeaderTime);
-                    localStorage.setItem('map2leader', JSON.stringify(map2leaderlist));
-                    localStorage.setItem('map2leader', JSON.stringify(map2leader));
-                    placevalue = i+1;
-                    this.scene.pause();
-                    this.scene.launch("LeaderBoardEnter");
-                    done = true;
+                         var map2leader = localStorage.getItem('map2leader');
+                map2leader = JSON.parse(map2leader);
+                map2leader = map2leader.slice(0, 5);
+                var map2leaderlist = localStorage.getItem('map2leaderlist');
+                map2leaderlist = JSON.parse(map2leaderlist);
+                map2leaderlist = map2leaderlist.slice(0, 5);
+                var done = false;
+                for(var i=0; i<5; i++){
+                    if(done == false){
+                    if(LeaderTime < map2leaderlist[i]){
+                        map2leader.splice(i, 0, FinalTime);
+                        map2leaderlist.splice(i, 0, LeaderTime);
+                        localStorage.setItem('map2leaderlist', JSON.stringify(map2leaderlist));
+                        localStorage.setItem('map2leader', JSON.stringify(map2leader));
+                        placevalue = i+1;
+                        this.scene.launch("LeaderBoardEnter");
+                        this.scene.pause();
+                        done = true;
+                    } else if(map2leaderlist[i] == 0){
+                        map2leader.splice(i, 0, FinalTime);
+                        map2leaderlist.splice(i, 0, LeaderTime);
+                        localStorage.setItem('map2leaderlist', JSON.stringify(map2leaderlist));
+                        localStorage.setItem('map2leader', JSON.stringify(map2leader));
+                        placevalue = i+1;
+                        this.scene.launch("LeaderBoardEnter");
+                        this.scene.pause();
+                        done = true;
+                    }
+                    }
                 }
-                }
-            }
             if(done != true){
                 this.scene.pause();
                 this.scene.launch("lapsComplete");
