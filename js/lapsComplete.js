@@ -62,7 +62,7 @@ var X = this.add.image(340, 630, 'X');
 var redo = this.add.image(474, 630, 'redo');
     redo.setInteractive();
     redo.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        this.scene.restart(currentmap)
+        this.scene.start(currentmap);
         this.scene.stop();
 })
 console.log(Stars)

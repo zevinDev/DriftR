@@ -38,6 +38,7 @@ if (keyESC1.isDown && localStorage.getItem("paused", "1")) {
 } 
 exit = this.add.image(400,350, 'exit');
 resume = this.add.image(400, 450, 'resume');
+restart = this.add.image(400,550, 'redo');
 
 exit.setInteractive();
 exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
@@ -62,6 +63,13 @@ resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
     resume.setFrame(0)
 })
 resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+    localStorage.setItem("paused", "0");
+    this.scene.resume(selectedMap);
+    this.scene.stop();
+})
+
+restart.setInteractive();
+restart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
     localStorage.setItem("paused", "0");
     this.scene.start(selectedMap);
     this.scene.stop();
