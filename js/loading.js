@@ -71,11 +71,6 @@ preload: function() {
         });
 
         //Loads All The Images
-        this.load.image('checkpoint', 'assets/images/Tracks/VerticleCheckPoint.png')
-        this.load.image('LavaTrack', 'assets/images/Tracks/LavaPack/LavaTrack.png');
-        this.load.image('LavaBack', 'assets/images/Tracks/LavaPack/LavaBackGround.png');
-        this.load.image('SnowBack', 'assets/images/Tracks/SnowPack/CompletedSnowBack.png');
-        this.load.image('SnowTrack', 'assets/images/Tracks/SnowPack/SnowTrackHalfScale.png');
         this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
         this.load.image('howto', 'assets/images/UI/howto.png');
         this.load.image('X', 'assets/images/UI/X.png')
@@ -137,6 +132,9 @@ preload: function() {
             localStorage.setItem("P4", false);
             localStorage.setItem("MGC", false);
             localStorage.setItem("DBM", false);
+            localStorage.setItem("grassMap", false);
+            localStorage.setItem("snowMap", false);
+            localStorage.setItem("busyBeach", false);
             var map1leader = [0, 0, 0, 0, 0]
             var map1leadername = ["none", "none", "none", "none", "none"]
             var map1leaderlist = [0, 0, 0, 0, 0]

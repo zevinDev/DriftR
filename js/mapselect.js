@@ -15,6 +15,10 @@ var mapselect = new Phaser.Class({
         testvar = true;
         test2var = true;
         test3var = true;
+        Stars = parseInt(localStorage.getItem('Stars'));
+        GRASS = localStorage.getItem('grassMap');
+        SNOW = localStorage.getItem('snowMap');
+        BEACH = localStorage.getItem('busyBeach');
         mapselectback = this.add.image(400, 400, 'mapselectback')
         map3select = this.add.image(600, 208, 'map3select')
         map1select = this.add.image(200, 208, 'selectmap1')
@@ -49,15 +53,86 @@ var mapselect = new Phaser.Class({
         fifthPlaceT.visible = false;
 
 
+        //this is for displaying current cash
+        currency = this.add.text(550, 33, "Stars: " + Stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
+        var price = 0;
+
+        //text if you don't have enough money
+        var notEnoughMoney = this.add.text(25, 200, "You do not have enough Stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        notEnoughMoney.visible = false;
+
+        //The buy popup loads but is not visible
+        infoPopUp = this.add.image(400, 400, 'infoPopUp');
+        cancelButton = this.add.image(250, 625, 'cancelButton');
+        buyButton = this.add.image(550, 625, 'buyButton');
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " Stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+
+        infoPopUp.visible = false;
+        cancelButton.visible = false;
+        buyButton.visible = false;
+        popUpText.visible = false;
+
+        cancelButton.setInteractive();
+        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+
+            cancelButton.setFrame(1)
+        })
+        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            cancelButton.setFrame(0)
+        })
+        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            price = 0;
+            infoPopUp.visible = false;
+            cancelButton.visible = false;
+            buyButton.visible = false;
+            popUpText.visible = false;
+            this.registry.destroy(); // destroy registry
+            this.events.off(); // disable all active events
+            this.scene.restart(); // restart current scene
+        })
+
+        buyButton.setInteractive();
+        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+
+            buyButton.setFrame(1)
+        })
+        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            buyButton.setFrame(0)
+        })
+        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            var Stars2 = localStorage.getItem('Stars');
+            if (Stars2 - price >= 0) {
+                localStorage.setItem("Stars", Stars2 - price);
+                var finalPrice = localStorage.getItem("Stars");
+                currency.setText("Stars: " + finalPrice)
+
+                infoPopUp.visible = false;
+                cancelButton.visible = false;
+                buyButton.visible = false;
+                popUpText.visible = false;
+
+                //code below resets scene because buying something breaks the current scene but after restarting it seems fine
+                //found it online
+                //i found the problem but it would just be easier to restart the scene, it's because i dont create interactives for the rest of
+                //the visuals since its only done if the car has been bought
+                this.registry.destroy(); // destroy registry
+                this.events.off(); // disable all active events
+                this.scene.restart(); // restart current scene
+            } else {
+                infoPopUp.visible = false;
+                cancelButton.visible = false;
+                buyButton.visible = false;
+                popUpText.visible = false;
+                notEnoughMoney.visible = true;
+            }
+        });
 
         textvisible = false;
 
         mapbio = this.add.image(400, 570, 'mapbio')
         mapback = this.add.image(400, 216, 'mapback')
-        const layer = this.add.layer();
-        layer.add([mapselectback, mapback, map3select, map2select, map1select, mapbio, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT])
-        mapbio.visible = false;
         //interactive for map1
+        if (GRASS == "true") {
         map1select.setInteractive();
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             map1select.setFrame(1)
@@ -70,7 +145,34 @@ var mapselect = new Phaser.Class({
             localStorage.setItem('mapselect', 1);
             testvar = true;
         })
-        //interactive for map 2
+    } else if (GRASS == "false") {
+        map1select.setFrame(3);
+        map1select.setInteractive();
+        map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                notEnoughMoney.visible = false;
+                if (infoPopUp.visible == false) {
+                    price = 0;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
+
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible == false) {
+                            localStorage.setItem('grassMap', true);
+                            textvisible = true;
+                            localStorage.setItem('mapselect', 1);
+                            testvar = true;
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
+                }
+            })
+    }
+       //interactive for map2
+       if (SNOW == "true") {
         map2select.setInteractive();
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             map2select.setFrame(1)
@@ -82,20 +184,73 @@ var mapselect = new Phaser.Class({
             textvisible = true;
             localStorage.setItem('mapselect', 2);
             test2var = true;
-        });
-        //interactive for map 3
-        map3select.setInteractive();
-        map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-            map3select.setFrame(1)
         })
-        map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-            map3select.setFrame(0)
-        })
-        map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            textvisible = true;
-            localStorage.setItem('mapselect', 3);
-            test3var = true;
-        });
+    } else if (SNOW == "false") {
+        map2select.setFrame(3);
+        map2select.setInteractive();
+        map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                notEnoughMoney.visible = false;
+                if (infoPopUp.visible == false) {
+                    price = 0;
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    infoPopUp.visible = true;
+                    cancelButton.visible = true;
+                    buyButton.visible = true;
+                    popUpText.visible = true;
+
+                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        if (notEnoughMoney.visible == false) {
+                            localStorage.setItem('snowMap', true);
+                            textvisible = true;
+                            localStorage.setItem('mapselect', 2);
+                            test2var = true;
+                        } else {
+                            notEnoughMoney.visible = true;
+                        }
+                    })
+                }
+            })
+    }
+              //interactive for map3
+              if (BEACH == "true") {
+                map3select.setInteractive();
+                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                    map3select.setFrame(1)
+                })
+                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                    map3select.setFrame(0)
+                })
+                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                    textvisible = true;
+                    localStorage.setItem('mapselect', 3);
+                    test3var = true;
+                })
+            } else if (BEACH == "false") {
+                map3select.setFrame(3);
+                map3select.setInteractive();
+                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                        notEnoughMoney.visible = false;
+                        if (infoPopUp.visible == false) {
+                            price = 0;
+                            popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                            infoPopUp.visible = true;
+                            cancelButton.visible = true;
+                            buyButton.visible = true;
+                            popUpText.visible = true;
+        
+                            buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                                if (notEnoughMoney.visible == false) {
+                                    localStorage.setItem('busyBeach', true);
+                                    textvisible = true;
+                                    localStorage.setItem('mapselect', 3);
+                                    test3var = true;
+                                } else {
+                                    notEnoughMoney.visible = true;
+                                }
+                            })
+                        }
+                    })
+            }
         //backgrond UI
         backButton = this.add.image(100, 50, 'backButton');
         backButton.setInteractive();
@@ -137,6 +292,10 @@ var mapselect = new Phaser.Class({
         })
         console.log(map1leader)
         mapstart.visible = false;
+
+        const layer = this.add.layer();
+        layer.add([mapselectback, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
+        mapbio.visible = false;
     },
     update: function() {
         if (localStorage.getItem('mapselect') == 1){
@@ -152,18 +311,17 @@ var mapselect = new Phaser.Class({
             leadertime = map3leader;
             map3select.setFrame(2)
         }
-        if(localStorage.getItem('mapselect') != 1 && testvar == true){
+        if(localStorage.getItem('mapselect') != 1 && testvar == true && GRASS == "true"){
             testvar = false
             map1select.setFrame(0)
 
-        }else if(localStorage.getItem('mapselect') != 2 && test2var == true){
+        }else if(localStorage.getItem('mapselect') != 2 && test2var == true && SNOW == "true"){
             test2var = false
             map2select.setFrame(0)
 
-        } if(localStorage.getItem('mapselect') != 3 && test3var == true){
+        } if(localStorage.getItem('mapselect') != 3 && test3var == true && BEACH == "true"){
             test3var = false
             map3select.setFrame(0)
-
         }
 
         firstPlaceT.setText(leadername[0] + "-" + leadertime[0]);
