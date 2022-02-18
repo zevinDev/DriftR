@@ -23,21 +23,18 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         // corgi.play();
         //Creates The Player
         player = this.physics.add.sprite(396, 3300, 'player');         //physics is added to player sprite 
-        player2 = this.physics.add.sprite(410, 3300, 'player2');   
-        //Sets Colliders And Bounce
-        player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
-        player.setCollideWorldBounds(false);                         //player is not allowed to exit out of the boundry
-
-        player2.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
-        player2.setCollideWorldBounds(false);  
-        //Defines Player MaxSpeed And Start Angle
         player.body.setMaxSpeed(500);              
         player.angle = -90;
+        player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
+        player.setCollideWorldBounds(false);
 
+        //Sets Colliders And Bounce
+        if(twoPlayer == true){
+        player2 = this.physics.add.sprite(410, 3300, 'player2');   
+        player2.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
+        player2.setCollideWorldBounds(false);  
         player2.body.setMaxSpeed(500);              
         player2.angle = -90;
-
-        //Creates Camera And Sets It To Follow Player
         camera = this.cameras.main;
         camera.setSize(camera.width, camera.height/2); 
         camera.startFollow(player);
@@ -45,6 +42,10 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         camera1.setSize(camera1.width, camera1.height/2);
         camera1.setPosition(0,400);
         camera1.startFollow(player2); 
+        }else{
+        camera = this.cameras.main;
+        camera.startFollow(player);
+        };
 
 
         const tilemap1 = this.make.tilemap({                        //Constant tile map is initialized 
@@ -68,12 +69,9 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         BackLayer.setCollisionByProperty({
             collides: true
         })
-        const layer = this.add.layer();
-        layer.add([player])
-         layer.add([player2]); 
+
         //camera.setBounds(0, 0, xLimit, yLimit);
         this.physics.add.collider(player, BorderLayer);
-        this.physics.add.collider(player2, BorderLayer);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -99,17 +97,24 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         accel = player.body.acceleration;
         FinalTime = 0; //Time that's displayed
         var SCORETime; //Final score time that's added to leaderboard
-
+        const layer = this.add.layer();
+        layer.add([player])
+        if(twoPlayer == true){
+        layer.add([player2]); 
+        this.physics.add.collider(player2, BorderLayer);
+        camera1.ignore(Timertext)
+        }
 
         getTile = function(){
         player1tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        if(twoPlayer == true){
         player2tile = BackLayer.getTileAtWorldXY(player2.x, player2.y, true);
+        }
         tile2 = StartLine.getTileAtWorldXY(player.x, player.y, true);
         Check1tile = Check1.getTileAtWorldXY(player.x, player.y, true);
         Check2tile = Check2.getTileAtWorldXY(player.x, player.y, true);
         Check3tile = Check3.getTileAtWorldXY(player.x, player.y, true);
         }
-
     },
   
     update: function() {
@@ -152,6 +157,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
             }
         }
  //player2's movement
+ if(twoPlayer == true){
  player2.setMaxVelocity(1000,1000);
  if (player2.body.speed > 15 && (keyA.isDown)) {
      player2.setAngularVelocity(-150);
@@ -188,7 +194,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
          this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
      }
  }
-
+ }
         //This is the code for the timer function
         if(timeon == true){
             while (timer <= 100) { //The while loop infinitely counts up
@@ -218,7 +224,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
             LeaderTime = (minutes*60) + clocks + (test3/100);
        Timertext.setText(FinalTime);
        Timertext.x = player.x - 200;
-       Timertext.y = player.y - 200;
+       Timertext.y = player.y - 150;
 
        if (keyESC.isDown && localStorage.getItem('paused') == "0") {
         localStorage.setItem("paused", "1");

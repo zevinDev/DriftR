@@ -280,6 +280,7 @@ var mapselect = new Phaser.Class({
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('map1')
+                    twoPlayer = true;
                     this.scene.stop();
                 })
             } else if (localStorage.getItem('mapselect') == 2) {
