@@ -23,7 +23,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         // corgi.play();
         //Creates The Player
         player = this.physics.add.sprite(396, 3300, 'player');         //physics is added to player sprite 
-        player2 = this.physics.add.sprite(396, 3300, 'player2');   
+        player2 = this.physics.add.sprite(410, 3300, 'player2');   
         //Sets Colliders And Bounce
         player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
         player.setCollideWorldBounds(false);                         //player is not allowed to exit out of the boundry
@@ -33,6 +33,9 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         //Defines Player MaxSpeed And Start Angle
         player.body.setMaxSpeed(500);              
         player.angle = -90;
+
+        player2.body.setMaxSpeed(500);              
+        player2.angle = -90;
 
         //Creates Camera And Sets It To Follow Player
         camera = this.cameras.main;
@@ -99,7 +102,8 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
 
 
         getTile = function(){
-        tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        player1tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        player2tile = BackLayer.getTileAtWorldXY(player2.x, player2.y, true);
         tile2 = StartLine.getTileAtWorldXY(player.x, player.y, true);
         Check1tile = Check1.getTileAtWorldXY(player.x, player.y, true);
         Check2tile = Check2.getTileAtWorldXY(player.x, player.y, true);
@@ -128,7 +132,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
         //this slows down the car in grass 
-        if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+        if (player1tile.index == 4 || player1tile.index == 5 || player1tile.index == 6 || player1tile.index == 7 || player1tile.index == 8 || player1tile.index == 9) {
             player.setMaxVelocity(100,100); //Player cannot accelerate past 100
             player.setAcceleration(0); 
             if (player.body.speed > 15 && (keyLEFT.isDown)) {
@@ -165,7 +169,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
      this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
  }
  //this slows down the car in grass 
- if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+ if (player2tile.index == 4 || player2tile.index == 5 || player2tile.index == 6 || player2tile.index == 7 || player2tile.index == 8 || player2tile.index == 9) {
      player2.setMaxVelocity(100,100); //Player cannot accelerate past 100
      player2.setAcceleration(0); 
      if (player2.body.speed > 15 && (keyA.isDown)) {
