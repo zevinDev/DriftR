@@ -36,6 +36,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
 
         //Creates Camera And Sets It To Follow Player
         camera = this.cameras.main;
+        camera.setSize(camera.width, camera.height/2); 
         camera.startFollow(player);
         var camera1 = this.cameras.add();
         camera1.setSize(camera1.width, camera1.height/2);
