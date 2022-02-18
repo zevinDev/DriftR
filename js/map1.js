@@ -23,11 +23,13 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         // corgi.play();
         //Creates The Player
         player = this.physics.add.sprite(396, 3300, 'player');         //physics is added to player sprite 
-
+        player2 = this.physics.add.sprite(396, 3300, 'player2');   
         //Sets Colliders And Bounce
         player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
         player.setCollideWorldBounds(false);                         //player is not allowed to exit out of the boundry
 
+        player2.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
+        player2.setCollideWorldBounds(false);  
         //Defines Player MaxSpeed And Start Angle
         player.body.setMaxSpeed(500);              
         player.angle = -90;
@@ -35,7 +37,10 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         //Creates Camera And Sets It To Follow Player
         camera = this.cameras.main;
         camera.startFollow(player);
-
+        var camera1 = this.cameras.add();
+        camera1.setSize(camera1.width, camera1.height/2);
+        camera1.setPosition(396,400);
+        camera1.startFollow(player2); 
 
 
         const tilemap1 = this.make.tilemap({                        //Constant tile map is initialized 
@@ -61,9 +66,10 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         })
         const layer = this.add.layer();
         layer.add([player])
+         layer.add([player2]); 
         //camera.setBounds(0, 0, xLimit, yLimit);
         this.physics.add.collider(player, BorderLayer);
-
+        this.physics.add.collider(player2, BorderLayer);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
