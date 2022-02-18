@@ -111,16 +111,15 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
     update: function() {
 
         getTile();
-        
-        player.setMaxVelocity(1000,1000);
-        if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
+         player.setMaxVelocity(1000,1000);
+        if (player.body.speed > 15 && (keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
-        } else if (player.body.speed > 15 && (keyD.isDown || keyRIGHT.isDown)) {
+        } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
             player.setAngularVelocity(150);
         } else {
             player.setAngularVelocity(0);
         }
-        if (keyW.isDown || keyUP.isDown) {
+        if (keyUP.isDown) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
         } else {
             player.setAcceleration(0);
@@ -132,14 +131,14 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
             player.setMaxVelocity(100,100); //Player cannot accelerate past 100
             player.setAcceleration(0); 
-            if (player.body.speed > 15 && (keyA.isDown || keyLEFT.isDown)) {
+            if (player.body.speed > 15 && (keyLEFT.isDown)) {
                 player.setAngularVelocity(-50);
-            } else if (player.body.speed > 15 && (keyD.isDown || keyRIGHT.isDown)) {
+            } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
                 player.setAngularVelocity(50);
             } else {
                 player.setAngularVelocity(0);
             }
-            if (keyW.isDown || keyUP.isDown) {
+            if (keyUP.isDown) {
                 this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
             } else {
                 player.setAcceleration(0);
@@ -148,7 +147,44 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
             }
         }
- 
+ //player2's movement
+ player2.setMaxVelocity(1000,1000);
+ if (player2.body.speed > 15 && (keyA.isDown)) {
+     player2.setAngularVelocity(-150);
+ } else if (player2.body.speed > 15 && (keyD.isDown)) {
+     player2.setAngularVelocity(150);
+ } else {
+     player2.setAngularVelocity(0);
+ }
+ if (keyW.isDown) {
+     this.physics.velocityFromRotation(player2.rotation, 700, player2.body.acceleration);
+ } else {
+     player2.setAcceleration(0);
+     player2.body.drag.x = 160;
+     player2.body.drag.y = 160;
+     this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
+ }
+ //this slows down the car in grass 
+ if (tile.index == 4 || tile.index == 5 || tile.index == 6 || tile.index == 7 || tile.index == 8 || tile.index == 9) {
+     player2.setMaxVelocity(100,100); //Player cannot accelerate past 100
+     player2.setAcceleration(0); 
+     if (player2.body.speed > 15 && (keyA.isDown)) {
+         player2.setAngularVelocity(-50);
+     } else if (player2.body.speed > 15 && (keyD.isDown)) {
+         player2.setAngularVelocity(50);
+     } else {
+         player2.setAngularVelocity(0);
+     }
+     if (keyW.isDown) {
+         this.physics.velocityFromRotation(player2.rotation, 100, player2.body.velocity);
+     } else {
+         player2.setAcceleration(0);
+         player2.body.drag.x = 300;
+         player2.body.drag.y = 300;
+         this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
+     }
+ }
+
         //This is the code for the timer function
         if(timeon == true){
             while (timer <= 100) { //The while loop infinitely counts up
