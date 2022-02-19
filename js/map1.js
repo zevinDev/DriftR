@@ -107,13 +107,17 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
 
         getTile = function(){
         player1tile = BackLayer.getTileAtWorldXY(player.x, player.y, true);
+        p1StartTile = StartLine.getTileAtWorldXY(player.x, player.y, true);
+        p1Check1tile = Check1.getTileAtWorldXY(player.x, player.y, true);
+        p1Check2tile = Check2.getTileAtWorldXY(player.x, player.y, true);
+        p1Check3tile = Check3.getTileAtWorldXY(player.x, player.y, true);
         if(twoPlayer == true){
         player2tile = BackLayer.getTileAtWorldXY(player2.x, player2.y, true);
+        p2StartTile = StartLine.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check1tile = Check1.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check2tile = Check2.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check3tile = Check3.getTileAtWorldXY(player2.x, player2.y, true);
         }
-        tile2 = StartLine.getTileAtWorldXY(player.x, player.y, true);
-        Check1tile = Check1.getTileAtWorldXY(player.x, player.y, true);
-        Check2tile = Check2.getTileAtWorldXY(player.x, player.y, true);
-        Check3tile = Check3.getTileAtWorldXY(player.x, player.y, true);
         }
     },
   
@@ -236,28 +240,28 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
        
 
 
-        if (Check1tile.index == 6 || Check1tile.index == 0 || Check1tile.index == 1) {
+        if (p1Check1tile.index == 6 || p1Check1tile.index == 0 || p1Check1tile.index == 1 || p2Check1tile.index == 6 || p2Check1tile.index == 0 || p2Check1tile.index == 1) {
             if(Check1pass == false && Check2pass == false && Check3pass == false){
                 Check1pass = true;
                 console.log("Check 1 passed")
             }
         }
 
-        if (Check2tile.index == 6 || Check2tile.index == 0 || Check2tile.index == 1) {
+        if (p1Check2tile.index == 6 || p1Check2tile.index == 0 || p1Check2tile.index == 1 || p2Check2tile.index == 6 || p2Check2tile.index == 0 || p2Check2tile.index == 1) {
             if(Check1pass == true && Check2pass == false && Check3pass == false){
                 Check2pass = true;
                 console.log("Check 2 passed")
             }
         }
 
-        if (Check3tile.index == 6 || Check3tile.index == 0 || Check3tile.index == 1) {
+        if (p1Check3tile.index == 6 || p1Check3tile.index == 0 || p1Check3tile.index == 1 || p2Check3tile.index == 6 || p2Check3tile.index == 0 || p2Check3tile.index == 1) {
             if(Check1pass == true && Check2pass == true && Check3pass == false){
                 Check3pass = true;
                 console.log("Check 3 passed")
             }
         }
 
-        if (tile2.index == 9 || tile2.index == 10) {
+        if (p1StartTile.index == 9 || p1StartTile.index == 10 || p2StartTile.index == 9 || p2StartTile.index == 10) {
             if(LapCount == 0){
                 timeon = true
                 Check1pass = false;
