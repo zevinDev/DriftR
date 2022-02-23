@@ -8,12 +8,14 @@ preload: function() {
     },
     create: function() {
 
-        
+        var backimage = this.add.graphics();
+        backimage.fillStyle(0x37313b, 1);
+        backimage.fillRect(0, 0, 800, 800);
         this.cameras.main.fadeIn(1000, 0, 0, 0)
-        var back = this.add.image(400, 400, 'mapselectback')
         var startButton = this.add.image(200, 600, 'start');
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');
+        var logo = this.add.image(400, 200, 'logo');
         var exithelp = this.add.image(640,150,'X');
         
 
@@ -78,7 +80,7 @@ preload: function() {
         })
         
         const layer = this.add.layer();
-        layer.add([back, startButton, garageButton, optionButton, howimage, exithelp])
+        layer.add([backimage, startButton, garageButton, optionButton, logo, howimage, exithelp])
 
 
     }

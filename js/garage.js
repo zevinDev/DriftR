@@ -24,7 +24,9 @@ var garage = new Phaser.Class({
         currency = this.add.text(300, 65, "Stars: " + Stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
         var price = 0;
         //Background UI
-        GarageBack = this.physics.add.sprite(400, 400, 'GarageBack');
+        var backimage = this.add.graphics();
+        backimage.fillStyle(0x37313b, 1);
+        backimage.fillRect(0, 0, 800, 800);
 
         //text if you don't have enough money
         var notEnoughMoney = this.add.text(25, 200, "You do not have enough Stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
@@ -664,7 +666,7 @@ var garage = new Phaser.Class({
 
         //Defines Layers And Border Physics
         const layer = this.add.layer();
-        layer.add([GarageBack, backButton, GarageIcon1, GarageIcon2, GarageIcon3, GarageIcon4, GarageIcon5, GarageIcon6, player1, player2, player3, player4, darkbirdmobile, mgcar, GarageIconLocked1, GarageIconLocked2, GarageIconLocked3, GarageIconLocked4, GarageIconLocked5, GarageIconLocked6, infoPopUp, currency, cancelButton, buyButton, popUpText, notEnoughMoney]);
+        layer.add([backimage, backButton, GarageIcon1, GarageIcon2, GarageIcon3, GarageIcon4, GarageIcon5, GarageIcon6, player1, player2, player3, player4, darkbirdmobile, mgcar, GarageIconLocked1, GarageIconLocked2, GarageIconLocked3, GarageIconLocked4, GarageIconLocked5, GarageIconLocked6, infoPopUp, currency, cancelButton, buyButton, popUpText, notEnoughMoney]);
 
 
 

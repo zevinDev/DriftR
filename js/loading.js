@@ -9,7 +9,7 @@ preload: function() {
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
         progressBox.fillRect(240, 270, 320, 50);
-        backimage.fillStyle(0x75c8ae, 1);
+        backimage.fillStyle(0x37313b, 1);
         backimage.fillRect(0, 0, 800, 800);
 
         var width = this.cameras.main.width;
@@ -71,7 +71,6 @@ preload: function() {
         });
 
         //Loads All The Images
-        this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
         this.load.image('howto', 'assets/images/UI/howto.png');
         this.load.image('X', 'assets/images/UI/X.png')
         this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
@@ -84,13 +83,12 @@ preload: function() {
         this.load.image('darkbirdmobile', 'assets/images/Cars/DarkBirdMobile.png');
         this.load.image('mgcar', 'assets/images/Cars/MGKCar.png');
         this.load.image('infoPopUp', 'assets/images/Garage/InfoPopUp.png');
-        this.load.image('GarageBack', 'assets/images/UI/mapselectback.png');
         this.load.image('redo', 'assets/images/UI/redo.png')
         this.load.image('pauseMenu', 'assets/images/UI/pauseScreen.png');
         this.load.image('LeaderBoardEnterBox', 'assets/images/UI/LeaderBoardScreen.png');
-        this.load.image('mapselectback', 'assets/images/UI/mapselectback.png');
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
         this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
+        this.load.image('logo', 'assets/images/UI/Logo_Test.png');
 
         this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json');
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json');

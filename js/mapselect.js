@@ -19,7 +19,9 @@ var mapselect = new Phaser.Class({
         GRASS = localStorage.getItem('grassMap');
         SNOW = localStorage.getItem('snowMap');
         BEACH = localStorage.getItem('busyBeach');
-        mapselectback = this.add.image(400, 400, 'mapselectback')
+        var backimage = this.add.graphics();
+        backimage.fillStyle(0x37313b, 1);
+        backimage.fillRect(0, 0, 800, 800);
         map3select = this.add.image(600, 208, 'map3select')
         map1select = this.add.image(200, 208, 'selectmap1')
         map2select = this.add.image(400, 208, 'map2select')
@@ -295,7 +297,7 @@ var mapselect = new Phaser.Class({
         mapstart.visible = false;
 
         const layer = this.add.layer();
-        layer.add([mapselectback, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
+        layer.add([backimage, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
         mapbio.visible = false;
     },
     update: function() {
