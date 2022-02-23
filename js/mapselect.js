@@ -9,6 +9,7 @@ var mapselect = new Phaser.Class({
  
     },
     create: function() {
+        twoPlayer = false;
         this.cameras.main.fadeIn(1000, 0, 0, 0)
         leadertime = [];
         leadername = [];
@@ -282,7 +283,6 @@ var mapselect = new Phaser.Class({
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('map1')
-                    twoPlayer = true;
                     this.scene.stop();
                 })
             } else if (localStorage.getItem('mapselect') == 2) {
@@ -293,11 +293,23 @@ var mapselect = new Phaser.Class({
                 this.scene.stop();
             }
         })
+
+        checkbox = this.add.image(580,620, 'check_box');
+        checkbox.setInteractive();
+        checkbox.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if(twoPlayer == true){
+                twoPlayer = false;
+            } else{
+                twoPlayer = true;
+            }
+        });
+
         console.log(map1leader)
         mapstart.visible = false;
+        checkbox.visible = false;
 
         const layer = this.add.layer();
-        layer.add([backimage, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
+        layer.add([backimage, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, checkbox, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
         mapbio.visible = false;
     },
     update: function() {
@@ -337,7 +349,11 @@ var mapselect = new Phaser.Class({
 
         fifthPlaceT.setText(leadername[4] + "-" + leadertime[4]);
 
-
+        if(twoPlayer == true){
+            checkbox.setFrame(1);
+        } else{
+            checkbox.setFrame(0)
+        }
         if(textvisible == true){
             firstPlaceT.visible = true;
             secondPlaceT.visible = true;
@@ -345,8 +361,8 @@ var mapselect = new Phaser.Class({
             fourthPlaceT.visible = true;
             fifthPlaceT.visible = true;
             mapstart.visible = true;
+            checkbox.visible = true;
             mapbio.visible = true
         }
-
     }
 })

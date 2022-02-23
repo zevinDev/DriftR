@@ -60,6 +60,8 @@ preload: function() {
 
         this.load.on("fileprogress", function(file) {
             assetText.setText("Loading asset: " + file.key);
+            loadingText.setText("Loading.");
+            loadingText.setText("Loading...");
         });
         this.load.on("complete", function() {
             progressBar.destroy();
@@ -115,6 +117,7 @@ preload: function() {
         this.load.spritesheet('start', 'assets/images/UI/START.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', { frameWidth: 213, frameHeight: 80 });
+        this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', { frameWidth: 40, frameHeight: 40 });
 
         var firstTime = localStorage.getItem("first_time");
         if (!firstTime) {

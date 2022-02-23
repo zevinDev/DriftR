@@ -36,10 +36,10 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         player2.body.setMaxSpeed(500);              
         player2.angle = -90;
         camera = this.cameras.main;
-        camera.setSize(camera.width, camera.height/2); 
+        camera.setSize(camera.width, (camera.height/2)-4); 
         camera.startFollow(player);
         var camera1 = this.cameras.add();
-        camera1.setSize(camera1.width, camera1.height/2);
+        camera1.setSize(camera1.width, (camera1.height/2)-4);
         camera1.setPosition(0,400);
         camera1.startFollow(player2); 
         }else{
@@ -236,32 +236,105 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         this.scene.launch("pauseMenu");
     } 
 
-        
-       
-
-
-        if (p1Check1tile.index == 6 || p1Check1tile.index == 0 || p1Check1tile.index == 1 || p2Check1tile.index == 6 || p2Check1tile.index == 0 || p2Check1tile.index == 1) {
+        if(twoPlayer == true){
+            if (p1Check1tile.index == 6 || p1Check1tile.index == 0 || p1Check1tile.index == 1 || p2Check1tile.index == 6 || p2Check1tile.index == 0 || p2Check1tile.index == 1) {
+                if(Check1pass == false && Check2pass == false && Check3pass == false){
+                    Check1pass = true;
+                    console.log("Check 1 passed")
+                }
+            }
+    
+            if (p1Check2tile.index == 6 || p1Check2tile.index == 0 || p1Check2tile.index == 1 || p2Check2tile.index == 6 || p2Check2tile.index == 0 || p2Check2tile.index == 1) {
+                if(Check1pass == true && Check2pass == false && Check3pass == false){
+                    Check2pass = true;
+                    console.log("Check 2 passed")
+                }
+            }
+    
+            if (p1Check3tile.index == 6 || p1Check3tile.index == 0 || p1Check3tile.index == 1 || p2Check3tile.index == 6 || p2Check3tile.index == 0 || p2Check3tile.index == 1) {
+                if(Check1pass == true && Check2pass == true && Check3pass == false){
+                    Check3pass = true;
+                    console.log("Check 3 passed")
+                }
+            }
+    
+            if (p1StartTile.index == 9 || p1StartTile.index == 10 || p2StartTile.index == 9 || p2StartTile.index == 10) {
+                if(LapCount == 0){
+                    timeon = true
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    LapCount = LapCount + 1;
+                } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    LapCount = LapCount + 1;
+                    console.log(LapCount);
+                } else if(LapCount == 3 && Check1pass == true && Check2pass == true && Check3pass == true){
+                    Check1pass = false;
+                    Check2pass = false;
+                    Check3pass = false;
+                    timeon = false
+                    var map1leader = localStorage.getItem('map1leader');
+                    map1leader = JSON.parse(map1leader);
+                    map1leader = map1leader.slice(0, 5);
+                    var map1leaderlist = localStorage.getItem('map1leaderlist');
+                    map1leaderlist = JSON.parse(map1leaderlist);
+                    map1leaderlist = map1leaderlist.slice(0, 5);
+                    var done = false;
+                    for(var i=0; i<5; i++){
+                        if(done == false){
+                        if(LeaderTime < map1leaderlist[i]){
+                            map1leader.splice(i, 0, FinalTime);
+                            map1leaderlist.splice(i, 0, LeaderTime);
+                            localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
+                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                            placevalue = i+1;
+                            this.scene.launch("LeaderBoardEnter");
+                            this.scene.pause();
+                            done = true;
+                        } else if(map1leaderlist[i] == 0){
+                            map1leader.splice(i, 0, FinalTime);
+                            map1leaderlist.splice(i, 0, LeaderTime);
+                            localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
+                            localStorage.setItem('map1leader', JSON.stringify(map1leader));
+                            placevalue = i+1;
+                            this.scene.launch("LeaderBoardEnter");
+                            this.scene.pause();
+                            done = true;
+                        }
+                        }
+                    }
+                    if(done != true){
+                        this.scene.launch("lapsComplete");
+                        this.scene.pause();
+                    }
+                }  
+            }
+        }else{
+        if (p1Check1tile.index == 6 || p1Check1tile.index == 0 || p1Check1tile.index == 1) {
             if(Check1pass == false && Check2pass == false && Check3pass == false){
                 Check1pass = true;
                 console.log("Check 1 passed")
             }
         }
 
-        if (p1Check2tile.index == 6 || p1Check2tile.index == 0 || p1Check2tile.index == 1 || p2Check2tile.index == 6 || p2Check2tile.index == 0 || p2Check2tile.index == 1) {
+        if (p1Check2tile.index == 6 || p1Check2tile.index == 0 || p1Check2tile.index == 1) {
             if(Check1pass == true && Check2pass == false && Check3pass == false){
                 Check2pass = true;
                 console.log("Check 2 passed")
             }
         }
 
-        if (p1Check3tile.index == 6 || p1Check3tile.index == 0 || p1Check3tile.index == 1 || p2Check3tile.index == 6 || p2Check3tile.index == 0 || p2Check3tile.index == 1) {
+        if (p1Check3tile.index == 6 || p1Check3tile.index == 0 || p1Check3tile.index == 1) {
             if(Check1pass == true && Check2pass == true && Check3pass == false){
                 Check3pass = true;
                 console.log("Check 3 passed")
             }
         }
 
-        if (p1StartTile.index == 9 || p1StartTile.index == 10 || p2StartTile.index == 9 || p2StartTile.index == 10) {
+        if (p1StartTile.index == 9 || p1StartTile.index == 10) {
             if(LapCount == 0){
                 timeon = true
                 Check1pass = false;
@@ -315,5 +388,6 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
                 }
             }  
         }
+    }
     }   
 });
