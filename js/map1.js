@@ -41,7 +41,8 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         var camera1 = this.cameras.add();
         camera1.setSize(camera1.width, (camera1.height/2)-4);
         camera1.setPosition(0,400);
-        camera1.startFollow(player2); 
+        camera1.startFollow(player2);
+        this.physics.add.collider(player, player2) 
         }else{
         camera = this.cameras.main;
         camera.startFollow(player);
@@ -202,30 +203,33 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         //This is the code for the timer function
         if(timeon == true){
             while (timer <= 100) { //The while loop infinitely counts up
-                timer = timer + 1;
+                timer = timer + 01;
             }
         }
             if (timer >= 100) {
-                timer = 0;
-                timez = timez + 1;
+                timer = 00;
+                timez = timez + 01;
             }
             if (timez >= 60) {
-                timez = 0;
-                clocks = clocks + 1;
+                timez = 00;
+                clocks = clocks + 01;
             }
             if (clocks >= 60) {
-                clocks = 0;
-                minutes = minutes + 1;
+                clocks = 00;
+                minutes = minutes + 01;
             }
             test3 = (timez * 1.666666666666667).toFixed(0)
-            if (minutes > 0) {
-                FinalTime = minutes + "." + clocks + "." + test3;
-            } else if (clocks > 0) {
-                FinalTime = clocks + "." + test3;
+            if (minutes > 00) {
+                FinalTime = minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+            } else if (clocks > 00) {
+                FinalTime = clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
             } else {
-                FinalTime = test3;
+                FinalTime = test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
             }
-            LeaderTime = (minutes*60) + clocks + (test3/100);
+            //minutes = minutes.toPrecision(2)
+            //clocks = clocks.toPrecision(2)
+            //test3 = test3.toPrecision(2)
+            LeaderTime = (minutes*60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + (test3/100).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
        Timertext.setText(FinalTime);
        Timertext.x = player.x - 200;
        Timertext.y = player.y - 150;
