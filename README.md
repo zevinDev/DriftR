@@ -9,9 +9,9 @@
 - Through the use of carefully selected color pallets we were able to create a convincing game
 - We learned alot while making this project like how to make tile maps and how to use a API library
 
-## Usage
+## How To Play
 
-This game was coded using (JS, HTML, and CSS) therefor all you need to do is click on this [link!](https://realziez.github.io/DriftR/) 
+This game was coded using (JS, HTML, and CSS) therefore all you need to do is click on this [link!](https://realziez.github.io/DriftR/) 
 
 ## Authors
 
@@ -32,4 +32,6 @@ This game was coded using (JS, HTML, and CSS) therefor all you need to do is cli
 
 ## Features
 
-If your project has a lot of features, list them here.
+- Amazing Drifting Mechanics
+- Unlockable Maps And Cars
+- Retro Syle Graphics
