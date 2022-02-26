@@ -27,6 +27,7 @@ var map1 = new Phaser.Class({            //initalizes and creates the scene for 
         player.angle = -90;
         player.setBounce(0.2);                                       //when colliding with other objects with physics, player will bounce off of them 
         player.setCollideWorldBounds(false);
+        extendedBackground = this.add.image(2048,2048, 'extendedBackground');
 
         //Sets Colliders And Bounce
         if(twoPlayer == true){

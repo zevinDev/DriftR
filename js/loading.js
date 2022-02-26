@@ -91,6 +91,7 @@ preload: function() {
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
         this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
         this.load.image('logo', 'assets/images/UI/Logo_Test.png');
+        this.load.image('extendedBackground', 'assets/images/UI/Extended_Background.png');
 
         this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json');
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json');
