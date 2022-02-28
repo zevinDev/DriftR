@@ -24,11 +24,7 @@ This game was coded using (JS, HTML, and CSS) therefore all you need to do is cl
 
 ## Badges
 
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-![badmath](https://img.shields.io/tokei/lines/github/REALziez/DriftR)
-![badmath](https://img.shields.io/github/stars/REALziez/DriftR)
-![badmath](https://img.shields.io/github/license/REALziez/DriftR)
-
+<img alt="Languages" src="https://img.shields.io/github/languages/top/lernantino/badmath"> <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/REALziez/DriftR"> <img alt="Stars" src="https://img.shields.io/github/stars/REALziez/DriftR"> <img alt="License" src="https://img.shields.io/github/license/REALziez/DriftR">
 
 ## Features
 
