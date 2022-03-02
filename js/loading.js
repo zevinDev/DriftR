@@ -77,6 +77,8 @@ preload: function() {
         this.load.image('X', 'assets/images/UI/X.png')
         this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
         this.load.image('map2_pallet', 'assets/tilesets/map2_pallet.png')
+        this.load.image('map3_pallet', 'assets/tilesets/BusyBeach_Palette-Recovered-Recovered.png')
+        this.load.image('map3_pallet_obstruction', 'assets/tilesets/obstructionpallete.png')
         this.load.image('lockedIcon', 'assets/images/Garage/LockedCar.png');
         this.load.image('player1', 'assets/images/Cars/Player.png');
         this.load.image('player2', 'assets/images/Cars/LimeCar.png');
@@ -95,6 +97,7 @@ preload: function() {
 
         this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json');
         this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json');
+        this.load.tilemapTiledJSON('tilemap3', 'assets/tilesets/NewMap3.json');
 
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
         this.load.audio('snowmap','assets/sounds/metro beat.mp3');
