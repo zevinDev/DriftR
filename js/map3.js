@@ -71,6 +71,13 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         CheckPoint2 = tilemap3.createLayer('CheckPoint2', map3_pallet)                //This is the tilemap for the track 
         CheckPoint1 = tilemap3.createLayer('CheckPoint1', map3_pallet)  
 
+
+        Obstructions.setCollisionByProperty({                                   //Boundry detection is declared true. 
+            collides: true
+        })
+        StreetObstructions.setCollisionByProperty({                                   //Boundry detection is declared true. 
+            collides: true
+        })
         //Defines Layers And Border Physics
         /*
         BorderLayer.setCollisionByProperty({                                   //Boundry detection is declared true. 
@@ -82,7 +89,8 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         */
 
         //camera.setBounds(0, 0, xLimit, yLimit);
-
+        this.physics.add.collider(player, Obstructions);
+        this.physics.add.collider(player, StreetObstructions);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -281,13 +289,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
                     Check2pass = false;
                     Check3pass = false;
                     LapCount = LapCount + 1;
-                } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    LapCount = LapCount + 1;
-                    console.log(LapCount);
-                } else if(LapCount == 1 && Check1pass == true && Check2pass == true && Check3pass == true){
+                } else if(Check1pass == true && Check2pass == true && Check3pass == true){
                     Check1pass = false;
                     Check2pass = false;
                     Check3pass = false;
@@ -357,13 +359,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
                 Check2pass = false;
                 Check3pass = false;
                 LapCount = LapCount + 1;
-            } else if(LapCount > 0 && LapCount < 3 && Check1pass == true && Check2pass == true && Check3pass == true){
-                Check1pass = false;
-                Check2pass = false;
-                Check3pass = false;
-                LapCount = LapCount + 1;
-                console.log(LapCount);
-            } else if(LapCount == 1 && Check1pass == true && Check2pass == true && Check3pass == true){
+            } else if(Check1pass == true && Check2pass == true && Check3pass == true){
                 Check1pass = false;
                 Check2pass = false;
                 Check3pass = false;
