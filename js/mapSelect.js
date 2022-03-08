@@ -122,7 +122,7 @@ var mapSelect = new Phaser.Class({
                 //code below resets scene because buying something breaks the current scene but after restarting it seems fine
                 //found it online
                 //i found the problem but it would just be easier to restart the scene, it's because i dont create interactives for the rest of
-                //the visuals since its only done if the car has been bought
+                //the visuals since its only done if the map has been bought
                 this.registry.destroy(); // destroy registry
                 this.events.off(); // disable all active events
                 this.scene.restart(); // restart current scene
@@ -160,7 +160,7 @@ var mapSelect = new Phaser.Class({
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 0;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -200,7 +200,7 @@ var mapSelect = new Phaser.Class({
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 0;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -240,7 +240,7 @@ var mapSelect = new Phaser.Class({
                         notEnoughMoney.visible = false;
                         if (infoPopUp.visible == false) {
                             price = 0;
-                            popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
+                            popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                             infoPopUp.visible = true;
                             cancelButton.visible = true;
                             buyButton.visible = true;
