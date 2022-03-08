@@ -23,6 +23,7 @@ var mapSelect = new Phaser.Class({
         GRASS = localStorage.getItem('grassMap');
         SNOW = localStorage.getItem('snowMap');
         BEACH = localStorage.getItem('busyBeach');
+        selectedMap = 0;
         var backimage = this.add.graphics();
         backimage.fillStyle(0x37313b, 1);
         backimage.fillRect(0, 0, 800, 800);
@@ -43,7 +44,7 @@ var mapSelect = new Phaser.Class({
         map3leader = JSON.parse(map3leader);
 
         if (localStorage.getItem("MSFade") == 0) {
-        localStorage.setItem('mapSelect', 0);
+        selectedMap = 0;
         }
         firstPlaceT = this.add.text(198, 512, map1Leadername[0] + "-" + map1Leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlaceT.visible = false;
@@ -150,7 +151,7 @@ var mapSelect = new Phaser.Class({
         })
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            localStorage.setItem('mapSelect', 1);
+            selectedMap = 1;
             testvar = true;
         })
     } else if (GRASS == "false") {
@@ -170,7 +171,7 @@ var mapSelect = new Phaser.Class({
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('grassMap', true);
                             textvisible = true;
-                            localStorage.setItem('mapSelect', 1);
+                            selectedMap = 1;
                             testvar = true;
                         } else {
                             notEnoughMoney.visible = true;
@@ -190,7 +191,7 @@ var mapSelect = new Phaser.Class({
         })
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            localStorage.setItem('mapSelect', 2);
+            selectedMap = 2;
             test2var = true;
         })
     } else if (SNOW == "false") {
@@ -210,7 +211,7 @@ var mapSelect = new Phaser.Class({
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('snowMap', true);
                             textvisible = true;
-                            localStorage.setItem('mapSelect', 2);
+                            selectedMap = 2;
                             test2var = true;
                         } else {
                             notEnoughMoney.visible = true;
@@ -230,7 +231,7 @@ var mapSelect = new Phaser.Class({
                 })
                 map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                     textvisible = true;
-                    localStorage.setItem('mapSelect', 3);
+                    selectedMap = 3;
                     millisecondsvar = true;
                 })
             } else if (BEACH == "false") {
@@ -250,7 +251,7 @@ var mapSelect = new Phaser.Class({
                                 if (notEnoughMoney.visible == false) {
                                     localStorage.setItem('busyBeach', true);
                                     textvisible = true;
-                                    localStorage.setItem('mapSelect', 3);
+                                    selectedMap = 3;
                                     millisecondsvar = true;
                                 } else {
                                     notEnoughMoney.visible = true;
@@ -285,16 +286,16 @@ var mapSelect = new Phaser.Class({
             mapstart.setFrame(0)
         })
         mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            if (localStorage.getItem('mapSelect') == 1) {
+            if (selectedMap == 1) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('map1')
                     this.scene.stop();
                 })
-            } else if (localStorage.getItem('mapSelect') == 2) {
+            } else if (selectedMap == 2) {
                 this.scene.start('map2')
                 this.scene.stop();
-            } else if (localStorage.getItem('mapSelect') == 3) {
+            } else if (selectedMap == 3) {
                 this.scene.start('map3')
                 this.scene.stop();
             }
@@ -319,31 +320,31 @@ var mapSelect = new Phaser.Class({
         mapbio.visible = false;
     },
     update: function() {
-        if (localStorage.getItem('mapSelect') == 1){
+        if (selectedMap == 1){
             leadername = map1Leadername;
             leadertime = map1Leader;
             map1select.setFrame(2)
             textvisible = true;
-        } else if(localStorage.getItem('mapSelect') == 2){
+        } else if(selectedMap == 2){
             leadername = map2Leadername;
             leadertime = map2Leader;
             map2select.setFrame(2)
             textvisible = true;
-        } else if(localStorage.getItem('mapSelect') == 3){
+        } else if(selectedMap == 3){
             leadername = map3leadername;
             leadertime = map3leader;
             map3select.setFrame(2)
             textvisible = true;
         }
-        if(localStorage.getItem('mapSelect') != 1 && testvar == true && GRASS == "true"){
+        if(selectedMap != 1 && testvar == true && GRASS == "true"){
             testvar = false
             map1select.setFrame(0)
 
-        }else if(localStorage.getItem('mapSelect') != 2 && test2var == true && SNOW == "true"){
+        }else if(selectedMap != 2 && test2var == true && SNOW == "true"){
             test2var = false
             map2select.setFrame(0)
 
-        } if(localStorage.getItem('mapSelect') != 3 && millisecondsvar == true && BEACH == "true"){
+        } if(selectedMap != 3 && millisecondsvar == true && BEACH == "true"){
             millisecondsvar = false
             map3select.setFrame(0)
         }

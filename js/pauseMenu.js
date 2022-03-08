@@ -17,18 +17,18 @@ pauseScene = this.add.image(400,400, 'pauseMenu');
 keyESC1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
-var selectedMap;
-if (localStorage.getItem('mapSelect') == 1) {
+var selectedMap1;
+if (selectedMap == 1) {
 
-    selectedMap = 'map1'
+    selectedMap1 = 'map1'
 
-} else if (localStorage.getItem('mapSelect') == 2) {
+} else if (selectedMap == 2) {
 
-    selectedMap = 'map2'
+    selectedMap1 = 'map2'
 
-} else if (localStorage.getItem('mapSelect') == 3) {
+} else if (selectedMap == 3) {
 
-    selectedMap = 'map3'
+    selectedMap1 = 'map3'
 }
 
 if (keyESC1.isDown && localStorage.getItem("paused", "1")) {
@@ -51,7 +51,7 @@ exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
     this.scene.start('mapSelect');
     localStorage.setItem("paused", "0");
     this.scene.stop();
-    this.scene.stop(selectedMap);
+    this.scene.stop(selectedMap1);
 })
 
 resume.setInteractive();
@@ -64,14 +64,14 @@ resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
 })
 resume.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
     localStorage.setItem("paused", "0");
-    this.scene.resume(selectedMap);
+    this.scene.resume(selectedMap1);
     this.scene.stop();
 })
 
 restart.setInteractive();
 restart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
     localStorage.setItem("paused", "0");
-    this.scene.start(selectedMap);
+    this.scene.start(selectedMap1);
     this.scene.stop();
 })
 },
