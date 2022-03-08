@@ -10,7 +10,10 @@ var mapSelect = new Phaser.Class({
     },
     create: function() {
         twoPlayer = false;
-        this.cameras.main.fadeIn(1000, 0, 0, 0)
+        if (localStorage.getItem("MSFade") == 0) {
+        this.cameras.main.fadeIn(1000, 0, 0, 0)           
+        }
+        localStorage.setItem("MSFade", 1);
         leadertime = [];
         leadername = [];
         testvar = true;
@@ -38,8 +41,10 @@ var mapSelect = new Phaser.Class({
         map3leadername = JSON.parse(map3leadername);
         map3leader = localStorage.getItem('map3leader');
         map3leader = JSON.parse(map3leader);
-        localStorage.setItem('mapSelect', 0);
 
+        if (localStorage.getItem("MSFade") == 0) {
+        localStorage.setItem('mapSelect', 0);
+        }
         firstPlaceT = this.add.text(198, 512, map1Leadername[0] + "-" + map1Leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlaceT.visible = false;
 
@@ -68,7 +73,7 @@ var mapSelect = new Phaser.Class({
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this map for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;
@@ -265,6 +270,7 @@ var mapSelect = new Phaser.Class({
         })
         backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
+            localStorage.setItem("MSFade", 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('menu')
                 this.scene.stop();
@@ -317,14 +323,17 @@ var mapSelect = new Phaser.Class({
             leadername = map1Leadername;
             leadertime = map1Leader;
             map1select.setFrame(2)
+            textvisible = true;
         } else if(localStorage.getItem('mapSelect') == 2){
             leadername = map2Leadername;
             leadertime = map2Leader;
             map2select.setFrame(2)
+            textvisible = true;
         } else if(localStorage.getItem('mapSelect') == 3){
             leadername = map3leadername;
             leadertime = map3leader;
             map3select.setFrame(2)
+            textvisible = true;
         }
         if(localStorage.getItem('mapSelect') != 1 && testvar == true && GRASS == "true"){
             testvar = false

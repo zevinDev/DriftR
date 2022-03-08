@@ -140,6 +140,7 @@ preload: function() {
             localStorage.setItem("grassMap", false);
             localStorage.setItem("snowMap", false);
             localStorage.setItem("busyBeach", false);
+            localStorage.setItem("MSFade", 0);
             var map1Leader = [0, 0, 0, 0, 0]
             var map1Leadername = ["none", "none", "none", "none", "none"]
             var map1Leaderlist = [0, 0, 0, 0, 0]
