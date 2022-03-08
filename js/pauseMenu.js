@@ -18,15 +18,15 @@ keyESC1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 keyC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 
 var selectedMap;
-if (localStorage.getItem('mapselect') == 1) {
+if (localStorage.getItem('mapSelect') == 1) {
 
     selectedMap = 'map1'
 
-} else if (localStorage.getItem('mapselect') == 2) {
+} else if (localStorage.getItem('mapSelect') == 2) {
 
     selectedMap = 'map2'
 
-} else if (localStorage.getItem('mapselect') == 3) {
+} else if (localStorage.getItem('mapSelect') == 3) {
 
     selectedMap = 'map3'
 }
@@ -48,7 +48,7 @@ exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
     exit.setFrame(0)
 })
 exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-    this.scene.start('mapselect');
+    this.scene.start('mapSelect');
     localStorage.setItem("paused", "0");
     this.scene.stop();
     this.scene.stop(selectedMap);
@@ -79,7 +79,7 @@ update: function()
 {
     if (keyESC1.isDown && localStorage.getItem("paused", "1")) {
         localStorage.setItem("paused", "0");
-        this.scene.resume(currentmap);
+        this.scene.resume(currentMap);
         //this.scene.sleep("pauseMenu");
         this.scene.stop();
     } 

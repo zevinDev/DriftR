@@ -1,8 +1,8 @@
-var mapselect = new Phaser.Class({
+var mapSelect = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
         Phaser.Scene.call(this, {
-            "key": "mapselect"
+            "key": "mapSelect"
         });
     },
     preload: function() {
@@ -15,8 +15,8 @@ var mapselect = new Phaser.Class({
         leadername = [];
         testvar = true;
         test2var = true;
-        test3var = true;
-        Stars = parseInt(localStorage.getItem('Stars'));
+        millisecondsvar = true;
+        stars = parseInt(localStorage.getItem('stars'));
         GRASS = localStorage.getItem('grassMap');
         SNOW = localStorage.getItem('snowMap');
         BEACH = localStorage.getItem('busyBeach');
@@ -26,49 +26,49 @@ var mapselect = new Phaser.Class({
         map3select = this.add.image(600, 208, 'map3select')
         map1select = this.add.image(200, 208, 'selectmap1')
         map2select = this.add.image(400, 208, 'map2select')
-        map1leadername = localStorage.getItem('map1leadername');
-        map1leadername = JSON.parse(map1leadername);
-        map1leader = localStorage.getItem('map1leader');
-        map1leader = JSON.parse(map1leader);
-        map2leadername = localStorage.getItem('map2leadername');
-        map2leadername = JSON.parse(map2leadername);
-        map2leader = localStorage.getItem('map2leader');
-        map2leader = JSON.parse(map2leader);
+        map1Leadername = localStorage.getItem('map1Leadername');
+        map1Leadername = JSON.parse(map1Leadername);
+        map1Leader = localStorage.getItem('map1Leader');
+        map1Leader = JSON.parse(map1Leader);
+        map2Leadername = localStorage.getItem('map2Leadername');
+        map2Leadername = JSON.parse(map2Leadername);
+        map2Leader = localStorage.getItem('map2Leader');
+        map2Leader = JSON.parse(map2Leader);
         map3leadername = localStorage.getItem('map3leadername');
         map3leadername = JSON.parse(map3leadername);
         map3leader = localStorage.getItem('map3leader');
         map3leader = JSON.parse(map3leader);
-        localStorage.setItem('mapselect', 0);
+        localStorage.setItem('mapSelect', 0);
 
-        firstPlaceT = this.add.text(198, 512, map1leadername[0] + "-" + map1leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
+        firstPlaceT = this.add.text(198, 512, map1Leadername[0] + "-" + map1Leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlaceT.visible = false;
 
-        secondPlaceT = this.add.text(198, 538, map1leadername[1] + "-" + map1leader[1],{ fontFamily: 'Dogica', fontSize: 16, color: '#C0C0C0' });
+        secondPlaceT = this.add.text(198, 538, map1Leadername[1] + "-" + map1Leader[1],{ fontFamily: 'Dogica', fontSize: 16, color: '#C0C0C0' });
         secondPlaceT.visible = false;
 
-        thirdPlaceT = this.add.text(198, 564, map1leadername[2] + "-" + map1leader[2],{ fontFamily: 'Dogica', fontSize: 16, color: '#CD7F32' });
+        thirdPlaceT = this.add.text(198, 564, map1Leadername[2] + "-" + map1Leader[2],{ fontFamily: 'Dogica', fontSize: 16, color: '#CD7F32' });
         thirdPlaceT.visible = false;
 
-        fourthPlaceT = this.add.text(198, 590, map1leadername[3] + "-" + map1leader[3],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
+        fourthPlaceT = this.add.text(198, 590, map1Leadername[3] + "-" + map1Leader[3],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
         fourthPlaceT.visible = false;
 
-        fifthPlaceT = this.add.text(198, 614, map1leadername[4] + "-" + map1leader[4],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
+        fifthPlaceT = this.add.text(198, 614, map1Leadername[4] + "-" + map1Leader[4],{ fontFamily: 'Dogica', fontSize: 16, color: '#000000' });
         fifthPlaceT.visible = false;
 
 
         //this is for displaying current cash
-        currency = this.add.text(550, 33, "Stars: " + Stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
+        currency = this.add.text(550, 33, "stars: " + stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
         var price = 0;
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(25, 200, "You do not have enough Stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        var notEnoughMoney = this.add.text(25, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " Stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;
@@ -103,11 +103,11 @@ var mapselect = new Phaser.Class({
             buyButton.setFrame(0)
         })
         buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            var Stars2 = localStorage.getItem('Stars');
-            if (Stars2 - price >= 0) {
-                localStorage.setItem("Stars", Stars2 - price);
-                var finalPrice = localStorage.getItem("Stars");
-                currency.setText("Stars: " + finalPrice)
+            var stars2 = localStorage.getItem('stars');
+            if (stars2 - price >= 0) {
+                localStorage.setItem("stars", stars2 - price);
+                var finalPrice = localStorage.getItem("stars");
+                currency.setText("stars: " + finalPrice)
 
                 infoPopUp.visible = false;
                 cancelButton.visible = false;
@@ -145,7 +145,7 @@ var mapselect = new Phaser.Class({
         })
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            localStorage.setItem('mapselect', 1);
+            localStorage.setItem('mapSelect', 1);
             testvar = true;
         })
     } else if (GRASS == "false") {
@@ -155,7 +155,7 @@ var mapselect = new Phaser.Class({
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 0;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -165,7 +165,7 @@ var mapselect = new Phaser.Class({
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('grassMap', true);
                             textvisible = true;
-                            localStorage.setItem('mapselect', 1);
+                            localStorage.setItem('mapSelect', 1);
                             testvar = true;
                         } else {
                             notEnoughMoney.visible = true;
@@ -185,7 +185,7 @@ var mapselect = new Phaser.Class({
         })
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
-            localStorage.setItem('mapselect', 2);
+            localStorage.setItem('mapSelect', 2);
             test2var = true;
         })
     } else if (SNOW == "false") {
@@ -195,7 +195,7 @@ var mapselect = new Phaser.Class({
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 0;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -205,7 +205,7 @@ var mapselect = new Phaser.Class({
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('snowMap', true);
                             textvisible = true;
-                            localStorage.setItem('mapselect', 2);
+                            localStorage.setItem('mapSelect', 2);
                             test2var = true;
                         } else {
                             notEnoughMoney.visible = true;
@@ -225,8 +225,8 @@ var mapselect = new Phaser.Class({
                 })
                 map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                     textvisible = true;
-                    localStorage.setItem('mapselect', 3);
-                    test3var = true;
+                    localStorage.setItem('mapSelect', 3);
+                    millisecondsvar = true;
                 })
             } else if (BEACH == "false") {
                 map3select.setFrame(3);
@@ -235,7 +235,7 @@ var mapselect = new Phaser.Class({
                         notEnoughMoney.visible = false;
                         if (infoPopUp.visible == false) {
                             price = 0;
-                            popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                            popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                             infoPopUp.visible = true;
                             cancelButton.visible = true;
                             buyButton.visible = true;
@@ -245,8 +245,8 @@ var mapselect = new Phaser.Class({
                                 if (notEnoughMoney.visible == false) {
                                     localStorage.setItem('busyBeach', true);
                                     textvisible = true;
-                                    localStorage.setItem('mapselect', 3);
-                                    test3var = true;
+                                    localStorage.setItem('mapSelect', 3);
+                                    millisecondsvar = true;
                                 } else {
                                     notEnoughMoney.visible = true;
                                 }
@@ -279,16 +279,16 @@ var mapselect = new Phaser.Class({
             mapstart.setFrame(0)
         })
         mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            if (localStorage.getItem('mapselect') == 1) {
+            if (localStorage.getItem('mapSelect') == 1) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('map1')
                     this.scene.stop();
                 })
-            } else if (localStorage.getItem('mapselect') == 2) {
+            } else if (localStorage.getItem('mapSelect') == 2) {
                 this.scene.start('map2')
                 this.scene.stop();
-            } else if (localStorage.getItem('mapselect') == 3) {
+            } else if (localStorage.getItem('mapSelect') == 3) {
                 this.scene.start('map3')
                 this.scene.stop();
             }
@@ -304,7 +304,7 @@ var mapselect = new Phaser.Class({
             }
         });
 
-        console.log(map1leader)
+        console.log(map1Leader)
         mapstart.visible = false;
         checkbox.visible = false;
 
@@ -313,29 +313,29 @@ var mapselect = new Phaser.Class({
         mapbio.visible = false;
     },
     update: function() {
-        if (localStorage.getItem('mapselect') == 1){
-            leadername = map1leadername;
-            leadertime = map1leader;
+        if (localStorage.getItem('mapSelect') == 1){
+            leadername = map1Leadername;
+            leadertime = map1Leader;
             map1select.setFrame(2)
-        } else if(localStorage.getItem('mapselect') == 2){
-            leadername = map2leadername;
-            leadertime = map2leader;
+        } else if(localStorage.getItem('mapSelect') == 2){
+            leadername = map2Leadername;
+            leadertime = map2Leader;
             map2select.setFrame(2)
-        } else if(localStorage.getItem('mapselect') == 3){
+        } else if(localStorage.getItem('mapSelect') == 3){
             leadername = map3leadername;
             leadertime = map3leader;
             map3select.setFrame(2)
         }
-        if(localStorage.getItem('mapselect') != 1 && testvar == true && GRASS == "true"){
+        if(localStorage.getItem('mapSelect') != 1 && testvar == true && GRASS == "true"){
             testvar = false
             map1select.setFrame(0)
 
-        }else if(localStorage.getItem('mapselect') != 2 && test2var == true && SNOW == "true"){
+        }else if(localStorage.getItem('mapSelect') != 2 && test2var == true && SNOW == "true"){
             test2var = false
             map2select.setFrame(0)
 
-        } if(localStorage.getItem('mapselect') != 3 && test3var == true && BEACH == "true"){
-            test3var = false
+        } if(localStorage.getItem('mapSelect') != 3 && millisecondsvar == true && BEACH == "true"){
+            millisecondsvar = false
             map3select.setFrame(0)
         }
 

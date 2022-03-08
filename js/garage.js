@@ -11,7 +11,7 @@ var garage = new Phaser.Class({
     },
 
     create: function() {
-        Stars = parseInt(localStorage.getItem('Stars'));
+        stars = parseInt(localStorage.getItem('stars'));
         P1 = localStorage.getItem('P1');
         P2 = localStorage.getItem('P2');
         P3 = localStorage.getItem('P3');
@@ -21,7 +21,7 @@ var garage = new Phaser.Class({
         
 
         //this is for displaying current cash
-        currency = this.add.text(300, 65, "Stars: " + Stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
+        currency = this.add.text(300, 65, "stars: " + stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
         var price = 0;
         //Background UI
         var backimage = this.add.graphics();
@@ -29,14 +29,14 @@ var garage = new Phaser.Class({
         backimage.fillRect(0, 0, 800, 800);
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(25, 200, "You do not have enough Stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        var notEnoughMoney = this.add.text(25, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " Stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;
@@ -71,11 +71,11 @@ var garage = new Phaser.Class({
             buyButton.setFrame(0)
         })
         buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            var Stars2 = localStorage.getItem('Stars');
-            if (Stars2 - price >= 0) {
-                localStorage.setItem("Stars", Stars2 - price);
-                var finalPrice = localStorage.getItem("Stars");
-                currency.setText("Stars: " + finalPrice)
+            var stars2 = localStorage.getItem('stars');
+            if (stars2 - price >= 0) {
+                localStorage.setItem("stars", stars2 - price);
+                var finalPrice = localStorage.getItem("stars");
+                currency.setText("stars: " + finalPrice)
 
                 infoPopUp.visible = false;
                 cancelButton.visible = false;
@@ -185,7 +185,7 @@ var garage = new Phaser.Class({
                     price = 0;
                     //popup appears varifying if you want to buy the car
                     //all other buttons are defined beforehand in the beggining
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -279,7 +279,7 @@ var garage = new Phaser.Class({
                 if (infoPopUp.visible == false) {
                     //price also changed per car
                     price = 2;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -367,7 +367,7 @@ var garage = new Phaser.Class({
                 if (infoPopUp.visible == false) {
                     //price also changed per car
                     price = 3;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -454,7 +454,7 @@ var garage = new Phaser.Class({
                 if (infoPopUp.visible == false) {
                     //price also changed per car
                     price = 3;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -542,7 +542,7 @@ var garage = new Phaser.Class({
                 if (infoPopUp.visible == false) {
                     //price also changed per car
                     price = 6;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;
@@ -629,7 +629,7 @@ var garage = new Phaser.Class({
                 if (infoPopUp.visible == false) {
                     //price also changed per car
                     price = 10;
-                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " Stars?");
+                    popUpText.setText("Are you sure you\nwant to buy this car \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
                     buyButton.visible = true;

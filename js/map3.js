@@ -14,8 +14,8 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
   
     //Creates Anything When The Game Is Finished Preloading
     create: function() {
-        currentmap = "map3"
-        placevalue = 0;
+        currentMap = "map3"
+        placeValue = 0;
         test56 = false;
         // corgi = this.sound.add("corgi", {
         //     loop: true
@@ -80,10 +80,10 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         })
         //Defines Layers And Border Physics
         /*
-        BorderLayer.setCollisionByProperty({                                   //Boundry detection is declared true. 
+        borderLayer.setCollisionByProperty({                                   //Boundry detection is declared true. 
             collides: true
         })
-        BackLayer.setCollisionByProperty({
+        backLayer.setCollisionByProperty({
             collides: true
         })
         */
@@ -100,42 +100,42 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //SPACEKEY TEST for leaderboard
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC); // test for exit game
-        Timertext = this.add.text(0,0,"",{ fontFamily: 'Dogica' });
+        borderLayer = this.add.text(0,0,"",{ fontFamily: 'Dogica' });
         timer = 0;
         timez = 0;
-        clocks = 0; //seconds
+        seconds = 0; //seconds
         minutes = 0; //minutes 
-        test3 = 0; // milliseconds
-        timeon = false;
+        milliseconds = 0; // milliseconds
+        timerOn = false;
         testspeed = 0;
-        Check1pass = true;
-        Check2pass = true;
-        Check3pass = true;
-        LapCount = 0;
+        check1Pass = true;
+        check2Pass = true;
+        check3Pass = true;
+        lapCount = 0;
         spedkids = 0;
         accel = player.body.acceleration;
-        FinalTime = 0; //Time that's displayed
+        finalTime = 0; //Time that's displayed
         var SCORETime; //Final score time that's added to leaderboard
         const layer = this.add.layer();
         layer.add([player])
         if(twoPlayer == true){
         layer.add([player2]); 
-        this.physics.add.collider(player2, BorderLayer);
-        camera1.ignore(Timertext)
+        this.physics.add.collider(player2, borderLayer);
+        camera1.ignore(borderLayer)
         }
 
         getTile = function(){
-        player1tile = SlowDown.getTileAtWorldXY(player.x, player.y, true);
+        p1Tile = SlowDown.getTileAtWorldXY(player.x, player.y, true);
         p1StartTile = Finish_Start.getTileAtWorldXY(player.x, player.y, true);
-        p1Check1tile = CheckPoint1.getTileAtWorldXY(player.x, player.y, true);
-        p1Check2tile = CheckPoint2.getTileAtWorldXY(player.x, player.y, true);
-        p1Check3tile = CheckPoint3.getTileAtWorldXY(player.x, player.y, true);
+        p1Check1Tile = CheckPoint1.getTileAtWorldXY(player.x, player.y, true);
+        p1Check2Tile = CheckPoint2.getTileAtWorldXY(player.x, player.y, true);
+        p1Check3Tile = CheckPoint3.getTileAtWorldXY(player.x, player.y, true);
         if(twoPlayer == true){
-        player2tile = BackLayer.getTileAtWorldXY(player2.x, player2.y, true);
-        p2StartTile = StartLine.getTileAtWorldXY(player2.x, player2.y, true);
-        p2Check1tile = Check1.getTileAtWorldXY(player2.x, player2.y, true);
-        p2Check2tile = Check2.getTileAtWorldXY(player2.x, player2.y, true);
-        p2Check3tile = Check3.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Tile = backLayer.getTileAtWorldXY(player2.x, player2.y, true);
+        p2StartTile = startLine.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check1Tile = check1.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check2Tile = check2.getTileAtWorldXY(player2.x, player2.y, true);
+        p2Check3Tile = check3.getTileAtWorldXY(player2.x, player2.y, true);
         }
         
         }
@@ -162,7 +162,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         }
         //this slows down the car in grass 
         
-        if (player1tile.index == 47 || player1tile.index == 48 || player1tile.index == 49 || player1tile.index == 50 || player1tile.index == 41 || player1tile.index == 42 || player1tile.index == 43 || player1tile.index == 44) {
+        if (p1Tile.index == 47 || p1Tile.index == 48 || p1Tile.index == 49 || p1Tile.index == 50 || p1Tile.index == 41 || p1Tile.index == 42 || p1Tile.index == 43 || p1Tile.index == 44) {
             player.setMaxVelocity(100,100); //Player cannot accelerate past 100
             player.setAcceleration(0); 
             if (player.body.speed > 15 && (keyLEFT.isDown)) {
@@ -201,7 +201,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
      this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
  }
  //this slows down the car in grass 
- if (player2tile.index == 47 || player2tile.index == 48 || player2tile.index == 49 || player2tile.index == 50 || player2tile.index == 41 || player2tile.index == 42 || player2tile.index == 43 || player2tile.index == 44) {
+ if (p2Tile.index == 47 || p2Tile.index == 48 || p2Tile.index == 49 || p2Tile.index == 50 || p2Tile.index == 41 || p2Tile.index == 42 || p2Tile.index == 43 || p2Tile.index == 44) {
      player2.setMaxVelocity(100,100); //Player cannot accelerate past 100
      player2.setAcceleration(0); 
      if (player2.body.speed > 15 && (keyA.isDown)) {
@@ -222,7 +222,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
  }
  }
         //This is the code for the timer function
-        if(timeon == true){
+        if(timerOn == true){
             while (timer <= 100) { //The while loop infinitely counts up
                 timer = timer + 01;
             }
@@ -233,27 +233,27 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
             }
             if (timez >= 60) {
                 timez = 00;
-                clocks = clocks + 01;
+                seconds = seconds + 01;
             }
-            if (clocks >= 60) {
-                clocks = 00;
+            if (seconds >= 60) {
+                seconds = 00;
                 minutes = minutes + 01;
             }
-            test3 = (timez * 1.666666666666667).toFixed(0)
+            milliseconds = (timez * 1.666666666666667).toFixed(0)
             if (minutes > 00) {
-                FinalTime = minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
-            } else if (clocks > 00) {
-                FinalTime = clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+                finalTime = minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+            } else if (seconds > 00) {
+                finalTime = seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + "." + milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
             } else {
-                FinalTime = test3.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+                finalTime = milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
             }
             //minutes = minutes.toPrecision(2)
-            //clocks = clocks.toPrecision(2)
-            //test3 = test3.toPrecision(2)
-            LeaderTime = (minutes*60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + clocks.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + (test3/100).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
-       Timertext.setText(FinalTime);
-       Timertext.x = player.x - 200;
-       Timertext.y = player.y - 150;
+            //seconds = seconds.toPrecision(2)
+            //milliseconds = milliseconds.toPrecision(2)
+            LeaderTime = (minutes*60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + (milliseconds/100).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+       borderLayer.setText(finalTime);
+       borderLayer.x = player.x - 200;
+       borderLayer.y = player.y - 150;
 
        if (keyESC.isDown && localStorage.getItem('paused') == "0") {
         localStorage.setItem("paused", "1");
@@ -261,39 +261,39 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         this.scene.launch("pauseMenu");
     } 
         if(twoPlayer == true){
-            if (p1Check1tile.index == 23 || p2Check1tile.index == 23) {
-                if(Check1pass == false && Check2pass == false && Check3pass == false){
-                    Check1pass = true;
+            if (p1Check1Tile.index == 23 || p2Check1Tile.index == 23) {
+                if(check1Pass == false && check2Pass == false && check3Pass == false){
+                    check1Pass = true;
                     console.log("Check 1 passed")
                 }
             }
     
-            if (p1Check2tile.index == 23 || p2Check2tile.index == 23) {
-                if(Check1pass == true && Check2pass == false && Check3pass == false){
-                    Check2pass = true;
+            if (p1Check2Tile.index == 23 || p2Check2Tile.index == 23) {
+                if(check1Pass == true && check2Pass == false && check3Pass == false){
+                    check2Pass = true;
                     console.log("Check 2 passed")
                 }
             }
     
-            if (p1Check3tile.index == 23 || p2Check3tile.index == 23) {
-                if(Check1pass == true && Check2pass == true && Check3pass == false){
-                    Check3pass = true;
+            if (p1Check3Tile.index == 23 || p2Check3Tile.index == 23) {
+                if(check1Pass == true && check2Pass == true && check3Pass == false){
+                    check3Pass = true;
                     console.log("Check 3 passed")
                 }
             }
     
             if (p1StartTile.index == 37 || p1StartTile.index == 36 || p2StartTile.index == 37 || p2StartTile.index == 36) {
-                if(LapCount == 0){
-                    timeon = true
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    LapCount = LapCount + 1;
-                } else if(Check1pass == true && Check2pass == true && Check3pass == true){
-                    Check1pass = false;
-                    Check2pass = false;
-                    Check3pass = false;
-                    timeon = false
+                if(lapCount == 0){
+                    timerOn = true
+                    check1Pass = false;
+                    check2Pass = false;
+                    check3Pass = false;
+                    lapCount = lapCount + 1;
+                } else if(check1Pass == true && check2Pass == true && check3Pass == true){
+                    check1Pass = false;
+                    check2Pass = false;
+                    check3Pass = false;
+                    timerOn = false
                     var map3leader = localStorage.getItem('map3leader');
                     map3leader = JSON.parse(map3leader);
                     map3leader = map3leader.slice(0, 5);
@@ -304,20 +304,20 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
                     for(var i=0; i<5; i++){
                         if(done == false){
                         if(LeaderTime < map3leaderlist[i]){
-                            map3leader.splice(i, 0, FinalTime);
+                            map3leader.splice(i, 0, finalTime);
                             map3leaderlist.splice(i, 0, LeaderTime);
                             localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
                             localStorage.setItem('map3leader', JSON.stringify(map3leader));
-                            placevalue = i+1;
+                            placeValue = i+1;
                             this.scene.launch("LeaderBoardEnter");
                             this.scene.pause();
                             done = true;
                         } else if(map3leaderlist[i] == 0){
-                            map3leader.splice(i, 0, FinalTime);
+                            map3leader.splice(i, 0, finalTime);
                             map3leaderlist.splice(i, 0, LeaderTime);
                             localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
                             localStorage.setItem('map3leader', JSON.stringify(map3leader));
-                            placevalue = i+1;
+                            placeValue = i+1;
                             this.scene.launch("LeaderBoardEnter");
                             this.scene.pause();
                             done = true;
@@ -331,39 +331,39 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
                 }  
             }
         }else{
-        if (p1Check1tile.index == 23) {
-            if(Check1pass == false && Check2pass == false && Check3pass == false){
-                Check1pass = true;
+        if (p1Check1Tile.index == 23) {
+            if(check1Pass == false && check2Pass == false && check3Pass == false){
+                check1Pass = true;
                 console.log("Check 1 passed")
             }
         }
 
-        if (p1Check2tile.index == 23) {
-            if(Check1pass == true && Check2pass == false && Check3pass == false){
-                Check2pass = true;
+        if (p1Check2Tile.index == 23) {
+            if(check1Pass == true && check2Pass == false && check3Pass == false){
+                check2Pass = true;
                 console.log("Check 2 passed")
             }
         }
 
-        if (p1Check3tile.index == 23) {
-            if(Check1pass == true && Check2pass == true && Check3pass == false){
-                Check3pass = true;
+        if (p1Check3Tile.index == 23) {
+            if(check1Pass == true && check2Pass == true && check3Pass == false){
+                check3Pass = true;
                 console.log("Check 3 passed")
             }
         }
 
         if (p1StartTile.index == 37 || p1StartTile.index == 36) {
-            if(LapCount == 0){
-                timeon = true
-                Check1pass = false;
-                Check2pass = false;
-                Check3pass = false;
-                LapCount = LapCount + 1;
-            } else if(Check1pass == true && Check2pass == true && Check3pass == true){
-                Check1pass = false;
-                Check2pass = false;
-                Check3pass = false;
-                timeon = false
+            if(lapCount == 0){
+                timerOn = true
+                check1Pass = false;
+                check2Pass = false;
+                check3Pass = false;
+                lapCount = lapCount + 1;
+            } else if(check1Pass == true && check2Pass == true && check3Pass == true){
+                check1Pass = false;
+                check2Pass = false;
+                check3Pass = false;
+                timerOn = false
                 var map3leader = localStorage.getItem('map3leader');
                 map3leader = JSON.parse(map3leader);
                 map3leader = map3leader.slice(0, 5);
@@ -374,20 +374,20 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
                 for(var i=0; i<5; i++){
                     if(done == false){
                     if(LeaderTime < map3leaderlist[i]){
-                        map3leader.splice(i, 0, FinalTime);
+                        map3leader.splice(i, 0, finalTime);
                         map3leaderlist.splice(i, 0, LeaderTime);
                         localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
                         localStorage.setItem('map3leader', JSON.stringify(map3leader));
-                        placevalue = i+1;
+                        placeValue = i+1;
                         this.scene.launch("LeaderBoardEnter");
                         this.scene.pause();
                         done = true;
                     } else if(map3leaderlist[i] == 0){
-                        map3leader.splice(i, 0, FinalTime);
+                        map3leader.splice(i, 0, finalTime);
                         map3leaderlist.splice(i, 0, LeaderTime);
                         localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
                         localStorage.setItem('map3leader', JSON.stringify(map3leader));
-                        placevalue = i+1;
+                        placeValue = i+1;
                         this.scene.launch("LeaderBoardEnter");
                         this.scene.pause();
                         done = true;

@@ -75,8 +75,8 @@ preload: function() {
         //Loads All The Images
         this.load.image('howto', 'assets/images/UI/howto.png');
         this.load.image('X', 'assets/images/UI/X.png')
-        this.load.image('map1_pallet', 'assets/tilesets/map1_pallet.png')
-        this.load.image('map2_pallet', 'assets/tilesets/map2_pallet.png')
+        this.load.image('map1Pallet', 'assets/tilesets/map1Pallet.png')
+        this.load.image('map2Pallet', 'assets/tilesets/map2Pallet.png')
         this.load.image('map3_pallet', 'assets/tilesets/BusyBeach_Palette-Recovered-Recovered.png')
         this.load.image('map3_pallet_obstruction', 'assets/tilesets/obstructionpallete.png')
         this.load.image('lockedIcon', 'assets/images/Garage/LockedCar.png');
@@ -91,22 +91,22 @@ preload: function() {
         this.load.image('pauseMenu', 'assets/images/UI/pauseScreen.png');
         this.load.image('LeaderBoardEnterBox', 'assets/images/UI/LeaderBoardScreen.png');
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
-        this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
+        this.load.image('mapback', 'assets/images/UI/mapSelectTop1.png');
         this.load.image('logo', 'assets/images/UI/Logo_Test.png');
         this.load.image('extendedBackground', 'assets/images/UI/Extended_Background.png');
 
-        this.load.tilemapTiledJSON('tilemap2', 'assets/tilesets/map2.json');
-        this.load.tilemapTiledJSON('tilemap1', 'assets/tilesets/map1.json');
+        this.load.tilemapTiledJSON('tileMap2', 'assets/tilesets/map2.json');
+        this.load.tilemapTiledJSON('tileMap1', 'assets/tilesets/map1.json');
         this.load.tilemapTiledJSON('tilemap3', 'assets/tilesets/NewMap3.json');
 
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
-        this.load.audio('snowmap','assets/sounds/metro beat.mp3');
+        this.load.audio('snowMap','assets/sounds/metro beat.mp3');
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
-        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('selectmap1', 'assets/images/UI/mapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map2select', 'assets/images/UI/mapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map3select', 'assets/images/UI/mapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map1select', 'assets/images/UI/mapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
         this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', { frameWidth: 32.2, frameHeight: 52 });
         this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', { frameWidth: 32.2, frameHeight: 52 });
@@ -130,7 +130,7 @@ preload: function() {
             localStorage.setItem("car", "assets/images/Cars/Player.png");
             localStorage.setItem("MainVolume", 50);
             localStorage.setItem("MusicVolume", 50);
-            localStorage.setItem("Stars", 1);
+            localStorage.setItem("stars", 1);
             localStorage.setItem("P1", true);
             localStorage.setItem("P2", false);
             localStorage.setItem("P3", false);
@@ -140,18 +140,18 @@ preload: function() {
             localStorage.setItem("grassMap", false);
             localStorage.setItem("snowMap", false);
             localStorage.setItem("busyBeach", false);
-            var map1leader = [0, 0, 0, 0, 0]
-            var map1leadername = ["none", "none", "none", "none", "none"]
-            var map1leaderlist = [0, 0, 0, 0, 0]
-            localStorage.setItem('map1leader', JSON.stringify(map1leader));
-            localStorage.setItem('map1leadername', JSON.stringify(map1leadername));
-            localStorage.setItem('map1leaderlist', JSON.stringify(map1leaderlist));
-            var map2leader = [0, 0, 0, 0, 0]
-            var map2leadername = ["none", "none", "none", "none", "none"]
-            var map2leaderlist = [0, 0, 0, 0, 0]
-            localStorage.setItem('map2leader', JSON.stringify(map2leader));
-            localStorage.setItem('map2leadername', JSON.stringify(map2leadername));
-            localStorage.setItem('map2leaderlist', JSON.stringify(map2leaderlist));
+            var map1Leader = [0, 0, 0, 0, 0]
+            var map1Leadername = ["none", "none", "none", "none", "none"]
+            var map1Leaderlist = [0, 0, 0, 0, 0]
+            localStorage.setItem('map1Leader', JSON.stringify(map1Leader));
+            localStorage.setItem('map1Leadername', JSON.stringify(map1Leadername));
+            localStorage.setItem('map1Leaderlist', JSON.stringify(map1Leaderlist));
+            var map2Leader = [0, 0, 0, 0, 0]
+            var map2Leadername = ["none", "none", "none", "none", "none"]
+            var map2Leaderlist = [0, 0, 0, 0, 0]
+            localStorage.setItem('map2Leader', JSON.stringify(map2Leader));
+            localStorage.setItem('map2Leadername', JSON.stringify(map2Leadername));
+            localStorage.setItem('map2Leaderlist', JSON.stringify(map2Leaderlist));
             var map3leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var map3leadername = ["none", "none", "none", "none", "none"]
             var map3leaderlist = [0, 0, 0, 0, 0]
