@@ -91,7 +91,7 @@ preload: function() {
         this.load.image('pauseMenu', 'assets/images/UI/pauseScreen.png');
         this.load.image('LeaderBoardEnterBox', 'assets/images/UI/LeaderBoardScreen.png');
         this.load.image('mapbio', 'assets/images/UI/mapbio.png');
-        this.load.image('mapback', 'assets/images/UI/mapSelectTop1.png');
+        this.load.image('mapback', 'assets/images/UI/MapSelectTop1.png');
         this.load.image('logo', 'assets/images/UI/Logo_Test.png');
         this.load.image('extendedBackground', 'assets/images/UI/Extended_Background.png');
 
@@ -103,10 +103,10 @@ preload: function() {
         this.load.audio('snowMap','assets/sounds/metro beat.mp3');
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
-        this.load.spritesheet('selectmap1', 'assets/images/UI/mapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map2select', 'assets/images/UI/mapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map3select', 'assets/images/UI/mapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map1select', 'assets/images/UI/mapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
+        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
         this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', { frameWidth: 213, frameHeight: 80 });
         this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', { frameWidth: 32.2, frameHeight: 52 });
         this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', { frameWidth: 32.2, frameHeight: 52 });
