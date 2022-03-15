@@ -154,7 +154,9 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         }
         if (keyUP.isDown) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
-        } else {
+        } else if (player.body.speed > 400){
+            this.physics.velocityFromRotation(player.rotation, (player.body.speed- 75), player.body.velocity);
+        }else {
             player.setAcceleration(0);
             player.body.drag.x = 160;
             player.body.drag.y = 160;
@@ -194,7 +196,9 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
  }
  if (keyW.isDown) {
      this.physics.velocityFromRotation(player2.rotation, 700, player2.body.acceleration);
- } else {
+ } else if (player2.body.speed > 400){
+            this.physics.velocityFromRotation(player2.rotation, (player2.body.speed- 75), player2.body.velocity);
+  }else {
      player2.setAcceleration(0);
      player2.body.drag.x = 160;
      player2.body.drag.y = 160;
