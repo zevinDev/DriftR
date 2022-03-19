@@ -24,6 +24,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         player.setCollideWorldBounds(false);
         extendedBackground = this.add.image(2048, 2048, 'extendedBackground');
         boostpad1 = this.physics.add.sprite(2000, 300, 'player');
+        canMove = true;
 
         //Sets Colliders And Bounce
         if (twoPlayer == true) {
@@ -40,23 +41,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.setPosition(0, 400);
             camera1.startFollow(player2);
             this.physics.add.collider(player, player2)
-            this.input.keyboard.enabled = false
-            countDown = this.add.text(396, 3300, "Test", {
-                fontFamily: 'Dogica'
-            });
-            setTimeout(function() {
-                countDown.setText("3");
-            }, 1000);
-            setTimeout(function() {
-                countDown.setText("2");
-            }, 2000);
-            setTimeout(function() {
-                countDown.setText("1");
-            }, 3000);
-            setTimeout(function() {
-                countDown.setText("GO!");
-                this.input.keyboard.enabled = true;
-            }, 4000);
+            canMove = false;
         } else {
             camera = this.cameras.main;
             camera.startFollow(player);
@@ -116,7 +101,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         const layer = this.add.layer();
         layer.add([player, boostpad1])
         if (twoPlayer == true) {
-            layer.add([player2, countDown]);
+            layer.add([player2]);
             cars.add(player2);
             this.physics.add.collider(player2, borderLayer);
             camera1.ignore(borderLayer)
@@ -146,9 +131,38 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
               }, 750);
             }
         });
+        
+        if(twoPlayer == true){
+            countDown = this.add.text(396, 3300, "Test", {
+                fontFamily: 'Dogica'
+            });
+            layer.add([countDown]);
+            setTimeout(function() {
+                countDown.setText("3");
+            }, 1000);
+            setTimeout(function() {
+                countDown.setText("2");
+            }, 2000);
+            setTimeout(function() {
+                countDown.setText("1");
+            }, 3000);
+            setTimeout(function() {
+                countDown.setText("GO!");
+                canMove = true;
+                timerOn = true;
+            }, 4000);
+            setTimeout(function() {
+                countDown.destroy();
+            }, 5000);
+        }
     },
 
     update: function() {
+        if(canMove == true){
+        this.input.keyboard.enabled = true;
+        }else{
+        this.input.keyboard.enabled = false
+        }
         getTile();
         player.setMaxVelocity(5999000, 5999000);
         if (player.body.speed > 15 && (keyLEFT.isDown)) {
@@ -318,7 +332,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
             if (p1StartTile.index == 9 || p1StartTile.index == 10 || p2StartTile.index == 9 || p2StartTile.index == 10) {
                 if (lapCount == 0) {
-                    timerOn = true
                     check1Pass = false;
                     check2Pass = false;
                     check3Pass = false;
@@ -395,7 +408,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
             if (p1StartTile.index == 9 || p1StartTile.index == 10) {
                 if (lapCount == 0) {
-                    //timerOn = true
+                    timerOn = true
                     check1Pass = false;
                     check2Pass = false;
                     check3Pass = false;
