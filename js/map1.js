@@ -89,7 +89,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         check1Pass = true;
         check2Pass = true;
         check3Pass = true;
-        testvar56 = false;
         lapCount = 0;
         finalTime = 0;
         boostpads = this.add.group();
@@ -124,7 +123,9 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             usedBoostPad1 = true;
             user.body.setMaxSpeed(1000);
             user.body.velocity.normalize().scale(1000);
-            testvar56 = true;
+            setTimeout(function() {
+                user.body.setMaxSpeed(500);
+              }, 750);
             }
         });
     },
@@ -168,15 +169,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 player.body.drag.y = 300;
                 this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
             }
-        }
-        if(testvar56 == true){
-            testvar56 = false;
-        }else if(twoPlayer == true){
-            if(player2.body.speed < 530){
-                player2.body.setMaxSpeed(500);
-            }
-        }else if(player.body.speed < 530){
-            player.body.setMaxSpeed(500);
         }
         //player2's movement
         if (twoPlayer == true) {
