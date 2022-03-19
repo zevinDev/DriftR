@@ -40,6 +40,23 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.setPosition(0, 400);
             camera1.startFollow(player2);
             this.physics.add.collider(player, player2)
+            this.input.keyboard.enabled = false
+            countDown = this.add.text(396, 3300, "Test", {
+                fontFamily: 'Dogica'
+            });
+            setTimeout(function() {
+                countDown.setText("3");
+            }, 1000);
+            setTimeout(function() {
+                countDown.setText("2");
+            }, 2000);
+            setTimeout(function() {
+                countDown.setText("1");
+            }, 3000);
+            setTimeout(function() {
+                countDown.setText("GO!");
+                this.input.keyboard.enabled = true;
+            }, 4000);
         } else {
             camera = this.cameras.main;
             camera.startFollow(player);
@@ -86,6 +103,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         minutes = 0;
         milliseconds = 0;
         timerOn = false;
+        countdownTimer = true; 
         check1Pass = true;
         check2Pass = true;
         check3Pass = true;
@@ -98,7 +116,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         const layer = this.add.layer();
         layer.add([player, boostpad1])
         if (twoPlayer == true) {
-            layer.add([player2]);
+            layer.add([player2, countDown]);
             cars.add(player2);
             this.physics.add.collider(player2, borderLayer);
             camera1.ignore(borderLayer)
@@ -377,7 +395,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
             if (p1StartTile.index == 9 || p1StartTile.index == 10) {
                 if (lapCount == 0) {
-                    timerOn = true
+                    //timerOn = true
                     check1Pass = false;
                     check2Pass = false;
                     check3Pass = false;
