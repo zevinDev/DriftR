@@ -8,7 +8,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
     preload: function() {
         var car = localStorage.getItem('car');
-        this.load.image('player', car);  
+        this.load.image('player', car);
     },
 
     create: function() {
@@ -17,7 +17,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         usedBoostPad1 = false;
 
         //Creates The Player
-        player = this.physics.add.sprite(396, 3300, 'player');
+        player = this.physics.add.sprite(375, 3300, 'player');
         player.body.setMaxSpeed(500);
         player.angle = -90;
         player.setBounce(0.2);
@@ -28,7 +28,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
         //Sets Colliders And Bounce
         if (twoPlayer == true) {
-            player2 = this.physics.add.sprite(410, 3300, 'player2');
+            player2 = this.physics.add.sprite(435, 3300, 'player2');
             player2.setBounce(0.2);
             player2.setCollideWorldBounds(false);
             player2.body.setMaxSpeed(500);
@@ -88,7 +88,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         minutes = 0;
         milliseconds = 0;
         timerOn = false;
-        countdownTimer = true; 
+        countdownTimer = true;
         check1Pass = true;
         check2Pass = true;
         check3Pass = true;
@@ -107,44 +107,33 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.ignore(borderLayer)
         }
 
-        getTile = function() {
-            p1Tile = backLayer.getTileAtWorldXY(player.x, player.y, true);
-            p1StartTile = startLine.getTileAtWorldXY(player.x, player.y, true);
-            p1Check1Tile = check1.getTileAtWorldXY(player.x, player.y, true);
-            p1Check2Tile = check2.getTileAtWorldXY(player.x, player.y, true);
-            p1Check3Tile = check3.getTileAtWorldXY(player.x, player.y, true);
-            if (twoPlayer == true) {
-                p2Tile = backLayer.getTileAtWorldXY(player2.x, player2.y, true);
-                p2StartTile = startLine.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check1Tile = check1.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check2Tile = check2.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check3Tile = check3.getTileAtWorldXY(player2.x, player2.y, true);
-            }
-        }
-        this.physics.add.overlap(cars, boostpads, function(user, boostpad){
-            if(boostpad == boostpad1 && usedBoostPad1 == false){
-            usedBoostPad1 = true;
-            user.body.setMaxSpeed(1000);
-            user.body.velocity.normalize().scale(1000);
-            setTimeout(function() {
-                user.body.setMaxSpeed(500);
-              }, 750);
+        this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
+            if (boostpad == boostpad1 && usedBoostPad1 == false) {
+                usedBoostPad1 = true;
+                user.body.setMaxSpeed(1000);
+                user.body.velocity.normalize()
+                    .scale(1000);
+                setTimeout(function() {
+                    user.body.setMaxSpeed(500);
+                }, 500);
             }
         });
-        
-        if(twoPlayer == true){
-            countDown = this.add.text(396, 3300, "Test", {
-                fontFamily: 'Dogica'
+
+        if (twoPlayer == true) {
+            countDown = this.add.text(370, 3150, "", {
+                fontFamily: 'Dogica',
+                fontSize: 40,
+                color: '#ffbe00'
             });
             layer.add([countDown]);
             setTimeout(function() {
-                countDown.setText("3");
+                countDown.setText(" 3");
             }, 1000);
             setTimeout(function() {
-                countDown.setText("2");
+                countDown.setText(" 2");
             }, 2000);
             setTimeout(function() {
-                countDown.setText("1");
+                countDown.setText(" 1");
             }, 3000);
             setTimeout(function() {
                 countDown.setText("GO!");
@@ -158,13 +147,26 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
     },
 
     update: function() {
-        if(canMove == true){
-        this.input.keyboard.enabled = true;
-        }else{
-        this.input.keyboard.enabled = false
+        if (canMove == true) {
+            this.input.keyboard.enabled = true;
+        } else {
+            this.input.keyboard.enabled = false
         }
-        getTile();
-        player.setMaxVelocity(5999000, 5999000);
+
+        p1Tile = backLayer.getTileAtWorldXY(player.x, player.y, true);
+        p1StartTile = startLine.getTileAtWorldXY(player.x, player.y, true);
+        p1Check1Tile = check1.getTileAtWorldXY(player.x, player.y, true);
+        p1Check2Tile = check2.getTileAtWorldXY(player.x, player.y, true);
+        p1Check3Tile = check3.getTileAtWorldXY(player.x, player.y, true);
+        if (twoPlayer == true) {
+            p2Tile = backLayer.getTileAtWorldXY(player2.x, player2.y, true);
+            p2StartTile = startLine.getTileAtWorldXY(player2.x, player2.y, true);
+            p2Check1Tile = check1.getTileAtWorldXY(player2.x, player2.y, true);
+            p2Check2Tile = check2.getTileAtWorldXY(player2.x, player2.y, true);
+            p2Check3Tile = check3.getTileAtWorldXY(player2.x, player2.y, true);
+        }
+
+        player.setMaxVelocity(9999, 9999);
         if (player.body.speed > 15 && (keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
         } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
@@ -174,14 +176,15 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         }
         if (keyUP.isDown && player.body.speed < 516) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
-        } else if (player.body.speed > 400){
-            this.physics.velocityFromRotation(player.rotation, (player.body.speed- 75), player.body.velocity);
-        }else{
+        } else if (player.body.speed > 400) {
+            this.physics.velocityFromRotation(player.rotation, (player.body.speed - 75), player.body.velocity);
+        } else {
             player.setAcceleration(0);
             player.body.drag.x = 160;
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
+
         //this slows down the car in grass 
         if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) {
             player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
@@ -204,7 +207,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         }
         //player2's movement
         if (twoPlayer == true) {
-            player2.setMaxVelocity(5999000, 5999000);
+            player2.setMaxVelocity(9999, 9999);
             if (player2.body.speed > 15 && (keyA.isDown)) {
                 player2.setAngularVelocity(-150);
             } else if (player2.body.speed > 15 && (keyD.isDown)) {
@@ -214,9 +217,9 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             }
             if (keyW.isDown && player2.body.speed < 516) {
                 this.physics.velocityFromRotation(player2.rotation, 700, player2.body.acceleration);
-            } else if (player2.body.speed > 400){
-              this.physics.velocityFromRotation(player2.rotation, (player2.body.speed- 75), player2.body.velocity);
-            }else {
+            } else if (player2.body.speed > 400) {
+                this.physics.velocityFromRotation(player2.rotation, (player2.body.speed - 75), player2.body.velocity);
+            } else {
                 player2.setAcceleration(0);
                 player2.body.drag.x = 160;
                 player2.body.drag.y = 160;
@@ -261,7 +264,8 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             seconds = 00;
             minutes = minutes + 01;
         }
-        milliseconds = (timez * 1.666666666666667).toFixed(0)
+        milliseconds = (timez * 1.666666666666667)
+            .toFixed(0)
         if (minutes > 00) {
             finalTime = minutes.toLocaleString('en-US', {
                 minimumIntegerDigits: 2,
@@ -287,17 +291,19 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 useGrouping: false
             });
         }
-        
-        LeaderTime = (minutes * 60).toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false
-        }) + seconds.toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false
-        }) + (milliseconds / 100).toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false
-        });
+
+        LeaderTime = (minutes * 60)
+            .toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            }) + seconds.toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            }) + (milliseconds / 100)
+            .toLocaleString('en-US', {
+                minimumIntegerDigits: 2,
+                useGrouping: false
+            });
         borderLayer.setText(finalTime);
         borderLayer.x = player.x - 200;
         borderLayer.y = player.y - 150;
