@@ -97,25 +97,11 @@ var map2 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.ignore(borderLayer)
         }
 
-        getTile = function() {
-            p1Tile = backLayer.getTileAtWorldXY(player.x, player.y, true);
-            p1StartTile = startLine.getTileAtWorldXY(player.x, player.y, true);
-            p1Check1Tile = check1.getTileAtWorldXY(player.x, player.y, true);
-            p1Check2Tile = check2.getTileAtWorldXY(player.x, player.y, true);
-            p1Check3Tile = check3.getTileAtWorldXY(player.x, player.y, true);
-            if (twoPlayer == true) {
-                p2Tile = backLayer.getTileAtWorldXY(player2.x, player2.y, true);
-                p2StartTile = startLine.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check1Tile = check1.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check2Tile = check2.getTileAtWorldXY(player2.x, player2.y, true);
-                p2Check3Tile = check3.getTileAtWorldXY(player2.x, player2.y, true);
-            }
-        }
     },
 
     update: function() {
 
-        getTile();
+        getTile(currentMap, twoPlayer);
         player.setMaxVelocity(1000, 1000);
         if (player.body.speed > 15 && (keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
