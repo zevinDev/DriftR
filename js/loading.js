@@ -77,6 +77,7 @@ var loading = new Phaser.Class({
         //Loads All The Images
         this.load.image('howto', 'assets/images/UI/howto.png');
         this.load.image('X', 'assets/images/UI/X.png')
+        this.load.image('X2', 'assets/images/UI/X2.png')
         this.load.image('map1Pallet', 'assets/tilesets/map1Pallet.png')
         this.load.image('map2Pallet', 'assets/tilesets/map2Pallet.png')
         this.load.image('map3_pallet', 'assets/tilesets/BusyBeach_Palette-Recovered-Recovered.png')

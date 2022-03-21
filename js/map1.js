@@ -16,7 +16,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         placeValue = 0;
         usedBoostPad1 = false;
 
-        //Creates The Player
         player = this.physics.add.sprite(375, 3300, 'player');
         player.body.setMaxSpeed(500);
         player.angle = -90;
@@ -36,10 +35,9 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         boostpad1.play("boost")
         boostpad1.setScale(.5);
         boostpad1.angle = 90;
-        canMove = true;
 
-        //Sets Colliders And Bounce
         if (twoPlayer == true) {
+            canMove = false;
             player2 = this.physics.add.sprite(435, 3300, 'player2');
             player2.setBounce(0.2);
             player2.setCollideWorldBounds(false);
@@ -53,10 +51,10 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.setPosition(0, 400);
             camera1.startFollow(player2);
             this.physics.add.collider(player, player2)
-            canMove = false;
         } else {
             camera = this.cameras.main;
             camera.startFollow(player);
+            canMove = true;
         };
 
         const tileMap1 = this.make.tilemap({
@@ -102,9 +100,13 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         milliseconds = 0;
         timerOn = false;
         countdownTimer = true;
+        masSpeed = 500;
+        masSpeed2 = 500;
         check1Pass = true;
         check2Pass = true;
         check3Pass = true;
+        ranOnce = false;
+        ranOnce2 = false;
         lapCount = 0;
         finalTime = 0;
         boostpads = this.add.group();
@@ -191,8 +193,14 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
         //this slows down the car in grass 
         if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) {
-            player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
-            player.setAcceleration(0);
+            if(player.body.speed > 300){
+                masSpeed = (masSpeed - 7)
+            }
+            ranOnce = true;
+            player.body.setMaxSpeed(masSpeed)
+            //player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
+            //player.setAcceleration(0);
+            if(player.body.speed < 310){
             if (player.body.speed > 15 && (keyLEFT.isDown)) {
                 player.setAngularVelocity(-50);
             } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
@@ -207,6 +215,13 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 player.body.drag.x = 300;
                 player.body.drag.y = 300;
                 this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+            }
+        }
+        }else {
+            masSpeed = 500
+            if(ranOnce == true){
+                player.body.setMaxSpeed(500);
+                ranOnce = false;
             }
         }
         //player2's movement
@@ -231,8 +246,14 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             }
             //this slows down the car in grass 
             if (p2Tile.index == 4 || p2Tile.index == 5 || p2Tile.index == 6 || p2Tile.index == 7 || p2Tile.index == 8 || p2Tile.index == 9) {
-                player2.setMaxVelocity(100, 100); //Player cannot accelerate past 100
-                player2.setAcceleration(0);
+                if(player2.body.speed > 300){
+                    masSpeed2 = (masSpeed2 - 7)
+                }
+                ranOnce2 = true;
+                player2.body.setMaxSpeed(masSpeed2)
+                //player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
+                //player.setAcceleration(0);
+                if(player2.body.speed < 310){
                 if (player2.body.speed > 15 && (keyA.isDown)) {
                     player2.setAngularVelocity(-50);
                 } else if (player2.body.speed > 15 && (keyD.isDown)) {
@@ -247,6 +268,13 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     player2.body.drag.x = 300;
                     player2.body.drag.y = 300;
                     this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
+                }
+            }
+            }else {
+                masSpeed2 = 500
+                if(ranOnce2 == true){
+                    player2.body.setMaxSpeed(500);
+                    ranOnce2 = false;
                 }
             }
         }
@@ -342,7 +370,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     lapCount = lapCount + 1;
                     usedBoostPad1 = false;
                     boostpad1.play("boost");
-                    console.log(lapCount);
                 } else if (lapCount == 3 && check1Pass == true && check2Pass == true && check3Pass == true) {
                     check1Pass = false;
                     check2Pass = false;
@@ -420,7 +447,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     lapCount = lapCount + 1;
                     usedBoostPad1 = false;
                     boostpad1.play("boost");
-                    console.log(lapCount);
                 } else if (lapCount == 3 && check1Pass == true && check2Pass == true && check3Pass == true) {
                     check1Pass = false;
                     check2Pass = false;

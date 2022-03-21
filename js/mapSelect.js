@@ -74,7 +74,7 @@ var mapSelect = new Phaser.Class({
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" +  "this map for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(125, 150, "Are you sure you want to buy" +  "this map for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;
@@ -310,8 +310,6 @@ var mapSelect = new Phaser.Class({
                 twoPlayer = true;
             }
         });
-
-        console.log(map1Leader)
         mapstart.visible = false;
         checkbox.visible = false;
 

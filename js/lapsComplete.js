@@ -69,7 +69,7 @@ var lapsComplete = new Phaser.Class({
         layer.add([pauseScene, lapTime, lapTop])
 
 
-        var X = this.add.image(340, 630, 'X');
+        var X = this.add.image(340, 630, 'X2');
         X.setInteractive();
         X.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('mapSelect')
