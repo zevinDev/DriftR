@@ -79,9 +79,10 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        borderLayer = this.add.text(0, 0, "", {
+        timerText = this.add.text(150,150, "", {
             fontFamily: 'Dogica'
         });
+        timerText.setScrollFactor(0,0);
         timer = 0;
         timez = 0;
         seconds = 0;
@@ -104,7 +105,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             layer.add([player2]);
             cars.add(player2);
             this.physics.add.collider(player2, borderLayer);
-            camera1.ignore(borderLayer)
+            camera1.ignore(timerText)
         }
 
         this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
@@ -281,21 +282,10 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             });
         }
 
-        LeaderTime = (minutes * 60)
-            .toLocaleString('en-US', {
-                minimumIntegerDigits: 2,
-                useGrouping: false
-            }) + seconds.toLocaleString('en-US', {
-                minimumIntegerDigits: 2,
-                useGrouping: false
-            }) + (milliseconds / 100)
-            .toLocaleString('en-US', {
-                minimumIntegerDigits: 2,
-                useGrouping: false
-            });
-        borderLayer.setText(finalTime);
-        borderLayer.x = player.x - 200;
-        borderLayer.y = player.y - 150;
+        LeaderTime = (minutes * 60) + seconds + (milliseconds / 100)
+        timerText.setText(finalTime);
+        //borderLayer.x = player.x - 200;
+        //borderLayer.y = player.y - 150;
 
         if (keyESC.isDown && localStorage.getItem('paused') == "0") {
             localStorage.setItem("paused", "1");

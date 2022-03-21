@@ -238,7 +238,7 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
             //minutes = minutes.toPrecision(2)
             //seconds = seconds.toPrecision(2)
             //milliseconds = milliseconds.toPrecision(2)
-            LeaderTime = (minutes*60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false}) + (milliseconds/100).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false});
+            LeaderTime = (minutes * 60) + seconds + (milliseconds / 100)
        borderLayer.setText(finalTime);
        borderLayer.x = player.x - 200;
        borderLayer.y = player.y - 150;
