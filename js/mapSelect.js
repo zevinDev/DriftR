@@ -67,14 +67,14 @@ var mapSelect = new Phaser.Class({
         var price = 0;
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(25, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        var notEnoughMoney = this.add.text(43, 360, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this map for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" +  "this map for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;
@@ -200,7 +200,7 @@ var mapSelect = new Phaser.Class({
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                    price = 0;
+                    price = 0
                     popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;

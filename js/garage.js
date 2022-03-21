@@ -11,6 +11,11 @@ var garage = new Phaser.Class({
     },
 
     create: function() {
+        if (localStorage.getItem("GFade") == 0) {
+            this.cameras.main.fadeIn(1000, 0, 0, 0)           
+            }
+            localStorage.setItem("GFade", 1);
+
         stars = parseInt(localStorage.getItem('stars'));
         P1 = localStorage.getItem('P1');
         P2 = localStorage.getItem('P2');
@@ -29,7 +34,7 @@ var garage = new Phaser.Class({
         backimage.fillRect(0, 0, 800, 800);
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(25, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        var notEnoughMoney = this.add.text(43, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
@@ -110,6 +115,7 @@ var garage = new Phaser.Class({
             backButton.setFrame(0)
         })
         backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            localStorage.setItem("GFade", 0);
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                 this.scene.start('menu')

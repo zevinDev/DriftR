@@ -64,8 +64,11 @@ preload: function() {
             garageButton.setFrame(0)
         })
         garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.cameras.main.fadeOut(1000, 0, 0, 0)
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
             this.scene.start('garage')
             this.scene.stop();
+        })
         })
         optionButton.setInteractive();
         optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
@@ -75,8 +78,11 @@ preload: function() {
             optionButton.setFrame(0)
         })
         optionButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            this.cameras.main.fadeOut(1000, 0, 0, 0)
+            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
             this.scene.start('options')
             this.scene.stop();
+        })
         })
         
         const layer = this.add.layer();

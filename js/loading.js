@@ -4,6 +4,16 @@ initialize: function() {
     Phaser.Scene.call(this, { "key": "loading" });
 },
 preload: function() {
+    var loadingText = this.make.text({
+        x: width / 2,
+        y: height / 2 - 50,
+        text: "Loading...",
+        style: {
+            fontFamily: 'Dogica',
+            fontSize: 32,
+            fill: "#000000"
+        }
+    });
         var backimage = this.add.graphics();
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
@@ -15,16 +25,7 @@ preload: function() {
         var width = this.cameras.main.width;
         var height = this.cameras.main.height;
 
-        var loadingText = this.make.text({
-            x: width / 2,
-            y: height / 2 - 50,
-            text: "Loading...",
-            style: {
-                fontFamily: 'Dogica',
-                fontSize: 32,
-                fill: "#000000"
-            }
-        });
+
         loadingText.setOrigin(0.5, 0.5);
 
         var percentText = this.make.text({
@@ -141,6 +142,7 @@ preload: function() {
             localStorage.setItem("snowMap", false);
             localStorage.setItem("busyBeach", false);
             localStorage.setItem("MSFade", 0);
+            localStorage.setItem("GFade", 0);
             var map1Leader = [0, 0, 0, 0, 0]
             var map1Leadername = ["none", "none", "none", "none", "none"]
             var map1Leaderlist = [0, 0, 0, 0, 0]
@@ -159,6 +161,7 @@ preload: function() {
             localStorage.setItem('map3leader', JSON.stringify(map3leader));
             localStorage.setItem('map3leadername', JSON.stringify(map3leadername));
             localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
+            localStorage.setItem("paused", "0");
             howto = true;
         } else {
             console.log('Not first time loaded')
