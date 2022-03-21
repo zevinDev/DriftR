@@ -89,6 +89,9 @@ var map2 = new Phaser.Class({ //initalizes and creates the scene for map1
         check3Pass = true;
         lapCount = 0;
         finalTime = 0;
+        first = this.sound.add("first", { loop: true });
+        second = this.sound.add("second", { loop: true });
+        third = this.sound.add("third", { loop: true });
         const layer = this.add.layer();
         layer.add([player])
         if (twoPlayer == true) {
@@ -100,7 +103,19 @@ var map2 = new Phaser.Class({ //initalizes and creates the scene for map1
     },
 
     update: function() {
-
+        if(player.body.speed < 175){
+            first.play()
+            second.stop()
+            third.stop()
+        }else if(player.body.speed < 325){
+            first.stop()
+            second.play()
+            third.stop()
+        }else{
+            first.stop()
+            second.stop()
+            third.play()
+        }
         getTile(currentMap, twoPlayer);
         player.setMaxVelocity(1000, 1000);
         if (player.body.speed > 15 && (keyLEFT.isDown)) {

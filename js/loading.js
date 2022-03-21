@@ -104,6 +104,9 @@ var loading = new Phaser.Class({
 
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
         this.load.audio('snowMap', 'assets/sounds/metro beat.mp3');
+        this.load.audio('first', 'assets/sounds/first.wav');
+        this.load.audio('second', 'assets/sounds/second.wav');
+        this.load.audio('good', 'assets/sounds/good.wav');
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
             frameWidth: 164,

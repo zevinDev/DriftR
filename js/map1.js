@@ -109,6 +109,9 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         ranOnce2 = false;
         lapCount = 0;
         finalTime = 0;
+        first = this.sound.add("first", { loop: true });
+        second = this.sound.add("second", { loop: true });
+        good = this.sound.add("good", { loop: true });
         boostpads = this.add.group();
         boostpads.add(boostpad1);
         cars = this.add.group();
@@ -161,9 +164,35 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 countDown.destroy();
             }, 5000);
         }
+        good.setVolume(.6)
+        first.setVolume(.6)
+        second.setVolume(.6)
+        good.play()
+        first.play()
+        second.play()
     },
 
     update: function() {
+        console.log(player.body.speed)
+        if(player.body.speed == 0){
+            second.pause()
+            good.pause()
+            first.pause()
+        }
+        else if(player.body.speed < 420){
+            second.pause()
+            good.pause()
+            first.resume()
+        }else if(player.body.speed < 499){
+            first.pause()
+            good.pause()
+            second.resume()
+        }else if(player.body.speed > 499){
+            first.pause()
+            second.pause()
+            good.resume()
+        }
+
         if (canMove == true) {
             this.input.keyboard.enabled = true;
         } else {
