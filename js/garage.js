@@ -7,14 +7,13 @@ var garage = new Phaser.Class({
             "key": "garage"
         });
     },
-    preload: function() {
-    },
+    preload: function() {},
 
     create: function() {
         if (localStorage.getItem("GFade") == 0) {
-            this.cameras.main.fadeIn(1000, 0, 0, 0)           
-            }
-            localStorage.setItem("GFade", 1);
+            this.cameras.main.fadeIn(1000, 0, 0, 0)
+        }
+        localStorage.setItem("GFade", 1);
 
         stars = parseInt(localStorage.getItem('stars'));
         P1 = localStorage.getItem('P1');
@@ -23,10 +22,14 @@ var garage = new Phaser.Class({
         P4 = localStorage.getItem('P4');
         MGC = localStorage.getItem('MGC');
         DBM = localStorage.getItem('DBM');
-        
+
 
         //this is for displaying current cash
-        currency = this.add.text(300, 65, "stars: " + stars, { fontFamily: 'Dogica', fontSize: 32, color: '#000000' });
+        currency = this.add.text(300, 65, "stars: " + stars, {
+            fontFamily: 'Dogica',
+            fontSize: 32,
+            color: '#000000'
+        });
         var price = 0;
         //Background UI
         var backimage = this.add.graphics();
@@ -34,14 +37,22 @@ var garage = new Phaser.Class({
         backimage.fillRect(0, 0, 800, 800);
 
         //text if you don't have enough money
-        var notEnoughMoney = this.add.text(43, 200, "You do not have enough stars", { fontFamily: 'Dogica', fontSize: 32, color: '#e34d4d' });
+        var notEnoughMoney = this.add.text(43, 200, "You do not have enough stars", {
+            fontFamily: 'Dogica',
+            fontSize: 32,
+            color: '#e34d4d'
+        });
         notEnoughMoney.visible = false;
 
         //The buy popup loads but is not visible
         infoPopUp = this.add.image(400, 400, 'infoPopUp');
         cancelButton = this.add.image(250, 625, 'cancelButton');
         buyButton = this.add.image(550, 625, 'buyButton');
-        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " stars?", { fontFamily: 'Dogica', fontSize: 36, color: '#000000' });
+        popUpText = this.add.text(150, 150, "Are you sure you want to buy" + "\n" + "this car for " + price + " stars?", {
+            fontFamily: 'Dogica',
+            fontSize: 36,
+            color: '#000000'
+        });
 
         infoPopUp.visible = false;
         cancelButton.visible = false;

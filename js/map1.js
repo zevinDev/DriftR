@@ -23,7 +23,19 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         player.setBounce(0.2);
         player.setCollideWorldBounds(false);
         extendedBackground = this.add.image(2048, 2048, 'extendedBackground');
-        boostpad1 = this.physics.add.sprite(2000, 300, 'player');
+        boostpad1 = this.physics.add.sprite(2000, 310, 'boostPad');
+        this.anims.create({
+            key: "boost",
+            frameRate: 7,
+            frames: this.anims.generateFrameNumbers("boostPad", {
+                start: 0,
+                end: 3
+            }),
+            repeat: -1
+        });
+        boostpad1.play("boost")
+        boostpad1.setScale(.5);
+        boostpad1.angle = 90;
         canMove = true;
 
         //Sets Colliders And Bounce
@@ -79,10 +91,10 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        timerText = this.add.text(150,150, "", {
+        timerText = this.add.text(150, 150, "", {
             fontFamily: 'Dogica'
         });
-        timerText.setScrollFactor(0,0);
+        timerText.setScrollFactor(0, 0);
         timer = 0;
         timez = 0;
         seconds = 0;
@@ -100,7 +112,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         cars = this.add.group();
         cars.add(player);
         const layer = this.add.layer();
-        layer.add([player, boostpad1])
+        layer.add([boostpad1, player])
         if (twoPlayer == true) {
             layer.add([player2]);
             cars.add(player2);
@@ -111,6 +123,8 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
             if (boostpad == boostpad1 && usedBoostPad1 == false) {
                 usedBoostPad1 = true;
+                boostpad1.stop("boost");
+                boostpad1.setFrame(0);
                 user.body.setMaxSpeed(1000);
                 user.body.velocity.normalize()
                     .scale(1000);
@@ -327,6 +341,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     check3Pass = false;
                     lapCount = lapCount + 1;
                     usedBoostPad1 = false;
+                    boostpad1.play("boost");
                     console.log(lapCount);
                 } else if (lapCount == 3 && check1Pass == true && check2Pass == true && check3Pass == true) {
                     check1Pass = false;
@@ -404,6 +419,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     check3Pass = false;
                     lapCount = lapCount + 1;
                     usedBoostPad1 = false;
+                    boostpad1.play("boost");
                     console.log(lapCount);
                 } else if (lapCount == 3 && check1Pass == true && check2Pass == true && check3Pass == true) {
                     check1Pass = false;

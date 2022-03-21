@@ -1,19 +1,11 @@
 var loading = new Phaser.Class({
     Extends: Phaser.Scene,
-initialize: function() {
-    Phaser.Scene.call(this, { "key": "loading" });
-},
-preload: function() {
-    var loadingText = this.make.text({
-        x: width / 2,
-        y: height / 2 - 50,
-        text: "Loading...",
-        style: {
-            fontFamily: 'Dogica',
-            fontSize: 32,
-            fill: "#000000"
-        }
-    });
+    initialize: function() {
+        Phaser.Scene.call(this, {
+            "key": "loading"
+        });
+    },
+    preload: function() {
         var backimage = this.add.graphics();
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
@@ -25,7 +17,16 @@ preload: function() {
         var width = this.cameras.main.width;
         var height = this.cameras.main.height;
 
-
+        var loadingText = this.make.text({
+            x: width / 2,
+            y: height / 2 - 50,
+            text: "Loading...",
+            style: {
+                fontFamily: 'Dogica',
+                fontSize: 32,
+                fill: "#000000"
+            }
+        });
         loadingText.setOrigin(0.5, 0.5);
 
         var percentText = this.make.text({
@@ -101,28 +102,92 @@ preload: function() {
         this.load.tilemapTiledJSON('tilemap3', 'assets/tilesets/NewMap3.json');
 
         this.load.audio('corgi', 'assets/sounds/Corgi_Banger.wav');
-        this.load.audio('snowMap','assets/sounds/metro beat.mp3');
+        this.load.audio('snowMap', 'assets/sounds/metro beat.mp3');
 
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 164, frameHeight: 80 });
-        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', { frameWidth: 186, frameHeight: 184 });
-        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', { frameWidth: 32.2, frameHeight: 52 });
-        this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', { frameWidth: 32.2, frameHeight: 52 });
-        this.load.spritesheet('exit', 'assets/images/UI/exit.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('resume', 'assets/images/UI/resume.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', { frameWidth: 56, frameHeight: 60 });
-        this.load.spritesheet('endScreen', 'assets/images/UI/EndScreen.png', { frameWidth: 800, frameHeight: 800 });
-        this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', { frameWidth: 264, frameHeight: 104 });
-        this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', { frameWidth: 264, frameHeight: 104 });
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', { frameWidth: 165, frameHeight: 80 });
-        this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', { frameWidth: 144, frameHeight: 160 });
-        this.load.spritesheet('start', 'assets/images/UI/START.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', { frameWidth: 213, frameHeight: 80 });
-        this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', { frameWidth: 40, frameHeight: 40 });
+        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
+            frameWidth: 164,
+            frameHeight: 80
+        });
+        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', {
+            frameWidth: 186,
+            frameHeight: 184
+        });
+        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', {
+            frameWidth: 32.2,
+            frameHeight: 52
+        });
+        this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', {
+            frameWidth: 32.2,
+            frameHeight: 52
+        });
+        this.load.spritesheet('exit', 'assets/images/UI/exit.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('resume', 'assets/images/UI/resume.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
+            frameWidth: 56,
+            frameHeight: 60
+        });
+        this.load.spritesheet('endScreen', 'assets/images/UI/EndScreen.png', {
+            frameWidth: 800,
+            frameHeight: 800
+        });
+        this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', {
+            frameWidth: 264,
+            frameHeight: 104
+        });
+        this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', {
+            frameWidth: 264,
+            frameHeight: 104
+        });
+        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
+            frameWidth: 165,
+            frameHeight: 80
+        });
+        this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', {
+            frameWidth: 144,
+            frameHeight: 160
+        });
+        this.load.spritesheet('start', 'assets/images/UI/START.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', {
+            frameWidth: 40,
+            frameHeight: 40
+        });
+        this.load.spritesheet('boostPad', 'assets/images/UI/boostPad.png', {
+            frameWidth: 162,
+            frameHeight: 162
+        });
 
         var firstTime = localStorage.getItem("first_time");
         if (!firstTime) {
@@ -170,8 +235,8 @@ preload: function() {
         }
 
     },
-create: function() {
-    this.scene.start('menu')
-    this.scene.stop();
+    create: function() {
+        this.scene.start('menu')
+        this.scene.stop();
     }
 })
