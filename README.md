@@ -22,9 +22,9 @@ This game was coded using (JS, HTML, and CSS) therefore all you need to do is cl
 ## Credits
 
 ### Software
-[![vsCode](https://drive.google.com/uc?export=view&id=1MI3Qsv88WGXv2bU2gVrXmqivK-9hPUfy)](https://code.visualstudio.com/)
-#### - Assets: [Aseprite](https://www.aseprite.org/download/)
-#### - Tile Maps: [Tiled](https://www.mapeditor.org/)
+[![vsCode](https://drive.google.com/uc?export=view&id=1rJj3EJcQfZzQg-Q0HlJDGOkElT4CmkUD)](https://code.visualstudio.com/)
+[![aseprite](https://drive.google.com/uc?export=view&id=1LzxbXq3uRxuaxQ3BCp2StwwRhWYLmetQ)](https://www.aseprite.org/)
+[![tiled](https://drive.google.com/uc?export=view&id=1PFKM_VexxG0Ps_dQNHFfy1O0_WDexfVx)](https://www.mapeditor.org/)
 #### - Engine API: [Phaser 3](https://phaser.io/download/stable)
 #### - Paired Coding: [Github Desktop](https://desktop.github.com/)
 
