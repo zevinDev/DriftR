@@ -22,10 +22,10 @@ This game was coded using (JS, HTML, and CSS) therefore all you need to do is cl
 ## Credits
 
 ### Software
+[![vsCode](https://drive.google.com/uc?export=view&id=1MI3Qsv88WGXv2bU2gVrXmqivK-9hPUfy)](https://code.visualstudio.com/)
 #### - Assets: [Aseprite](https://www.aseprite.org/download/)
 #### - Tile Maps: [Tiled](https://www.mapeditor.org/)
 #### - Engine API: [Phaser 3](https://phaser.io/download/stable)
-#### - Coding Studio: [Visual Studio Code](https://code.visualstudio.com/download)
 #### - Paired Coding: [Github Desktop](https://desktop.github.com/)
 
 ### Music
