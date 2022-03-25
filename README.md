@@ -2,24 +2,24 @@
   <img  src="https://github.com/REALziez/DriftR/blob/main/assets/images/UI/Logo_Test.png" alt="DriftR logo">
 </p>
 
-## Description
+## ![description](https://drive.google.com/uc?export=view&id=1--kZ4yF6DQmoHcLvwdNQyV4dP-CzH60d)
 
 - DriftR is a game that is made in JS for FBLA 2022 
 - The theme of the game is a 80's Retro Game
 - Through the use of carefully selected color pallets we were able to create a convincing game
 - We learned alot while making this project like how to make tile maps and how to use a API library
 
-## How To Play
+## ![howToPlay](https://drive.google.com/uc?export=view&id=1YOksuORFheXxJICgzAsizfDGreMRjpbd)
 
 This game was coded using (JS, HTML, and CSS) therefore all you need to do is click on this [link!](https://realziez.github.io/DriftR/) 
 
-## Authors
+## ![authors](https://drive.google.com/uc?export=view&id=1-0kpFA4_154Zl7_9nfUpqiHBfFjqbX25)
 
 #### - [Zevin Burzynski](https://github.com/REALziez)
 #### - [Joshua Perez](https://github.com/dri-gi)
 #### - [Taggart Lorenzana](https://github.com/TaggsSwaggs)
 
-## Credits
+## ![credits](https://drive.google.com/uc?export=view&id=1-2DiUtCqTGyCMJbbP6zxEw4H4qCrDfgD)
 
 ### Software
 [![vsCode](https://drive.google.com/uc?export=view&id=1rJj3EJcQfZzQg-Q0HlJDGOkElT4CmkUD)](https://code.visualstudio.com/)
