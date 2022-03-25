@@ -21,6 +21,16 @@ This game was coded using (JS, HTML, and CSS) therefore all you need to do is cl
 
 ## Credits
 
+### Software
+#### - Assets: [Aseprite](https://www.aseprite.org/download/)
+#### - Tile Maps: [Tiled](https://www.mapeditor.org/)
+#### - Engine API: [Phaser 3](https://phaser.io/download/stable)
+#### - Coding Studio: [Visual Studio Code](https://code.visualstudio.com/download)
+#### - Paired Coding: [Github Desktop](https://desktop.github.com/)
+
+### Music
+#### - [Father Playstation](https://soundcloud.com/fatherplaystation)
+#### - [Tohomoko](https://soundcloud.com/tohomoko)
 
 ## Badges
 
