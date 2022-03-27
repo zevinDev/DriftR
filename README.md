@@ -32,11 +32,11 @@ This game was coded using (JS, HTML, and CSS) therefore all you need to do is cl
 #### - [Father Playstation](https://soundcloud.com/fatherplaystation)
 #### - [Tohomoko](https://soundcloud.com/tohomoko)
 
-## Badges
+## ![badges](https://drive.google.com/uc?export=view&id=1-91zXMuVoba9_e9igA9x0kdS-gLwDqAh)
 
 <img alt="Languages" src="https://img.shields.io/github/languages/top/lernantino/badmath"> <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/REALziez/DriftR"> <img alt="Stars" src="https://img.shields.io/github/stars/REALziez/DriftR"> <img alt="License" src="https://img.shields.io/github/license/REALziez/DriftR">
 
-## Features
+## ![features](https://drive.google.com/uc?export=view&id=1-2igk-DBfLVzl7LRPDFcYxxTL1dBq29M)
 
 - Amazing Drifting Mechanics
 - Unlockable Maps And Cars
