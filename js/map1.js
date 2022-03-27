@@ -89,9 +89,12 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        timerText = this.add.text(150, 150, "", {
-            fontFamily: 'Dogica'
+        timerBox = this.add.image(676,50, 'timerBox');
+        timerText = this.add.text(600, 20, "", {
+            fontFamily: 'Dogica',
+            fontSize: '32px'
         });
+        timerBox.setScrollFactor(0, 0);
         timerText.setScrollFactor(0, 0);
         timer = 0;
         timez = 0;
@@ -123,6 +126,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             cars.add(player2);
             this.physics.add.collider(player2, borderLayer);
             camera1.ignore(timerText)
+            camera1.ignore(timerBox)
         }
 
         this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
