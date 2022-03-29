@@ -91,7 +91,9 @@ var map2 = new Phaser.Class({ //initalizes and creates the scene for map1
         finalTime = 0;
         first = this.sound.add("first", { loop: true });
         second = this.sound.add("second", { loop: true });
-        third = this.sound.add("third", { loop: true });
+        third = this.sound.add("good", { loop: true });
+        
+            
         const layer = this.add.layer();
         layer.add([player])
         if (twoPlayer == true) {
