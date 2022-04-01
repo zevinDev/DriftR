@@ -142,10 +142,6 @@ var loading = new Phaser.Class({
             frameWidth: 32.2,
             frameHeight: 52
         });
-        this.load.spritesheet('exit', 'assets/images/UI/exit.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
         this.load.spritesheet('resume', 'assets/images/UI/resume.png', {
             frameWidth: 213,
             frameHeight: 80
@@ -175,6 +171,10 @@ var loading = new Phaser.Class({
             frameHeight: 160
         });
         this.load.spritesheet('start', 'assets/images/UI/START.png', {
+            frameWidth: 213,
+            frameHeight: 80
+        });
+        this.load.spritesheet('exit', 'assets/images/UI/EXIT.png', {
             frameWidth: 213,
             frameHeight: 80
         });

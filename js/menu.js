@@ -13,11 +13,11 @@ preload: function() {
         backimage.fillRect(0, 0, 800, 800);
         this.cameras.main.fadeIn(1000, 0, 0, 0)
         var startButton = this.add.image(200, 600, 'start');
+        var exitButton = this.add.image(200, 700, 'exit');
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');
         var logo = this.add.image(400, 200, 'logo');
         var exithelp = this.add.image(640,150,'X');
-        var exit = this.add.text(400,400, "EXIT")
         
 
         
@@ -43,7 +43,7 @@ preload: function() {
         }
 
 
-            startButton.setInteractive();
+        startButton.setInteractive();
         startButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             startButton.setFrame(1)
         })
@@ -57,8 +57,15 @@ preload: function() {
                 this.scene.stop();
             })
         })
-        exit.setInteractive();
-        exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        exitButton.setInteractive();
+        exitButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+            exitButton.setFrame(1)
+        })
+        exitButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+            exitButton.setFrame(0)
+        })
+        exitButton.setInteractive();
+        exitButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             if (confirm("Are You Sure You Want To EXIT?")) {
                 window.close();
               }
@@ -93,7 +100,7 @@ preload: function() {
         })
         
         const layer = this.add.layer();
-        layer.add([backimage, exit, startButton, garageButton, optionButton, logo, howimage, exithelp])
+        layer.add([backimage, exitButton, startButton, garageButton, optionButton, logo, howimage, exithelp])
 
 
     }
