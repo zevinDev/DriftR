@@ -17,6 +17,7 @@ preload: function() {
         var optionButton = this.add.image(600, 700, 'options');
         var logo = this.add.image(400, 200, 'logo');
         var exithelp = this.add.image(640,150,'X');
+        var exit = this.add.text(400,400, "EXIT")
         
 
         
@@ -56,6 +57,12 @@ preload: function() {
                 this.scene.stop();
             })
         })
+        exit.setInteractive();
+        exit.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+            if (confirm("Are You Sure You Want To EXIT?")) {
+                window.close();
+              }
+        })
         garageButton.setInteractive();
         garageButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
             garageButton.setFrame(1)
@@ -86,7 +93,7 @@ preload: function() {
         })
         
         const layer = this.add.layer();
-        layer.add([backimage, startButton, garageButton, optionButton, logo, howimage, exithelp])
+        layer.add([backimage, exit, startButton, garageButton, optionButton, logo, howimage, exithelp])
 
 
     }

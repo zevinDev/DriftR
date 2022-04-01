@@ -9,6 +9,7 @@ var loading = new Phaser.Class({
         var backimage = this.add.graphics();
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
+        
         progressBox.fillStyle(0x222222, 0.8);
         progressBox.fillRect(240, 270, 320, 50);
         backimage.fillStyle(0x37313b, 1);
