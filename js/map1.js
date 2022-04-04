@@ -177,7 +177,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
     },
 
     update: function() {
-        console.log(player.body.speed)
         if(player.body.speed == 0){
             second.pause()
             good.pause()

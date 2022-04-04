@@ -1,5 +1,5 @@
 function getTile(map, twoPlayer) {
-    if (map == ("map1" || "map2")) {
+    if (map == "map1" || "map2") {
         p1Tile = backLayer.getTileAtWorldXY(player.x, player.y, true);
         p1StartTile = startLine.getTileAtWorldXY(player.x, player.y, true);
         p1Check1Tile = check1.getTileAtWorldXY(player.x, player.y, true);

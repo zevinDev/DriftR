@@ -28,7 +28,6 @@ var lapsComplete = new Phaser.Class({
         } else if (currentMap == "map2") {
             var map2Leader = localStorage.getItem('map2Leader');
             mapTop = JSON.parse(map2Leader);
-            mapTop = map2Leader
             if (mapTime <= 120) {
                 pauseScene.setFrame(3);
                 stars = stars + 3;

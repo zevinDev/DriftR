@@ -160,7 +160,7 @@ var mapSelect = new Phaser.Class({
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                    price = 0;
+                    price = 1;
                     popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
@@ -200,7 +200,7 @@ var mapSelect = new Phaser.Class({
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
-                    price = 0
+                    price = 3
                     popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                     infoPopUp.visible = true;
                     cancelButton.visible = true;
@@ -240,7 +240,7 @@ var mapSelect = new Phaser.Class({
                 map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                         notEnoughMoney.visible = false;
                         if (infoPopUp.visible == false) {
-                            price = 0;
+                            price = 5;
                             popUpText.setText("Are you sure you\nwant to buy this map \nfor " + price + " stars?");
                             infoPopUp.visible = true;
                             cancelButton.visible = true;
