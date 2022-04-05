@@ -13,11 +13,12 @@ var mapSelect = new Phaser.Class({
         if (localStorage.getItem("MSFade") == 0) {
         this.cameras.main.fadeIn(1000, 0, 0, 0)           
         }
+        //loads all the needed variables for this scene
         localStorage.setItem("MSFade", 1);
         leadertime = [];
         leadername = [];
-        testvar = true;
-        test2var = true;
+        map1var = true;
+        map2var = true;
         millisecondsvar = true;
         stars = parseInt(localStorage.getItem('stars'));
         GRASS = localStorage.getItem('grassMap');
@@ -43,9 +44,11 @@ var mapSelect = new Phaser.Class({
         map3leader = localStorage.getItem('map3leader');
         map3leader = JSON.parse(map3leader);
 
+        //if the fade loaded then we automatically set no maps to be selected
         if (localStorage.getItem("MSFade") == 0) {
         selectedMap = 0;
         }
+        //this is the text for the leaderboard
         firstPlaceT = this.add.text(198, 512, map1Leadername[0] + "-" + map1Leader[0],{ fontFamily: 'Dogica', fontSize: 16, color: '#ffbe00' });
         firstPlaceT.visible = false;
 
@@ -141,6 +144,7 @@ var mapSelect = new Phaser.Class({
         mapbio = this.add.image(400, 570, 'mapbio')
         mapback = this.add.image(400, 216, 'mapback')
         //interactive for map1
+        //if the map is bought then it sets the unlocked frame for the icon and sets a interecative
         if (GRASS == "true") {
         map1select.setInteractive();
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
@@ -149,14 +153,18 @@ var mapSelect = new Phaser.Class({
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
             map1select.setFrame(0)
         })
+        //when clicked on it will change the icon and also change all needed variables in order to show the right needed
+        //information for the leaderboard times
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
             selectedMap = 1;
-            testvar = true;
+            map1var = true;
         })
+        //if it hasn't been bought, then it sets the icon to a locked frame and sets an interactive
     } else if (GRASS == "false") {
         map1select.setFrame(3);
         map1select.setInteractive();
+        //when you click on it, the buypopup will show so you can buy the locked map
         map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
@@ -172,7 +180,7 @@ var mapSelect = new Phaser.Class({
                             localStorage.setItem('grassMap', true);
                             textvisible = true;
                             selectedMap = 1;
-                            testvar = true;
+                            map1var = true;
                         } else {
                             notEnoughMoney.visible = true;
                         }
@@ -192,7 +200,7 @@ var mapSelect = new Phaser.Class({
         map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             textvisible = true;
             selectedMap = 2;
-            test2var = true;
+            map2var = true;
         })
     } else if (SNOW == "false") {
         map2select.setFrame(3);
@@ -212,7 +220,7 @@ var mapSelect = new Phaser.Class({
                             localStorage.setItem('snowMap', true);
                             textvisible = true;
                             selectedMap = 2;
-                            test2var = true;
+                            map2var = true;
                         } else {
                             notEnoughMoney.visible = true;
                         }
@@ -300,7 +308,7 @@ var mapSelect = new Phaser.Class({
                 this.scene.stop();
             }
         })
-
+        //checkbox button sets variable boolean based on whether it is clicked or not
         checkbox = this.add.image(580,620, 'check_box');
         checkbox.setInteractive();
         checkbox.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
@@ -313,11 +321,13 @@ var mapSelect = new Phaser.Class({
         mapstart.visible = false;
         checkbox.visible = false;
 
+        //layer order
         const layer = this.add.layer();
         layer.add([backimage, mapback, backButton, map3select, map2select, map1select, mapbio, mapstart, checkbox, firstPlaceT, secondPlaceT, thirdPlaceT, fourthPlaceT, fifthPlaceT, currency, infoPopUp, cancelButton, buyButton, popUpText, notEnoughMoney])
         mapbio.visible = false;
     },
     update: function() {
+        //this updates the leaderboard to display the right lap times for that specific map
         if (selectedMap == 1){
             leadername = map1Leadername;
             leadertime = map1Leader;
@@ -334,12 +344,12 @@ var mapSelect = new Phaser.Class({
             map3select.setFrame(2)
             textvisible = true;
         }
-        if(selectedMap != 1 && testvar == true && GRASS == "true"){
-            testvar = false
+        if(selectedMap != 1 && map1var == true && GRASS == "true"){
+            map1var = false
             map1select.setFrame(0)
 
-        }else if(selectedMap != 2 && test2var == true && SNOW == "true"){
-            test2var = false
+        }else if(selectedMap != 2 && map2var == true && SNOW == "true"){
+            map2var = false
             map2select.setFrame(0)
 
         } if(selectedMap != 3 && millisecondsvar == true && BEACH == "true"){
@@ -357,11 +367,13 @@ var mapSelect = new Phaser.Class({
 
         fifthPlaceT.setText(leadername[4] + "-" + leadertime[4]);
 
+        //selects the right checkbox icon
         if(twoPlayer == true){
             checkbox.setFrame(1);
         } else{
             checkbox.setFrame(0)
         }
+        //makes sure all the right display information is shown for the map icon
         if(textvisible == true){
             firstPlaceT.visible = true;
             secondPlaceT.visible = true;

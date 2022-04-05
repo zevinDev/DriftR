@@ -10,6 +10,7 @@ var garage = new Phaser.Class({
     preload: function() {},
 
     create: function() {
+        //sets fade only when you load in from the menu
         if (localStorage.getItem("GFade") == 0) {
             this.cameras.main.fadeIn(1000, 0, 0, 0)
         }
@@ -97,11 +98,6 @@ var garage = new Phaser.Class({
                 cancelButton.visible = false;
                 buyButton.visible = false;
                 popUpText.visible = false;
-
-                //code below resets scene because buying something breaks the current scene but after restarting it seems fine
-                //found it online
-                //i found the problem but it would just be easier to restart the scene, it's because i dont create interactives for the rest of
-                //the visuals since its only done if the car has been bought
                 this.registry.destroy(); // destroy registry
                 this.events.off(); // disable all active events
                 this.scene.restart(); // restart current scene
@@ -116,7 +112,7 @@ var garage = new Phaser.Class({
 
 
 
-
+        //code for the back button to fade out and bring back the menu screen
         backButton = this.add.image(100, 50, 'backButton');
         backButton.setInteractive();
         backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
@@ -132,17 +128,18 @@ var garage = new Phaser.Class({
                 this.scene.start('menu')
             })
         })
-        //There's gonna be code for just player1 that will show you step by step on what happens
 
         //Sets all image icons
         player1 = this.physics.add.sprite(200, 642, 'player1');
         GarageIcon1 = this.add.image(200, 650, 'garageIcon');
         GarageIconLocked1 = this.add.image(200, 650, 'lockedIcon')
+
         //Checks if the car is the currently selected car and if so it will show the selected icon
         if (localStorage.getItem("car") == 'assets/images/Cars/Player.png') {
             GarageIcon1.setFrame(3)
             player1.y = 650
         }
+
         //Checks to see if the car has been bought
         if (P1 == "true") {
             //clears the locked image
@@ -240,6 +237,8 @@ var garage = new Phaser.Class({
                 }
             })
         }
+
+
 
 
 
@@ -681,7 +680,7 @@ var garage = new Phaser.Class({
         }
 
 
-        //Defines Layers And Border Physics
+        //Defines the layer order
         const layer = this.add.layer();
         layer.add([backimage, backButton, GarageIcon1, GarageIcon2, GarageIcon3, GarageIcon4, GarageIcon5, GarageIcon6, player1, player2, player3, player4, darkbirdmobile, mgcar, GarageIconLocked1, GarageIconLocked2, GarageIconLocked3, GarageIconLocked4, GarageIconLocked5, GarageIconLocked6, infoPopUp, currency, cancelButton, buyButton, popUpText, notEnoughMoney]);
 
