@@ -1,4 +1,5 @@
-var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
+var map1 = new Phaser.Class({ 
+    //initalizes and creates the scene for map1
     Extends: Phaser.Scene,
     initialize: function() {
         Phaser.Scene.call(this, {
@@ -22,6 +23,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         player.setBounce(0.2);
         player.setCollideWorldBounds(false);
         extendedBackground = this.add.image(2048, 2048, 'extendedBackground');
+        //this is the code for the boost pad
         boostpad1 = this.physics.add.sprite(2000, 310, 'boostPad');
         this.anims.create({
             key: "boost",
@@ -35,7 +37,8 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         boostpad1.play("boost")
         boostpad1.setScale(.5);
         boostpad1.angle = 90;
-
+        
+        //Enables Multiplayer
         if (twoPlayer == true) {
             canMove = false;
             player2 = this.physics.add.sprite(435, 3300, 'player2');
@@ -56,12 +59,14 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera.startFollow(player);
             canMove = true;
         };
-
+        
+   
         const tileMap1 = this.make.tilemap({
             key: 'tileMap1'
         })
 
-        const map1Pallet = tileMap1.addTilesetImage('map1Pallet', 'map1Pallet', 8, 8, 1, 2);
+        //Assigns Images To TileMap
+        const map1Pallet = tileMap1.addTilesetImage('map1Pallet', 'map1Pallet', 8, 8, 1, 2);        
 
         backLayer = tileMap1.createLayer('Back', map1Pallet)
         trackLayer = tileMap1.createLayer('Track', map1Pallet)
@@ -71,7 +76,8 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         check3 = tileMap1.createLayer('check3', map1Pallet)
         borderLayer = tileMap1.createLayer('Border', map1Pallet)
 
-        borderLayer.setCollisionByProperty({
+        //Sets Collistion For Player
+        borderLayer.setCollisionByProperty({         
             collides: true
         })
         backLayer.setCollisionByProperty({
@@ -80,7 +86,9 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
 
 
         this.physics.add.collider(player, borderLayer);
-        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        
+        //Defines Keyboard Keys
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);      
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -89,7 +97,8 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        timerBox = this.add.image(676,50, 'timerBox');
+        
+        timerBox = this.add.image(676,50, 'timerBox');         
         timerText = this.add.text(600, 20, "", {
             fontFamily: 'Dogica',
             fontSize: '32px'
@@ -112,11 +121,16 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         ranOnce2 = false;
         lapCount = 0;
         finalTime = 0;
+        
+        //Plays Cards Sound Effects
         first = this.sound.add("first", { loop: true });
         second = this.sound.add("second", { loop: true });
         good = this.sound.add("good", { loop: true });
-        boostpads = this.add.group();
+        
+        //Ads A BoostPad To The Map
+        boostpads = this.add.group();    
         boostpads.add(boostpad1);
+        
         cars = this.add.group();
         cars.add(player);
         const layer = this.add.layer();
@@ -129,6 +143,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             camera1.ignore(timerBox)
         }
 
+        //Handles BoostPads and BoostPad Collision
         this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
             if (boostpad == boostpad1 && usedBoostPad1 == false) {
                 usedBoostPad1 = true;
@@ -137,19 +152,19 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 user.body.setMaxSpeed(1000);
                 user.body.velocity.normalize()
                     .scale(1000);
-                setTimeout(function() {
+                setTimeout(function() {           
                     user.body.setMaxSpeed(500);
                 }, 500);
             }
         });
 
-        if (twoPlayer == true) {
-            countDown = this.add.text(370, 3150, "", {
+       if (twoPlayer == true) {              
+            countDown = this.add.text(370, 3150, "", { 
                 fontFamily: 'Dogica',
                 fontSize: 40,
                 color: '#ffbe00'
             });
-            layer.add([countDown]);
+            layer.add([countDown]);      
             setTimeout(function() {
                 countDown.setText(" 3");
             }, 1000);
@@ -176,7 +191,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
         second.play()
     },
 
-    update: function() {
+    update: function() {        
         if(player.body.speed == 0){
             second.pause()
             good.pause()
@@ -196,15 +211,16 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             good.resume()
         }
 
-        if (canMove == true) {
+        if (canMove == true) { 
             this.input.keyboard.enabled = true;
         } else {
             this.input.keyboard.enabled = false
         }
         getTile(currentMap, twoPlayer);
 
-
+        //Sets Players Max Speed
         player.setMaxVelocity(9999, 9999);
+        //Players Movement Controls
         if (player.body.speed > 15 && (keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
         } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
@@ -223,15 +239,14 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
 
-        //this slows down the car in grass 
-        if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) {
-            if(player.body.speed > 300){
+        
+        if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) { 
+        //this slows car down in grass
+           if(player.body.speed > 300){
                 masSpeed = (masSpeed - 7)
             }
             ranOnce = true;
             player.body.setMaxSpeed(masSpeed)
-            //player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
-            //player.setAcceleration(0);
             if(player.body.speed < 310){
             if (player.body.speed > 15 && (keyLEFT.isDown)) {
                 player.setAngularVelocity(-50);
@@ -283,8 +298,6 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                 }
                 ranOnce2 = true;
                 player2.body.setMaxSpeed(masSpeed2)
-                //player.setMaxVelocity(100, 100); //Player cannot accelerate past 100
-                //player.setAcceleration(0);
                 if(player2.body.speed < 310){
                 if (player2.body.speed > 15 && (keyA.isDown)) {
                     player2.setAngularVelocity(-50);
@@ -388,7 +401,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     console.log("Check 3 passed")
                 }
             }
-
+            //Checks if user passes checkpoint
             if (p1StartTile.index == 9 || p1StartTile.index == 10 || p2StartTile.index == 9 || p2StartTile.index == 10) {
                 if (lapCount == 0) {
                     check1Pass = false;
@@ -414,6 +427,7 @@ var map1 = new Phaser.Class({ //initalizes and creates the scene for map1
                     map1Leaderlist = JSON.parse(map1Leaderlist);
                     map1Leaderlist = map1Leaderlist.slice(0, 5);
                     var done = false;
+                    //Handles Leaderboard
                     for (var i = 0; i < 5; i++) {
                         if (done == false) {
                             if (LeaderTime < map1Leaderlist[i]) {
