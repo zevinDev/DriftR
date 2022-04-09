@@ -1,0 +1,4 @@
+installers/
+node_modules/
+out/
+.git/
