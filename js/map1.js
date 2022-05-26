@@ -1,4 +1,4 @@
-var map1 = new Phaser.Class({ 
+var map1 = new Phaser.Class({
     //initalizes and creates the scene for map1
     Extends: Phaser.Scene,
     initialize: function() {
@@ -16,6 +16,7 @@ var map1 = new Phaser.Class({
         currentMap = "map1"
         placeValue = 0;
         usedBoostPad1 = false;
+
 
         player = this.physics.add.sprite(375, 3300, 'player');
         player.body.setMaxSpeed(500);
@@ -37,7 +38,7 @@ var map1 = new Phaser.Class({
         boostpad1.play("boost")
         boostpad1.setScale(.5);
         boostpad1.angle = 90;
-        
+
         //Enables Multiplayer
         if (twoPlayer == true) {
             canMove = false;
@@ -59,14 +60,14 @@ var map1 = new Phaser.Class({
             camera.startFollow(player);
             canMove = true;
         };
-        
-   
+
+
         const tileMap1 = this.make.tilemap({
             key: 'tileMap1'
         })
 
         //Assigns Images To TileMap
-        const map1Pallet = tileMap1.addTilesetImage('map1Pallet', 'map1Pallet', 8, 8, 1, 2);        
+        const map1Pallet = tileMap1.addTilesetImage('map1Pallet', 'map1Pallet', 8, 8, 1, 2);
 
         backLayer = tileMap1.createLayer('Back', map1Pallet)
         trackLayer = tileMap1.createLayer('Track', map1Pallet)
@@ -77,7 +78,7 @@ var map1 = new Phaser.Class({
         borderLayer = tileMap1.createLayer('Border', map1Pallet)
 
         //Sets Collistion For Player
-        borderLayer.setCollisionByProperty({         
+        borderLayer.setCollisionByProperty({
             collides: true
         })
         backLayer.setCollisionByProperty({
@@ -89,7 +90,7 @@ var map1 = new Phaser.Class({
 
 
         //Defines Keyboard Keys
-        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);      
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -98,8 +99,8 @@ var map1 = new Phaser.Class({
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        
-        timerBox = this.add.image(676,50, 'timerBox');         
+
+        timerBox = this.add.image(676, 50, 'timerBox');
         timerText = this.add.text(600, 20, "", {
             fontFamily: 'Dogica',
             fontSize: '32px'
@@ -126,18 +127,25 @@ var map1 = new Phaser.Class({
         p2Go = false;
         p1Left = false;
         p2Left = false;
+        p1Exit = false;
         p1Right = false;
         p2Right = false;
-        
+
         //Plays Cards Sound Effects
-        first = this.sound.add("first", { loop: true });
-        second = this.sound.add("second", { loop: true });
-        good = this.sound.add("good", { loop: true });
-        
+        first = this.sound.add("first", {
+            loop: true
+        });
+        second = this.sound.add("second", {
+            loop: true
+        });
+        good = this.sound.add("good", {
+            loop: true
+        });
+
         //Ads A BoostPad To The Map
-        boostpads = this.add.group();    
+        boostpads = this.add.group();
         boostpads.add(boostpad1);
-        
+
         cars = this.add.group();
         cars.add(player);
         const layer = this.add.layer();
@@ -159,19 +167,19 @@ var map1 = new Phaser.Class({
                 user.body.setMaxSpeed(1000);
                 user.body.velocity.normalize()
                     .scale(1000);
-                setTimeout(function() {           
+                setTimeout(function() {
                     user.body.setMaxSpeed(500);
                 }, 500);
             }
         });
 
-       if (twoPlayer == true) {              
-            countDown = this.add.text(370, 3150, "", { 
+        if (twoPlayer == true) {
+            countDown = this.add.text(370, 3150, "", {
                 fontFamily: 'Dogica',
                 fontSize: 40,
                 color: '#ffbe00'
             });
-            layer.add([countDown]);      
+            layer.add([countDown]);
             setTimeout(function() {
                 countDown.setText(" 3");
             }, 1000);
@@ -198,66 +206,75 @@ var map1 = new Phaser.Class({
         second.play()
     },
 
-    update: function() {    
+    update: function() {
         var pads = this.input.gamepad.gamepads;
-        if(pads.length > 0){
+        if (pads.length > 0) {
             var pad = pads[0];
-            if(pads.length > 1){
-            var pad2 = pads[1];
-            if(pad2.leftStick.x < 0){
-                p2Left = true;
-            }else{
-                p2Left = false;
-            }
-            if(pad2.leftStick.x > 0){
-                p2Right = true;
-            }else{
-                p2Right = false;
-            }
-            if(pad2.A){
-                p2Go = true;
-            }else{
-                p2Go = false;
-            }
-            }
-            if(pad.leftStick.x < 0){
+            if (pad.leftStick.x < 0) {
                 p1Left = true
-            }else{
+            } else {
                 p1Left = false
             }
-            if(pad.leftStick.x > 0){
+            if (pad.leftStick.x > 0) {
                 p1Right = true
-            }else{
+            } else {
                 p1Right = false
             }
-            if(pad.A){
+            if (pad.A) {
                 p1Go = true
-            }else {
+            } else {
                 p1Go = false
+            }
+            if (pad.B) {
+                p1Exit = true
+            } else {
+                p1Exit = false
+            }
+
+        } else if (pads.length > 1) {
+            var pad2 = pads[1];
+            if (pad2.leftStick.x < 0) {
+                p2Left = true;
+            } else {
+                p2Left = false;
+            }
+            if (pad2.leftStick.x > 0) {
+                p2Right = true;
+            } else {
+                p2Right = false;
+            }
+            if (pad2.A) {
+                p2Go = true;
+            } else {
+                p2Go = false;
+            }
+            if (pad2.B) {
+                p1Exit = true
+            } else {
+                p1Exit = false
             }
         }
 
 
-        if(player.body.speed == 0){
+        if (player.body.speed == 0) {
             second.pause()
             good.pause()
             first.pause()
-        }
-        else if(player.body.speed < 420){
+        } else if (player.body.speed < 420) {
             second.pause()
             good.pause()
             first.resume()
-        }else if(player.body.speed < 499){
+        } else if (player.body.speed < 499) {
             first.pause()
             good.pause()
             second.resume()
-        }else if(player.body.speed > 499){
+        } else if (player.body.speed > 499) {
             first.pause()
             second.pause()
             good.resume()
         }
 
-        if (canMove == true) { 
+        if (canMove == true) {
             this.input.keyboard.enabled = true;
             this.input.gamepad.enabled = true;
         } else {
@@ -287,34 +304,34 @@ var map1 = new Phaser.Class({
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
 
-        
-        if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) { 
-        //this slows car down in grass
-           if(player.body.speed > 300){
+
+        if (p1Tile.index == 4 || p1Tile.index == 5 || p1Tile.index == 6 || p1Tile.index == 7 || p1Tile.index == 8 || p1Tile.index == 9) {
+            //this slows car down in grass
+            if (player.body.speed > 300) {
                 masSpeed = (masSpeed - 7)
             }
             ranOnce = true;
             player.body.setMaxSpeed(masSpeed)
-            if(player.body.speed < 310){
-            if (player.body.speed > 15 && (keyLEFT.isDown || p1Left)) {
-                player.setAngularVelocity(-50);
-            } else if (player.body.speed > 15 && (keyRIGHT.isDown || p1Right)) {
-                player.setAngularVelocity(50);
-            } else {
-                player.setAngularVelocity(0);
+            if (player.body.speed < 310) {
+                if (player.body.speed > 15 && (keyLEFT.isDown || p1Left)) {
+                    player.setAngularVelocity(-50);
+                } else if (player.body.speed > 15 && (keyRIGHT.isDown || p1Right)) {
+                    player.setAngularVelocity(50);
+                } else {
+                    player.setAngularVelocity(0);
+                }
+                if (keyUP.isDown || p1Go) {
+                    this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
+                } else {
+                    player.setAcceleration(0);
+                    player.body.drag.x = 300;
+                    player.body.drag.y = 300;
+                    this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+                }
             }
-            if (keyUP.isDown || p1Go) {
-                this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
-            } else {
-                player.setAcceleration(0);
-                player.body.drag.x = 300;
-                player.body.drag.y = 300;
-                this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
-            }
-        }
-        }else {
+        } else {
             masSpeed = 500
-            if(ranOnce == true){
+            if (ranOnce == true) {
                 player.body.setMaxSpeed(500);
                 ranOnce = false;
             }
@@ -341,31 +358,31 @@ var map1 = new Phaser.Class({
             }
             //this slows down the car in grass 
             if (p2Tile.index == 4 || p2Tile.index == 5 || p2Tile.index == 6 || p2Tile.index == 7 || p2Tile.index == 8 || p2Tile.index == 9) {
-                if(player2.body.speed > 300){
+                if (player2.body.speed > 300) {
                     masSpeed2 = (masSpeed2 - 7)
                 }
                 ranOnce2 = true;
                 player2.body.setMaxSpeed(masSpeed2)
-                if(player2.body.speed < 310){
-                if (player2.body.speed > 15 && (keyA.isDown || p2Left)) {
-                    player2.setAngularVelocity(-50);
-                } else if (player2.body.speed > 15 && (keyD.isDown || p2Right)) {
-                    player2.setAngularVelocity(50);
-                } else {
-                    player2.setAngularVelocity(0);
+                if (player2.body.speed < 310) {
+                    if (player2.body.speed > 15 && (keyA.isDown || p2Left)) {
+                        player2.setAngularVelocity(-50);
+                    } else if (player2.body.speed > 15 && (keyD.isDown || p2Right)) {
+                        player2.setAngularVelocity(50);
+                    } else {
+                        player2.setAngularVelocity(0);
+                    }
+                    if ((keyW.isDown || p2Go)) {
+                        this.physics.velocityFromRotation(player2.rotation, 100, player2.body.velocity);
+                    } else {
+                        player2.setAcceleration(0);
+                        player2.body.drag.x = 300;
+                        player2.body.drag.y = 300;
+                        this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
+                    }
                 }
-                if ((keyW.isDown || p2Go)) {
-                    this.physics.velocityFromRotation(player2.rotation, 100, player2.body.velocity);
-                } else {
-                    player2.setAcceleration(0);
-                    player2.body.drag.x = 300;
-                    player2.body.drag.y = 300;
-                    this.physics.velocityFromRotation(player2.rotation, player2.body.speed, player2.body.velocity);
-                }
-            }
-            }else {
+            } else {
                 masSpeed2 = 500
-                if(ranOnce2 == true){
+                if (ranOnce2 == true) {
                     player2.body.setMaxSpeed(500);
                     ranOnce2 = false;
                 }
@@ -422,7 +439,7 @@ var map1 = new Phaser.Class({
         //borderLayer.x = player.x - 200;
         //borderLayer.y = player.y - 150;
 
-        if (keyESC.isDown && localStorage.getItem('paused') == "0") {
+        if ((keyESC.isDown || p1Exit) && localStorage.getItem('paused') == "0") {
             localStorage.setItem("paused", "1");
             this.scene.pause();
             this.scene.launch("pauseMenu");
@@ -432,21 +449,18 @@ var map1 = new Phaser.Class({
             if (p1Check1Tile.index == 6 || p1Check1Tile.index == 0 || p1Check1Tile.index == 1 || p2Check1Tile.index == 6 || p2Check1Tile.index == 0 || p2Check1Tile.index == 1) {
                 if (check1Pass == false && check2Pass == false && check3Pass == false) {
                     check1Pass = true;
-                    console.log("Check 1 passed")
                 }
             }
 
             if (p1Check2Tile.index == 6 || p1Check2Tile.index == 0 || p1Check2Tile.index == 1 || p2Check2Tile.index == 6 || p2Check2Tile.index == 0 || p2Check2Tile.index == 1) {
                 if (check1Pass == true && check2Pass == false && check3Pass == false) {
                     check2Pass = true;
-                    console.log("Check 2 passed")
                 }
             }
 
             if (p1Check3Tile.index == 6 || p1Check3Tile.index == 0 || p1Check3Tile.index == 1 || p2Check3Tile.index == 6 || p2Check3Tile.index == 0 || p2Check3Tile.index == 1) {
                 if (check1Pass == true && check2Pass == true && check3Pass == false) {
                     check3Pass = true;
-                    console.log("Check 3 passed")
                 }
             }
             //Checks if user passes checkpoint
@@ -509,21 +523,18 @@ var map1 = new Phaser.Class({
             if (p1Check1Tile.index == 6 || p1Check1Tile.index == 0 || p1Check1Tile.index == 1) {
                 if (check1Pass == false && check2Pass == false && check3Pass == false) {
                     check1Pass = true;
-                    console.log("Check 1 passed")
                 }
             }
 
             if (p1Check2Tile.index == 6 || p1Check2Tile.index == 0 || p1Check2Tile.index == 1) {
                 if (check1Pass == true && check2Pass == false && check3Pass == false) {
                     check2Pass = true;
-                    console.log("Check 2 passed")
                 }
             }
 
             if (p1Check3Tile.index == 6 || p1Check3Tile.index == 0 || p1Check3Tile.index == 1) {
                 if (check1Pass == true && check2Pass == true && check3Pass == false) {
                     check3Pass = true;
-                    console.log("Check 3 passed")
                 }
             }
 

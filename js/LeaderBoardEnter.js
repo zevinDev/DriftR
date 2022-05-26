@@ -24,6 +24,8 @@ var LeaderBoardEnter = new Phaser.Class({
         letterFrame = 0;
         buttonPressed = true;
         enterPressed = true;
+        p1Up = false;
+        p1Down = false;
         pauseScene = this.add.image(400, 400, 'LeaderBoardEnterBox');
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -41,33 +43,44 @@ var LeaderBoardEnter = new Phaser.Class({
         letter1 = "";
         letter2 = "";
         letter3 = "";
+        p1Go = false;
     },
     update: function() {
         var pads = this.input.gamepad.gamepads;
-        for (var i = 0; i < pads.length; i++)
-        {
+        if(pads.length > 0){
             var pad = pads[0];
             if(pad.A){
                 p1Go = true
             }else {
                 p1Go = false
             }
+            if(pad.up){
+                p1Up = true
+            }else{
+                p1Up = false
+            }
+            if(pad.down){
+                p1Down = true
+            }else{
+                p1Down = false
+            }
         }
+
         ABC.setFrame(letterFrame);
-        if (keyDOWN.isDown && (letterFrame == 25 && buttonPressed == true)) {
+        if ((keyDOWN.isDown || p1Down) && (letterFrame == 25 && buttonPressed == true)) {
             letterFrame = 0;
             buttonPressed = false;
-        } else if (keyUP.isDown && (letterFrame == 0 && buttonPressed == true)) {
+        } else if ((keyUP.isDown || p1Up) && (letterFrame == 0 && buttonPressed == true)) {
             letterFrame = 25;
             buttonPressed = false;
-        } else if (keyUP.isDown && buttonPressed == true) {
+        } else if ((keyUP.isDown || p1Up) && buttonPressed == true) {
             letterFrame = letterFrame - 1;
             buttonPressed = false;
-        } else if (keyDOWN.isDown && buttonPressed == true) {
+        } else if ((keyDOWN.isDown || p1Down) && buttonPressed == true) {
             letterFrame = letterFrame + 1;
             buttonPressed = false;
         }
-        if (keyUP.isUp && keyDOWN.isUp) {
+        if ((keyUP.isUp && keyDOWN.isUp) && (p1Up == false && p1Down == false)) {
             buttonPressed = true;
         }
 
@@ -85,18 +98,18 @@ var LeaderBoardEnter = new Phaser.Class({
             localStorage.setItem(mapList, JSON.stringify(map1Leadername));
             this.scene.launch("lapsComplete");
             this.scene.stop("LeaderBoardEnter");
-        } else if (keyENTER.isDown && (ABC == ABC2 && enterPressed == true)) {
+        } else if ((keyENTER.isDown || p1Go) && (ABC == ABC2 && enterPressed == true)) {
             letter2 = ABCList[letterFrame];
             ABC = ABC3;
             enterPressed = false;
             letterFrame = 0;
-        } else if (keyENTER.isDown && (ABC == ABC1 && enterPressed == true)) {
+        } else if ((keyENTER.isDown || p1Go) && (ABC == ABC1 && enterPressed == true)) {
             letter1 = ABCList[letterFrame];
             ABC = ABC2;
             enterPressed = false;
             letterFrame = 0;
         }
-        if (keyENTER.isUp || p1Go == false) {
+        if (keyENTER.isUp && p1Go == false) {
             enterPressed = true;
         }
     }
