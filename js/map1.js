@@ -200,10 +200,9 @@ var map1 = new Phaser.Class({
 
     update: function() {    
         var pads = this.input.gamepad.gamepads;
-        for (var i = 0; i < pads.length; i++)
-        {
+        if(pads.length > 0){
             var pad = pads[0];
-            if(pads.length > 0){
+            if(pads.length > 1){
             var pad2 = pads[1];
             if(pad2.leftStick.x < 0){
                 p2Left = true;
