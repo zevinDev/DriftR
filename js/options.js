@@ -1,4 +1,3 @@
-var slide
 var options = new Phaser.Class({
     Extends: Phaser.Scene,
 initialize: function() {
@@ -7,56 +6,41 @@ initialize: function() {
 
 preload: function()
 {
+    this.load.scenePlugin('rexuiplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js', 'rexUI', 'rexUI');
 
 },
 
 create: function()
 {
-back = this.add.image(400,400, 'back')
+    const COLOR_PRIMARY = 0x4e342e;
+    const COLOR_LIGHT = 0x7b5e57;
+    const COLOR_DARK = 0x260e04;
+    var slider = this.rexUI.add.slider({
+        x: 400,
+        y: 500,
+        width: 300,
+        height: 30,
+        orientation: 'x',
+
+        track: this.rexUI.add.roundRectangle(0, 0, 0, 0, 10, COLOR_DARK),
+        indicator: this.rexUI.add.roundRectangle(0, 0, 0, 0, 10, COLOR_PRIMARY),
+        thumb: this.rexUI.add.roundRectangle(0, 0, 0, 0, 10, COLOR_PRIMARY),
+
+        input: 'click', // 'drag'|'click'
+        easeValue: { duration: 250 },
+
+        valuechangeCallback: function (value) {
+            console.log(value);
+        },
+
+    })
+        .layout();
+
 onFull = this.add.text(300, 400, 'full')
 offFull = this.add.text(400, 400, 'offFull')
 backbut = this.add.text(100, 100, 'back')
 offFull = this.add.text(400, 400, 'offFull')
 reset = this.add.text(200, 400, 'reset')
-ind1 = this.add.image 
-
-
-var volUp = this.add.image(200, 600, 'VolControl');
-var volDown = this.add.image(100, 600, 'VolControl');
-volDown.angle = -180;
-
-volUp.setInteractive();
-volUp.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-    volUp.setFrame(1)
-        })
-        volUp.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-            volUp.setFrame(0)
-        })
-        volUp.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            volUp.setFrame(2)
-        })
-        volUp.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-            volUp.setFrame(1)
-        })
-
-volDown.setInteractive();
-volDown.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
-    volDown.setFrame(1)
-        })
-        volDown.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
-            volDown.setFrame(0)
-        })
-        volDown.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-            volDown.setFrame(2)
-        })
-        volDown.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-            volDown.setFrame(1)
-        })
-
-
-
-
-
 
 
 onFull.setInteractive();
