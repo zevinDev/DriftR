@@ -86,7 +86,8 @@ var map1 = new Phaser.Class({
 
 
         this.physics.add.collider(player, borderLayer);
-        
+
+
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);      
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -121,6 +122,12 @@ var map1 = new Phaser.Class({
         ranOnce2 = false;
         lapCount = 0;
         finalTime = 0;
+        p1Go = false;
+        p2Go = false;
+        p1Left = false;
+        p2Left = false;
+        p1Right = false;
+        p2Right = false;
         
         //Plays Cards Sound Effects
         first = this.sound.add("first", { loop: true });
@@ -191,7 +198,54 @@ var map1 = new Phaser.Class({
         second.play()
     },
 
-    update: function() {        
+    update: function() {    
+        var pads = this.input.gamepad.gamepads;
+
+        for (var i = 0; i < pads.length; i++)
+        {
+            var pad = pads[0];
+            if(pads.length > 0){
+            var pad2 = pads[1];
+            if(pad2.leftStick.x < 0){
+                console.log("left2")
+                p2Left = true;
+            }else{
+                p2Left = false;
+            }
+            if(pad2.leftStick.x > 0){
+                console.log("right2")
+                p2Right = true;
+            }else{
+                p2Right = false;
+            }
+            if(pad2.A){
+                console.log("A2")
+                p2Go = true;
+            }else{
+                p2Go = false;
+            }
+            }
+            if(pad.leftStick.x < 0){
+                console.log("left")
+                p1Left = true
+            }else{
+                p1Left = false
+            }
+            if(pad.leftStick.x > 0){
+                console.log("right")
+                p1Right = true
+            }else{
+                p1Right = false
+            }
+            if(pad.A){
+                console.log("A")
+                p1Go = true
+            }else {
+                p1Go = false
+            }
+        }
+
+
         if(player.body.speed == 0){
             second.pause()
             good.pause()
@@ -221,14 +275,14 @@ var map1 = new Phaser.Class({
         //Sets Players Max Speed
         player.setMaxVelocity(9999, 9999);
         //Players Movement Controls
-        if (player.body.speed > 15 && (keyLEFT.isDown)) {
+        if (player.body.speed > 15 && (keyLEFT.isDown || p1Left)) {
             player.setAngularVelocity(-150);
-        } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
+        } else if (player.body.speed > 15 && (keyRIGHT.isDown || p1Right)) {
             player.setAngularVelocity(150);
         } else {
             player.setAngularVelocity(0);
         }
-        if (keyUP.isDown && player.body.speed < 516) {
+        if ((keyUP.isDown || p1Go) && player.body.speed < 516) {
             this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
         } else if (player.body.speed > 400) {
             this.physics.velocityFromRotation(player.rotation, (player.body.speed - 75), player.body.velocity);
@@ -248,14 +302,14 @@ var map1 = new Phaser.Class({
             ranOnce = true;
             player.body.setMaxSpeed(masSpeed)
             if(player.body.speed < 310){
-            if (player.body.speed > 15 && (keyLEFT.isDown)) {
+            if (player.body.speed > 15 && (keyLEFT.isDown || p1Left)) {
                 player.setAngularVelocity(-50);
-            } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
+            } else if (player.body.speed > 15 && (keyRIGHT.isDown || p1Right)) {
                 player.setAngularVelocity(50);
             } else {
                 player.setAngularVelocity(0);
             }
-            if (keyUP.isDown) {
+            if (keyUP.isDown || p1Go) {
                 this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
             } else {
                 player.setAcceleration(0);
@@ -274,14 +328,14 @@ var map1 = new Phaser.Class({
         //player2's movement
         if (twoPlayer == true) {
             player2.setMaxVelocity(9999, 9999);
-            if (player2.body.speed > 15 && (keyA.isDown)) {
+            if (player2.body.speed > 15 && (keyA.isDown || p2Left)) {
                 player2.setAngularVelocity(-150);
-            } else if (player2.body.speed > 15 && (keyD.isDown)) {
+            } else if (player2.body.speed > 15 && (keyD.isDown || p2Right)) {
                 player2.setAngularVelocity(150);
             } else {
                 player2.setAngularVelocity(0);
             }
-            if (keyW.isDown && player2.body.speed < 516) {
+            if ((keyW.isDown || p2Go) && player2.body.speed < 516) {
                 this.physics.velocityFromRotation(player2.rotation, 700, player2.body.acceleration);
             } else if (player2.body.speed > 400) {
                 this.physics.velocityFromRotation(player2.rotation, (player2.body.speed - 75), player2.body.velocity);
@@ -299,14 +353,14 @@ var map1 = new Phaser.Class({
                 ranOnce2 = true;
                 player2.body.setMaxSpeed(masSpeed2)
                 if(player2.body.speed < 310){
-                if (player2.body.speed > 15 && (keyA.isDown)) {
+                if (player2.body.speed > 15 && (keyA.isDown || p2Left)) {
                     player2.setAngularVelocity(-50);
-                } else if (player2.body.speed > 15 && (keyD.isDown)) {
+                } else if (player2.body.speed > 15 && (keyD.isDown || p2Right)) {
                     player2.setAngularVelocity(50);
                 } else {
                     player2.setAngularVelocity(0);
                 }
-                if (keyW.isDown) {
+                if ((keyW.isDown || p2Go)) {
                     this.physics.velocityFromRotation(player2.rotation, 100, player2.body.velocity);
                 } else {
                     player2.setAcceleration(0);

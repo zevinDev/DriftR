@@ -7,6 +7,9 @@ var config = {
         width: 800,
         height: 800
     },
+    input: {
+        gamepad: true
+    },
     scene: [loading, menu, mapSelect, map3, map2, map1, garage, lapsComplete, LeaderBoardEnter, pauseMenu, options],
     physics: {
         default: 'arcade',
