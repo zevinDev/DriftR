@@ -43,6 +43,16 @@ var LeaderBoardEnter = new Phaser.Class({
         letter3 = "";
     },
     update: function() {
+        var pads = this.input.gamepad.gamepads;
+        for (var i = 0; i < pads.length; i++)
+        {
+            var pad = pads[0];
+            if(pad.A){
+                p1Go = true
+            }else {
+                p1Go = false
+            }
+        }
         ABC.setFrame(letterFrame);
         if (keyDOWN.isDown && (letterFrame == 25 && buttonPressed == true)) {
             letterFrame = 0;
@@ -64,7 +74,7 @@ var LeaderBoardEnter = new Phaser.Class({
 
 
 
-        if (keyENTER.isDown && (ABC == ABC3 && enterPressed == true)) {
+        if ((keyENTER.isDown || p1Go) && (ABC == ABC3 && enterPressed == true)) {
             letter3 = ABCList[letterFrame];
             UserName = letter1 + letter2 + letter3;
             enterPressed = false
@@ -86,7 +96,7 @@ var LeaderBoardEnter = new Phaser.Class({
             enterPressed = false;
             letterFrame = 0;
         }
-        if (keyENTER.isUp) {
+        if (keyENTER.isUp || p1Go == false) {
             enterPressed = true;
         }
     }

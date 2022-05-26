@@ -200,45 +200,38 @@ var map1 = new Phaser.Class({
 
     update: function() {    
         var pads = this.input.gamepad.gamepads;
-
         for (var i = 0; i < pads.length; i++)
         {
             var pad = pads[0];
             if(pads.length > 0){
             var pad2 = pads[1];
             if(pad2.leftStick.x < 0){
-                console.log("left2")
                 p2Left = true;
             }else{
                 p2Left = false;
             }
             if(pad2.leftStick.x > 0){
-                console.log("right2")
                 p2Right = true;
             }else{
                 p2Right = false;
             }
             if(pad2.A){
-                console.log("A2")
                 p2Go = true;
             }else{
                 p2Go = false;
             }
             }
             if(pad.leftStick.x < 0){
-                console.log("left")
                 p1Left = true
             }else{
                 p1Left = false
             }
             if(pad.leftStick.x > 0){
-                console.log("right")
                 p1Right = true
             }else{
                 p1Right = false
             }
             if(pad.A){
-                console.log("A")
                 p1Go = true
             }else {
                 p1Go = false
@@ -267,8 +260,10 @@ var map1 = new Phaser.Class({
 
         if (canMove == true) { 
             this.input.keyboard.enabled = true;
+            this.input.gamepad.enabled = true;
         } else {
             this.input.keyboard.enabled = false
+            this.input.gamepad.enabled = false
         }
         getTile(currentMap, twoPlayer);
 
