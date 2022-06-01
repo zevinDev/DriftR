@@ -12,7 +12,7 @@ preload: function() {
 },
 
 create: function(){
-    var buttonz = this.add.image(400, 3600, 'logo');
+    var buttonz = this.add.image(375, 600, 'start');
 
     buttonz.setInteractive(); 
     buttonz.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
