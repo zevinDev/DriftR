@@ -1,4 +1,5 @@
 
+
 var howTo = new Phaser.Class({            
     Extends: Phaser.Scene,
     initialize: function() {
@@ -9,12 +10,19 @@ var howTo = new Phaser.Class({
 preload: function() {
     var car = localStorage.getItem('car');
     this.load.image('player', car);
+    
+    
 },
 
 create: function(){
-    var buttonz = this.add.image(375, 600, 'start');
+    tutorialText = this.add.text(600, 20, "yoo", {
+        fontFamily: 'Dogica',
+        fontSize: '32px'
+    });
 
-    buttonz.setInteractive(); 
+    var buttonz = this.add.image(255, 600, 'start');
+    buttonz.setScrollFactor(0, 0);
+   buttonz.setInteractive(); 
     buttonz.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
      this.cameras.main.fadeOut(1000, 0, 0, 0)
      this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
@@ -23,10 +31,17 @@ create: function(){
      })
  })
     
-    
-    
+    var continueButtonz = this.add.image(550, 600, 'backButton'); 
+    continueButtonz.setScrollFactor(0, 0);
+    continueButtonz.setInteractive(); 
+    continueButtonz.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        continueButtonz.setVisible(false);
+        buttonz.setVisible(false); 
+        
+    })
     
     extendedBackground = this.add.image(2048, 2048, 'extendedBackground');
+     
 
     player = this.physics.add.sprite(375, 3300, 'player');
     player.body.setMaxSpeed(500);
@@ -45,10 +60,10 @@ create: function(){
         
       
         const layer = this.add.layer();
-        layer.add([extendedBackground, player, buttonz]); 
+        layer.add([extendedBackground, player, buttonz, continueButtonz]); 
         
         
-       
+        
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);      
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -63,27 +78,47 @@ create: function(){
 },
 
 update: function(){
-    if (player.body.speed > 15 && (keyLEFT.isDown)) {
-        player.setAngularVelocity(-150);
-        console.log("yoo"); 
-    } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
-        player.setAngularVelocity(150);
-    } else {
-        player.setAngularVelocity(0);
+    var input = true; 
+    if (keySPACE.isDown){
+        input = false; 
+        player.setAngularVelocity(0); 
+        player.body.speed = 0; 
+        player.body.drag.x = 5000;
+        player.body.drag.y = 5000;
+       if (player.body.speed > 0){
+           player.body.speed = 0;
+           console.log(player.body.speed);
+       }
+       
+    }else{
+        input = true; 
     }
-    if (keyUP.isDown && player.body.speed < 516) {
-        this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
-    } else if (player.body.speed > 400) {
-        this.physics.velocityFromRotation(player.rotation, (player.body.speed - 75), player.body.velocity);
-    } else {
-        player.setAcceleration(0);
-        player.body.drag.x = 160;
-        player.body.drag.y = 160;
-        this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
-    }
+    
+        if (player.body.speed > 15 && (keyLEFT.isDown) && input == true) {
+            player.setAngularVelocity(-150);
+        } else if (player.body.speed > 15 && (keyRIGHT.isDown) && input == true) {
+            player.setAngularVelocity(150);
+        } else {
+            player.setAngularVelocity(0);
+        }
+        if (keyUP.isDown && player.body.speed < 516  && input == true) {
+            this.physics.velocityFromRotation(player.rotation, 700, player.body.acceleration);
+        } else if (player.body.speed > 400 && input == true) {
+            this.physics.velocityFromRotation(player.rotation, (player.body.speed - 75), player.body.velocity);
+        } else {
+            player.setAcceleration(0);
+            player.body.drag.x = 160;
+            player.body.drag.y = 160;
+            this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+        }
+        
+    
+    
+  
 
 
 
 
 }, 
 });  
+
