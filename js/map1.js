@@ -589,6 +589,9 @@ var map1 = new Phaser.Class({
                     }
                     if (done != true) {
                         this.scene.launch("lapsComplete");
+                        second.pause()
+                        good.pause()
+                        first.pause()
                         this.scene.pause();
                     }
                 }
