@@ -18,7 +18,7 @@ create: function(){
         seconds = 0;
         milliseconds = 0;
 
-    tutorialText = this.add.text(400, 200, "taggart upload the tilemap or else...", {
+    tutorialText = this.add.text(200, 200, "taggart upload the tilemap or else...", {
         fontFamily: 'Dogica',
         fontSize: '32px'
     });
