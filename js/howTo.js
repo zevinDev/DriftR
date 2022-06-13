@@ -1,5 +1,3 @@
-
-
 var howTo = new Phaser.Class({            
     Extends: Phaser.Scene,
     initialize: function() {
@@ -15,11 +13,17 @@ preload: function() {
 },
 
 create: function(){
-    tutorialText = this.add.text(600, 20, "yoo", {
+        timer = 0;
+        timez = 0;
+        seconds = 0;
+        milliseconds = 0;
+
+    tutorialText = this.add.text(400, 200, "taggart upload the tilemap or else...", {
         fontFamily: 'Dogica',
         fontSize: '32px'
     });
-
+    tutorialText.setVisible(false); 
+tutorialText.setScrollFactor(0,0); 
     var buttonz = this.add.image(255, 600, 'start');
     buttonz.setScrollFactor(0, 0);
    buttonz.setInteractive(); 
@@ -60,7 +64,7 @@ create: function(){
         
       
         const layer = this.add.layer();
-        layer.add([extendedBackground, player, buttonz, continueButtonz]); 
+        layer.add([extendedBackground, player, buttonz, continueButtonz, tutorialText]); 
         
         
         
@@ -75,11 +79,15 @@ create: function(){
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         
+        
 },
 
 update: function(){
     var input = true; 
-    if (keySPACE.isDown){
+    
+    
+    if (keySPACE.isDown && seconds <= 3){
+        tutorialText.setVisible(true); 
         input = false; 
         player.setAngularVelocity(0); 
         player.body.speed = 0; 
@@ -89,10 +97,25 @@ update: function(){
            player.body.speed = 0;
            console.log(player.body.speed);
        }
-       
+        timerEvent(); 
+        console.log("seconds" + seconds); 
+        
     }else{
+        if (seconds >= 3 && keySPACE.isDown){
         input = true; 
+        
+        console.log("input is restored"); 
+        }
+        if (seconds >=3 && keySPACE.isUp){
+            timer = 0;
+            timez = 0;
+            seconds = 0; 
+            input = true; 
+        }
+        input = true; 
+        tutorialText.setVisible(false); 
     }
+    
     
         if (player.body.speed > 15 && (keyLEFT.isDown) && input == true) {
             player.setAngularVelocity(-150);
@@ -111,14 +134,22 @@ update: function(){
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
-        
-    
-    
-  
-
-
-
-
-}, 
+        }, 
 });  
+function timerEvent(){
+    if (1 == 1) {
+        while (timer <= 100) {
+            timer = timer + 01;
+        }
+    }
+    if (timer >= 100) {
+        timer = 00;
+        timez = timez + 01;
+    }
+    if (timez >= 60) {
+        timez = 00;
+        seconds = seconds + 01;
+    }
+    
+}
 
