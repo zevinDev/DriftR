@@ -70,7 +70,7 @@ var lapsComplete = new Phaser.Class({
 
         var X = this.add.image(340, 630, 'X2');
         X.setInteractive();
-        X.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        X.on(pointerDown, () => {
             this.scene.start('mapSelect')
             this.scene.stop(currentMap);
             this.scene.stop();
@@ -78,11 +78,10 @@ var lapsComplete = new Phaser.Class({
 
         var redo = this.add.image(474, 630, 'redo');
         redo.setInteractive();
-        redo.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        redo.on(pointerDown, () => {
             this.scene.start(currentMap);
             this.scene.stop();
         })
-        console.log(stars)
         localStorage.setItem('stars', stars);
     },
     update: function() {}

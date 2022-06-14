@@ -14,11 +14,9 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            //gravity: { y: 300 },
             debug: false
         }
     },
 };
 
-//Defines 'DriftR' As The Game
 var DriftR = new Phaser.Game(config);

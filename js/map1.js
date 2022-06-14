@@ -1,23 +1,32 @@
-var map1 = new Phaser.Class({
-    //initalizes and creates the scene for map1
+var map1 = new Phaser.Class(function(){
+    var keyD;
+    var keyA;
+    var keyW;
+    var keyLEFT;
+    var keyUP;
+    var keyRIGHT;
+    var keyDOWN;
+    var keySPACE;
+    var keyESC;
+    var placeValue = 0;
+    var usedBoostPad1 = false;
+    var boostpad1;
+    var canMove;
+    var timerBox;
+    var timerText;
+    return {
     Extends: Phaser.Scene,
     initialize: function() {
         Phaser.Scene.call(this, {
             "key": "map1"
         });
     },
-
     preload: function() {
         var car = localStorage.getItem('car');
         this.load.image('player', car);
     },
-
     create: function() {
         currentMap = "map1"
-        placeValue = 0;
-        usedBoostPad1 = false;
-
-
         player = this.physics.add.sprite(375, 3300, 'player');
         player.body.setMaxSpeed(500);
         player.angle = -90;
@@ -85,9 +94,7 @@ var map1 = new Phaser.Class({
             collides: true
         })
 
-
         this.physics.add.collider(player, borderLayer);
-
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -439,8 +446,8 @@ var map1 = new Phaser.Class({
         //borderLayer.x = player.x - 200;
         //borderLayer.y = player.y - 150;
 
-        if ((keyESC.isDown || p1Exit) && localStorage.getItem('paused') == "0") {
-            localStorage.setItem("paused", "1");
+        if ((keyESC.isDown || p1Exit) && gamePaused == false) {
+            gamePaused = true;
             this.scene.pause();
             this.scene.launch("pauseMenu");
         }
@@ -598,4 +605,4 @@ var map1 = new Phaser.Class({
             }
         }
     }
-});
+}}());

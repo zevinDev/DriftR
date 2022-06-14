@@ -6,6 +6,7 @@ var howTo = new Phaser.Class({
         });
     },
 preload: function() {
+    gamePaused = false;
     var car = localStorage.getItem('car');
     this.load.image('player', car);
     
@@ -27,7 +28,7 @@ tutorialText.setScrollFactor(0,0);
     var buttonz = this.add.image(255, 600, 'start');
     buttonz.setScrollFactor(0, 0);
    buttonz.setInteractive(); 
-    buttonz.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+    buttonz.on(pointerDown, () => {
      this.cameras.main.fadeOut(1000, 0, 0, 0)
      this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
          this.scene.start('menu')
@@ -38,7 +39,7 @@ tutorialText.setScrollFactor(0,0);
     var continueButtonz = this.add.image(550, 600, 'backButton'); 
     continueButtonz.setScrollFactor(0, 0);
     continueButtonz.setInteractive(); 
-    continueButtonz.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+    continueButtonz.on(pointerDown, () => {
         continueButtonz.setVisible(false);
         buttonz.setVisible(false); 
         
@@ -59,7 +60,6 @@ tutorialText.setScrollFactor(0,0);
     canMove = true;
 
 
-        console.log("works"); 
            //Sets Collistion For Player
         
       

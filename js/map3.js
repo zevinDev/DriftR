@@ -252,21 +252,18 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
             if (p1Check1Tile.index == 23 || p2Check1Tile.index == 23) {
                 if(check1Pass == false && check2Pass == false && check3Pass == false){
                     check1Pass = true;
-                    console.log("Check 1 passed")
                 }
             }
     
             if (p1Check2Tile.index == 23 || p2Check2Tile.index == 23) {
                 if(check1Pass == true && check2Pass == false && check3Pass == false){
                     check2Pass = true;
-                    console.log("Check 2 passed")
                 }
             }
     
             if (p1Check3Tile.index == 23 || p2Check3Tile.index == 23) {
                 if(check1Pass == true && check2Pass == true && check3Pass == false){
                     check3Pass = true;
-                    console.log("Check 3 passed")
                 }
             }
     
@@ -322,21 +319,18 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
         if (p1Check1Tile.index == 23) {
             if(check1Pass == false && check2Pass == false && check3Pass == false){
                 check1Pass = true;
-                console.log("Check 1 passed")
             }
         }
 
         if (p1Check2Tile.index == 23) {
             if(check1Pass == true && check2Pass == false && check3Pass == false){
                 check2Pass = true;
-                console.log("Check 2 passed")
             }
         }
 
         if (p1Check3Tile.index == 23) {
             if(check1Pass == true && check2Pass == true && check3Pass == false){
                 check3Pass = true;
-                console.log("Check 3 passed")
             }
         }
 

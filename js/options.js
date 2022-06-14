@@ -44,24 +44,23 @@ reset = this.add.text(200, 400, 'reset')
 
 
 onFull.setInteractive();
-onFull.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+onFull.on(pointerDown, () => {
     this.scale.startFullscreen();
 })
 
 offFull.setInteractive();
-offFull.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+offFull.on(pointerDown, () => {
     this.scale.stopFullscreen();
 })
 
 backbut.setInteractive();
-backbut.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+backbut.on(pointerDown, () => {
     this.scene.start('menu')
 })
 
 reset.setInteractive();
-reset.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+reset.on(pointerDown, () => {
     localStorage.clear();
-    console.log('cleared cache')
 })
 
 },

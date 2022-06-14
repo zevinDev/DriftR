@@ -76,8 +76,6 @@ var loading = new Phaser.Class({
         });
 
         //Loads All The Images
-        this.load.image('howto', 'assets/images/UI/howto.png');
-        this.load.image('X', 'assets/images/UI/X.png')
         this.load.image('X2', 'assets/images/UI/X2.png')
         this.load.image('map1Pallet', 'assets/tilesets/map1Pallet.png')
         this.load.image('map2Pallet', 'assets/tilesets/map2Pallet.png')
@@ -110,139 +108,44 @@ var loading = new Phaser.Class({
         this.load.audio('second', 'assets/sounds/second.wav');
         this.load.audio('good', 'assets/sounds/good.wav');
 
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
-            frameWidth: 164,
-            frameHeight: 80
-        });
-        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', {
-            frameWidth: 186,
-            frameHeight: 184
-        });
-        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', {
-            frameWidth: 32.2,
-            frameHeight: 52
-        });
-        this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', {
-            frameWidth: 32.2,
-            frameHeight: 52
-        });
-        this.load.spritesheet('resume', 'assets/images/UI/resume.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {
-            frameWidth: 56,
-            frameHeight: 60
-        });
-        this.load.spritesheet('endScreen', 'assets/images/UI/EndScreen.png', {
-            frameWidth: 800,
-            frameHeight: 800
-        });
-        this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', {
-            frameWidth: 264,
-            frameHeight: 104
-        });
-        this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', {
-            frameWidth: 264,
-            frameHeight: 104
-        });
-        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {
-            frameWidth: 165,
-            frameHeight: 80
-        });
-        this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', {
-            frameWidth: 144,
-            frameHeight: 160
-        });
-        this.load.spritesheet('start', 'assets/images/UI/START.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('exit', 'assets/images/UI/EXIT.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', {
-            frameWidth: 213,
-            frameHeight: 80
-        });
-        this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', {
-            frameWidth: 40,
-            frameHeight: 40
-        });
-        this.load.spritesheet('boostPad', 'assets/images/UI/boostPad.png', {
-            frameWidth: 162,
-            frameHeight: 162
-        });
+        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {frameWidth: 164, frameHeight: 80});
+        this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {frameWidth: 186, frameHeight: 184});
+        this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {frameWidth: 186, frameHeight: 184});
+        this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', {frameWidth: 186, frameHeight: 184});
+        this.load.spritesheet('map1select', 'assets/images/UI/MapSelectMap1Test.png', {frameWidth: 186,frameHeight: 184});
+        this.load.spritesheet('mapstart', 'assets/images/UI/mapstart.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('VolControl', 'assets/images/UI/Right Button.png', {frameWidth: 32.2,frameHeight: 52});
+        this.load.spritesheet('Ind', 'assets/images/UI/Indicator.png', {frameWidth: 32.2,frameHeight: 52});
+        this.load.spritesheet('resume', 'assets/images/UI/resume.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('ABC', 'assets/images/UI/nameselect.png', {frameWidth: 56,frameHeight: 60});
+        this.load.spritesheet('endScreen', 'assets/images/UI/EndScreen.png', {frameWidth: 800,frameHeight: 800});
+        this.load.spritesheet('cancelButton', 'assets/images/Garage/CancelButton.png', {frameWidth: 264,frameHeight: 104});
+        this.load.spritesheet('buyButton', 'assets/images/Garage/BuyButton.png', {frameWidth: 264,frameHeight: 104});
+        this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {frameWidth: 165,frameHeight: 80});
+        this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', {frameWidth: 144,frameHeight: 160});
+        this.load.spritesheet('start', 'assets/images/UI/START.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('exit', 'assets/images/UI/EXIT.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', {frameWidth: 40,frameHeight: 40});
+        this.load.spritesheet('boostPad', 'assets/images/UI/boostPad.png', {frameWidth: 162,frameHeight: 162});
 
-        var firstTime = localStorage.getItem("first_time");
+        pointerOver = Phaser.Input.Events.GAMEOBJECT_POINTER_OVER;
+        pointerOut = Phaser.Input.Events.GAMEOBJECT_POINTER_OUT;
+        pointerDown = Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN;
+
+        firstTime = localStorage.getItem("first_time");
         if (!firstTime) {
-            // first time loaded!
-            localStorage.setItem("first_time", "1");
-            localStorage.setItem("car", "assets/images/Cars/Player.png");
-            localStorage.setItem("MainVolume", 50);
-            localStorage.setItem("MusicVolume", 50);
-            localStorage.setItem("stars", 1);
-            localStorage.setItem("P1", true);
-            localStorage.setItem("P2", false);
-            localStorage.setItem("P3", false);
-            localStorage.setItem("P4", false);
-            localStorage.setItem("MGC", false);
-            localStorage.setItem("DBM", false);
-            localStorage.setItem("grassMap", false);
-            localStorage.setItem("snowMap", false);
-            localStorage.setItem("busyBeach", false);
-            localStorage.setItem("MSFade", 0);
-            localStorage.setItem("GFade", 0);
-            var map1Leader = [0, 0, 0, 0, 0]
-            var map1Leadername = ["none", "none", "none", "none", "none"]
-            var map1Leaderlist = [0, 0, 0, 0, 0]
-            localStorage.setItem('map1Leader', JSON.stringify(map1Leader));
-            localStorage.setItem('map1Leadername', JSON.stringify(map1Leadername));
-            localStorage.setItem('map1Leaderlist', JSON.stringify(map1Leaderlist));
-            var map2Leader = [0, 0, 0, 0, 0]
-            var map2Leadername = ["none", "none", "none", "none", "none"]
-            var map2Leaderlist = [0, 0, 0, 0, 0]
-            localStorage.setItem('map2Leader', JSON.stringify(map2Leader));
-            localStorage.setItem('map2Leadername', JSON.stringify(map2Leadername));
-            localStorage.setItem('map2Leaderlist', JSON.stringify(map2Leaderlist));
-            var map3leader = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            var map3leadername = ["none", "none", "none", "none", "none"]
-            var map3leaderlist = [0, 0, 0, 0, 0]
-            localStorage.setItem('map3leader', JSON.stringify(map3leader));
-            localStorage.setItem('map3leadername', JSON.stringify(map3leadername));
-            localStorage.setItem('map3leaderlist', JSON.stringify(map3leaderlist));
-            localStorage.setItem("paused", "0");
-            howto = true;
-        } else {
-            console.log('Not first time loaded')
-            localStorage.setItem("paused", "0");
-            howto = false;
+            setDefault();
         }
-
     },
     create: function() {
+        if(!firstTime) {
         this.scene.start('howTo')
         this.scene.stop();
+        }else{
+        this.scene.start('menu');
+        this.scene.stop();
+        }
     }
 })

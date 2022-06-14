@@ -85,14 +85,14 @@ var mapSelect = new Phaser.Class({
         popUpText.visible = false;
 
         cancelButton.setInteractive();
-        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        cancelButton.on(pointerOver, () => {
 
             cancelButton.setFrame(1)
         })
-        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        cancelButton.on(pointerOut, () => {
             cancelButton.setFrame(0)
         })
-        cancelButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        cancelButton.on(pointerDown, () => {
             price = 0;
             infoPopUp.visible = false;
             cancelButton.visible = false;
@@ -104,14 +104,14 @@ var mapSelect = new Phaser.Class({
         })
 
         buyButton.setInteractive();
-        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        buyButton.on(pointerOver, () => {
 
             buyButton.setFrame(1)
         })
-        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        buyButton.on(pointerOut, () => {
             buyButton.setFrame(0)
         })
-        buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        buyButton.on(pointerDown, () => {
             var stars2 = localStorage.getItem('stars');
             if (stars2 - price >= 0) {
                 localStorage.setItem("stars", stars2 - price);
@@ -147,15 +147,15 @@ var mapSelect = new Phaser.Class({
         //if the map is bought then it sets the unlocked frame for the icon and sets a interecative
         if (GRASS == "true") {
         map1select.setInteractive();
-        map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        map1select.on(pointerOver, () => {
             map1select.setFrame(1)
         })
-        map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        map1select.on(pointerOut, () => {
             map1select.setFrame(0)
         })
         //when clicked on it will change the icon and also change all needed variables in order to show the right needed
         //information for the leaderboard times
-        map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        map1select.on(pointerDown, () => {
             textvisible = true;
             selectedMap = 1;
             map1var = true;
@@ -165,7 +165,7 @@ var mapSelect = new Phaser.Class({
         map1select.setFrame(3);
         map1select.setInteractive();
         //when you click on it, the buypopup will show so you can buy the locked map
-        map1select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        map1select.on(pointerDown, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 1;
@@ -175,7 +175,7 @@ var mapSelect = new Phaser.Class({
                     buyButton.visible = true;
                     popUpText.visible = true;
 
-                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                    buyButton.on(pointerDown, () => {
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('grassMap', true);
                             textvisible = true;
@@ -191,13 +191,13 @@ var mapSelect = new Phaser.Class({
        //interactive for map2
        if (SNOW == "true") {
         map2select.setInteractive();
-        map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        map2select.on(pointerOver, () => {
             map2select.setFrame(1)
         })
-        map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        map2select.on(pointerOut, () => {
             map2select.setFrame(0)
         })
-        map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        map2select.on(pointerDown, () => {
             textvisible = true;
             selectedMap = 2;
             map2var = true;
@@ -205,7 +205,7 @@ var mapSelect = new Phaser.Class({
     } else if (SNOW == "false") {
         map2select.setFrame(3);
         map2select.setInteractive();
-        map2select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        map2select.on(pointerDown, () => {
                 notEnoughMoney.visible = false;
                 if (infoPopUp.visible == false) {
                     price = 3
@@ -215,7 +215,7 @@ var mapSelect = new Phaser.Class({
                     buyButton.visible = true;
                     popUpText.visible = true;
 
-                    buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                    buyButton.on(pointerDown, () => {
                         if (notEnoughMoney.visible == false) {
                             localStorage.setItem('snowMap', true);
                             textvisible = true;
@@ -231,13 +231,13 @@ var mapSelect = new Phaser.Class({
               //interactive for map3
               if (BEACH == "true") {
                 map3select.setInteractive();
-                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+                map3select.on(pointerOver, () => {
                     map3select.setFrame(1)
                 })
-                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+                map3select.on(pointerOut, () => {
                     map3select.setFrame(0)
                 })
-                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                map3select.on(pointerDown, () => {
                     textvisible = true;
                     selectedMap = 3;
                     millisecondsvar = true;
@@ -245,7 +245,7 @@ var mapSelect = new Phaser.Class({
             } else if (BEACH == "false") {
                 map3select.setFrame(3);
                 map3select.setInteractive();
-                map3select.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                map3select.on(pointerDown, () => {
                         notEnoughMoney.visible = false;
                         if (infoPopUp.visible == false) {
                             price = 5;
@@ -255,7 +255,7 @@ var mapSelect = new Phaser.Class({
                             buyButton.visible = true;
                             popUpText.visible = true;
         
-                            buyButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+                            buyButton.on(pointerDown, () => {
                                 if (notEnoughMoney.visible == false) {
                                     localStorage.setItem('busyBeach', true);
                                     textvisible = true;
@@ -271,13 +271,13 @@ var mapSelect = new Phaser.Class({
         //backgrond UI
         backButton = this.add.image(100, 50, 'backButton');
         backButton.setInteractive();
-        backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        backButton.on(pointerOver, () => {
             backButton.setFrame(1)
         })
-        backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        backButton.on(pointerOut, () => {
             backButton.setFrame(0)
         })
-        backButton.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        backButton.on(pointerDown, () => {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             localStorage.setItem("MSFade", 0);
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
@@ -287,13 +287,13 @@ var mapSelect = new Phaser.Class({
         })
         mapstart = this.add.image(579, 483, 'mapstart');
         mapstart.setInteractive();
-        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => {
+        mapstart.on(pointerOver, () => {
             mapstart.setFrame(1)
         })
-        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OUT, () => {
+        mapstart.on(pointerOut, () => {
             mapstart.setFrame(0)
         })
-        mapstart.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        mapstart.on(pointerDown, () => {
             if (selectedMap == 1) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
@@ -311,7 +311,7 @@ var mapSelect = new Phaser.Class({
         //checkbox button sets variable boolean based on whether it is clicked or not
         checkbox = this.add.image(580,620, 'check_box');
         checkbox.setInteractive();
-        checkbox.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        checkbox.on(pointerDown, () => {
             if(twoPlayer == true){
                 twoPlayer = false;
             } else{
