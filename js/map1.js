@@ -8,7 +8,6 @@ var map1 = new Phaser.Class(function(){
     var keyDOWN;
     var keySPACE;
     var keyESC;
-    var placeValue = 0;
     var usedBoostPad1 = false;
     var boostpad1;
     var canMove;
@@ -137,6 +136,7 @@ var map1 = new Phaser.Class(function(){
         p1Exit = false;
         p1Right = false;
         p2Right = false;
+        placeValue = 0;
 
         //Plays Cards Sound Effects
         first = this.sound.add("first", {
