@@ -45,14 +45,12 @@ tutorialText.setScrollFactor(0,0);
         
     })
     
-    extendedBackground = this.add.image(2048, 2048, 'extendedBackground');
      
 
-    player = this.physics.add.sprite(375, 3300, 'player');
+    player = this.physics.add.sprite(375, 1500, 'player');
     player.body.setMaxSpeed(500);
     player.angle = -90;
     player.setBounce(0.2);
-    player.setCollideWorldBounds(true);
     
 
     camera = this.cameras.main;
@@ -63,14 +61,14 @@ tutorialText.setScrollFactor(0,0);
     const TileTutorialMap = this.make.tilemap({
         key: 'TileTutorialMap'
     })
-        
-           const TutorialP = TileTutorialMap.addTilesetImage('TutorialP', 'TutorialP', 8, 8, 1, 2);
 
-           MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
+    //Assigns Images To TileMap
+    const TutorialP = TileTutorialMap.addTilesetImage('TutorialP', 'TutorialP', 8, 8, 1, 2);
 
+        MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
 
         const layer = this.add.layer();
-        layer.add([extendedBackground, player, buttonz, continueButtonz, tutorialText]); 
+        layer.add([player, buttonz, continueButtonz, tutorialText]); 
         
         
         
