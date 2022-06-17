@@ -60,9 +60,15 @@ tutorialText.setScrollFactor(0,0);
     canMove = true;
 
 
-           //Sets Collistion For Player
+    const TileTutorialMap = this.make.tilemap({
+        key: 'TileTutorialMap'
+    })
         
-      
+           const TutorialP = TileTutorialMap.addTilesetImage('TutorialP', 'TutorialP', 8, 8, 1, 2);
+
+           MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
+
+
         const layer = this.add.layer();
         layer.add([extendedBackground, player, buttonz, continueButtonz, tutorialText]); 
         
