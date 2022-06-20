@@ -14,17 +14,28 @@ preload: function() {
 },
 
 create: function(){
-        timer = 0;
+    ranOnce = false;
+    masSpeed = 500;     
+    
+    timer = 0;
         timez = 0;
         seconds = 0;
         milliseconds = 0;
-
-    tutorialText = this.add.text(200, 200, "taggart upload the tilemap or else...", {
+    
+    tutorialText = this.add.text(200, 200, "this is placeholder text lol", {
         fontFamily: 'Dogica',
         fontSize: '32px'
     });
     tutorialText.setVisible(false); 
 tutorialText.setScrollFactor(0,0); 
+
+tutorialText2 = this.add.text(200, 200, "Do you want to engage\n in the tutorial?", {
+    fontFamily: 'Dogica',
+    fontSize: '32px'
+});
+tutorialText2.setVisible(true); 
+tutorialText2.setScrollFactor(0,0); 
+
     var buttonz = this.add.image(255, 600, 'start');
     buttonz.setScrollFactor(0, 0);
    buttonz.setInteractive(); 
@@ -42,12 +53,12 @@ tutorialText.setScrollFactor(0,0);
     continueButtonz.on(pointerDown, () => {
         continueButtonz.setVisible(false);
         buttonz.setVisible(false); 
-        
+        tutorialText2.setVisible(false);
     })
     
      
 
-    player = this.physics.add.sprite(375, 1500, 'player');
+    player = this.physics.add.sprite(3200, 3377, 'player');
     player.body.setMaxSpeed(500);
     player.angle = -90;
     player.setBounce(0.2);
@@ -67,8 +78,10 @@ tutorialText.setScrollFactor(0,0);
 
         MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
 
+        
+
         const layer = this.add.layer();
-        layer.add([player, buttonz, continueButtonz, tutorialText]); 
+        layer.add([player, buttonz, continueButtonz, tutorialText2, tutorialText]); 
         
         
         
@@ -84,13 +97,15 @@ tutorialText.setScrollFactor(0,0);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         
         
-},
+    },
 
 update: function(){
     var input = true; 
+    p1Tile = MapLayer.getTileAtWorldXY(player.x, player.y, true);
     
-    
-    if (keySPACE.isDown && seconds <= 3){
+    if (p1Tile.index == 30 && seconds <= 3){
+        console.log(p1Tile.index); 
+        textValue = "This is placeholder text lol"; 
         tutorialText.setVisible(true); 
         input = false; 
         player.setAngularVelocity(0); 
@@ -103,14 +118,15 @@ update: function(){
        }
         timerEvent(); 
         console.log("seconds" + seconds); 
-        
+        console.log("x" + player.x);
+        console.log("y" + player.y); 
     }else{
-        if (seconds >= 3 && keySPACE.isDown){
+        if (seconds >= 3 && p1Tile.index == 30){
         input = true; 
         
         console.log("input is restored"); 
         }
-        if (seconds >=3 && keySPACE.isUp){
+        if (seconds >=3 && p1Tile.index != 30){
             timer = 0;
             timez = 0;
             seconds = 0; 
@@ -138,8 +154,45 @@ update: function(){
             player.body.drag.y = 160;
             this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
         }
+
+        //in grass, the car is slowed down
+        if (p1Tile.index == 10 || p1Tile.index == 9 || p1Tile.index == 26){
+            
+            if (player.body.speed > 300) {
+                masSpeed = (masSpeed - 7)
+            }
+            ranOnce = true;
+            player.body.setMaxSpeed(masSpeed)
+            if (player.body.speed < 310) {
+                if (player.body.speed > 15 && (keyLEFT.isDown )) {
+                    player.setAngularVelocity(-50);
+                } else if (player.body.speed > 15 && (keyRIGHT.isDown )) {
+                    player.setAngularVelocity(50);
+                } else {
+                    player.setAngularVelocity(0);
+                }
+                if (keyUP.isDown) {
+                    this.physics.velocityFromRotation(player.rotation, 100, player.body.velocity);
+                } else {
+                    player.setAcceleration(0);
+                    player.body.drag.x = 300;
+                    player.body.drag.y = 300;
+                    this.physics.velocityFromRotation(player.rotation, player.body.speed, player.body.velocity);
+                }
+            }
+        } else {
+            masSpeed = 500
+            if (ranOnce == true) {
+                player.body.setMaxSpeed(500);
+                ranOnce = false;
+            }
+        }
+
+        
+
         }, 
 });  
+
 function timerEvent(){
     if (1 == 1) {
         while (timer <= 100) {
@@ -156,4 +209,6 @@ function timerEvent(){
     }
     
 }
+
+
 
