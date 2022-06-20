@@ -1,6 +1,9 @@
-var howTo = new Phaser.Class({            
+var howTo = new Phaser.Class({    
+    
+    
     Extends: Phaser.Scene,
     initialize: function() {
+        
         Phaser.Scene.call(this, {
             "key": "howTo"
         });
@@ -14,6 +17,59 @@ preload: function() {
 },
 
 create: function(){
+    player = this.physics.add.sprite(3200, 3377, 'player');
+    player.body.setMaxSpeed(500);
+    player.angle = -90;
+    player.setBounce(0.2);
+    
+
+    camera = this.cameras.main;
+    camera.startFollow(player);
+    canMove = true;
+   
+   
+    //code for the boostpad function
+    var usedBoostPad1 = false;
+        var boostpad1;
+
+
+    boostpad1 = this.physics.add.sprite(5920, 2915, 'boostPad');
+    this.anims.create({
+        key: "boost",
+        frameRate: 7,
+        frames: this.anims.generateFrameNumbers("boostPad", {
+            start: 0,
+            end: 3
+        }),
+        repeat: -1
+    });
+    boostpad1.play("boost")
+    boostpad1.setScale(.5);
+    boostpad1.angle = 180;
+    
+    //Adds a boostpad to the map
+           boostpads = this.add.group();
+           boostpads.add(boostpad1);
+   
+           cars = this.add.group();
+           cars.add(player);
+           
+   
+           //Handles BoostPads and BoostPad Collision
+           this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
+               if (boostpad == boostpad1 && usedBoostPad1 == false) {
+                   usedBoostPad1 = true;
+                   boostpad1.stop("boost");
+                   boostpad1.setFrame(0);
+                   user.body.setMaxSpeed(1000);
+                   user.body.velocity.normalize()
+                       .scale(1000);
+                   setTimeout(function() {
+                       user.body.setMaxSpeed(500);
+                   }, 500);
+               }
+           });
+    
     ranOnce = false;
     masSpeed = 500;     
     
@@ -58,15 +114,7 @@ tutorialText2.setScrollFactor(0,0);
     
      
 
-    player = this.physics.add.sprite(3200, 3377, 'player');
-    player.body.setMaxSpeed(500);
-    player.angle = -90;
-    player.setBounce(0.2);
-    
-
-    camera = this.cameras.main;
-    camera.startFollow(player);
-    canMove = true;
+ 
 
 
     const TileTutorialMap = this.make.tilemap({
@@ -81,7 +129,7 @@ tutorialText2.setScrollFactor(0,0);
         
 
         const layer = this.add.layer();
-        layer.add([player, buttonz, continueButtonz, tutorialText2, tutorialText]); 
+        layer.add([boostpad1, player, buttonz, continueButtonz, tutorialText2, tutorialText]); 
         
         
         
@@ -96,14 +144,36 @@ tutorialText2.setScrollFactor(0,0);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         
-        
+        //Adds a boostpad to the map
+           //Ads A BoostPad To The Map
+           boostpads = this.add.group();
+           boostpads.add(boostpad1);
+   
+           cars = this.add.group();
+           cars.add(player);
+           
+   
+           //Handles BoostPads and BoostPad Collision
+           this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
+               if (boostpad == boostpad1 && usedBoostPad1 == false) {
+                   usedBoostPad1 = true;
+                   boostpad1.stop("boost");
+                   boostpad1.setFrame(0);
+                   user.body.setMaxSpeed(1000);
+                   user.body.velocity.normalize()
+                       .scale(1000);
+                   setTimeout(function() {
+                       user.body.setMaxSpeed(500);
+                   }, 500);
+               }
+           });
     },
 
 update: function(){
     var input = true; 
     p1Tile = MapLayer.getTileAtWorldXY(player.x, player.y, true);
     
-    if (p1Tile.index == 30 && seconds <= 3){
+    if (p1Tile.index == 30 && seconds <= 6){
         console.log(p1Tile.index); 
         textValue = "This is placeholder text lol"; 
         tutorialText.setVisible(true); 
@@ -118,10 +188,9 @@ update: function(){
        }
         timerEvent(); 
         console.log("seconds" + seconds); 
-        console.log("x" + player.x);
-        console.log("y" + player.y); 
+        
     }else{
-        if (seconds >= 3 && p1Tile.index == 30){
+        if (seconds >= 6 && p1Tile.index == 30){
         input = true; 
         
         console.log("input is restored"); 
@@ -209,6 +278,5 @@ function timerEvent(){
     }
     
 }
-
 
 
