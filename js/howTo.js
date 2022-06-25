@@ -127,16 +127,20 @@ var howTo = new Phaser.Class({
 
 
 
+
         const TileTutorialMap = this.make.tilemap({
             key: 'TileTutorialMap'
         })
-
+    
         //Assigns Images To TileMap
         const TutorialP = TileTutorialMap.addTilesetImage('TutorialP', 'TutorialP', 8, 8, 1, 2);
-
+    
         MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
+        CollideLayer = TileTutorialMap.createLayer('CollideLayer', TutorialP)
 
+        CollideLayer.setCollisionBetween(20, 27);
 
+        this.physics.add.collider(player, CollideLayer);
 
         const layer = this.add.layer();
         layer.add([boostpad1, player,  tutorialTextBorder, buttonz, continueButtonz, tutorialText2, tutorialText]);
