@@ -27,7 +27,6 @@ create: function(){
     camera.startFollow(player);
     canMove = true;
    
-   
     //code for the boostpad function
     var usedBoostPad1 = false;
         var boostpad1;
@@ -124,9 +123,14 @@ tutorialText2.setScrollFactor(0,0);
     //Assigns Images To TileMap
     const TutorialP = TileTutorialMap.addTilesetImage('TutorialP', 'TutorialP', 8, 8, 1, 2);
 
-        MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
+    MapLayer = TileTutorialMap.createLayer('GrassLayer', TutorialP)
+    CollideLayer = TileTutorialMap.createLayer('CollideLayer', TutorialP)
+    
+    CollideLayer.setCollisionByProperty({                                   //Boundry detection is declared true. 
+        collides: true
+    })
 
-        
+    this.physics.add.collider(player, CollideLayer);
 
         const layer = this.add.layer();
         layer.add([boostpad1, player, buttonz, continueButtonz, tutorialText2, tutorialText]); 
@@ -256,8 +260,6 @@ update: function(){
                 ranOnce = false;
             }
         }
-
-        
 
         }, 
 });  
