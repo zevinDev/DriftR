@@ -98,6 +98,7 @@ var loading = new Phaser.Class({
         this.load.image('logo', 'assets/images/UI/Logo_Test.png');
         this.load.image('extendedBackground', 'assets/images/UI/Extended_Background.png');
         this.load.image('timerBox', 'assets/images/UI/TimerBox.png');
+        this.load.image('tutorialTextBorder', 'assets/images/UI/tutorialTextBorder.png');
 
         this.load.tilemapTiledJSON('tileMap2', 'assets/tilesets/map2.json');
         this.load.tilemapTiledJSON('tileMap1', 'assets/tilesets/map1.json');
@@ -111,6 +112,8 @@ var loading = new Phaser.Class({
         this.load.audio('good', 'assets/sounds/good.wav');
 
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {frameWidth: 164, frameHeight: 80});
+        this.load.spritesheet('NoButton', 'assets/images/UI/NoButton.png', {frameWidth: 164, frameHeight: 80});
+        this.load.spritesheet('YesButton', 'assets/images/UI/YesButton.png', {frameWidth: 213,frameHeight: 80});
         this.load.spritesheet('selectmap1', 'assets/images/UI/MapSelectMap1Test.png', {frameWidth: 186, frameHeight: 184});
         this.load.spritesheet('map2select', 'assets/images/UI/MapSelectMap2Test.png', {frameWidth: 186, frameHeight: 184});
         this.load.spritesheet('map3select', 'assets/images/UI/MapSelectMap3Test.png', {frameWidth: 186, frameHeight: 184});
@@ -142,7 +145,7 @@ var loading = new Phaser.Class({
         }
     },
     create: function() {
-        if(!firstTime) {
+        if(1 == 1) {
         this.scene.start('howTo')
         this.scene.stop();
         }else{
