@@ -88,9 +88,9 @@ var howTo = new Phaser.Class({
         tutorialText.setVisible(false);
         tutorialText.setScrollFactor(0, 0);
 
-        tutorialText2 = this.add.text(200, 200, "Do you want to engage\n in the tutorial?", {
+        tutorialText2 = this.add.text(190, 200, "\n\n   Do you want \n\n    to engage \n\nin the tutorial?", {
             fontFamily: 'Dogica',
-            fontSize: '24px'
+            fontSize: '36px'
         });
         tutorialText2.setVisible(true);
         tutorialText2.setScrollFactor(0, 0);
@@ -98,7 +98,7 @@ var howTo = new Phaser.Class({
         tutorialTextBorder = this.add.image(400, 400, 'tutorialTextBorder');
         tutorialTextBorder.setScrollFactor(0,0);
 
-        var buttonz = this.add.image(255, 600, 'NoButton');
+        var buttonz = this.add.image(275, 600, 'NoButton');
         buttonz.setScrollFactor(0, 0);
         buttonz.setInteractive();
         buttonz.on(pointerOver, () => {buttonz.setFrame(1)});
@@ -111,7 +111,7 @@ var howTo = new Phaser.Class({
             })
         })
 
-        var continueButtonz = this.add.image(550, 600, 'YesButton');
+        var continueButtonz = this.add.image(500, 600, 'YesButton');
         continueButtonz.setScrollFactor(0, 0);
         continueButtonz.setInteractive();
         continueButtonz.on(pointerOver, () => {continueButtonz.setFrame(1)});
@@ -144,8 +144,6 @@ var howTo = new Phaser.Class({
 
         const layer = this.add.layer();
         layer.add([boostpad1, player,  tutorialTextBorder, buttonz, continueButtonz, tutorialText2, tutorialText]);
-
-
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -206,22 +204,22 @@ var howTo = new Phaser.Class({
             player.setAngularVelocity(0);
             player.body.moves = false
             if (onCheckpoint == 0) {
-                tutorialText.setText("Hi");
+                tutorialText.setText("Welcome to DriftR!!! \n\nPress the up-arrow key \n\nto accelerate and the \n\nright or left-arrow key \n\nto drift!!!");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 1) {
-                tutorialText.setText("Yo");
+                tutorialText.setText("For normal turning, \n\naccelerate, \n\nlet go of the up-arrow \n\nkey, and press the right \n\nor left-arrow key");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 2) {
-                tutorialText.setText("How are you doing");
+                tutorialText.setText("Be cautious, \n\nnormal turning is \n\nsharper than drifting, \n\nbut slower");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 3) {
-                tutorialText.setText("Stop leaving me on read");
+                tutorialText.setText("Ahead there is a \n\nboost pad, driving over \n\nthese will give you a \n\nshort burst of speed");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 4) {
-                tutorialText.setText("ihy");
+                tutorialText.setText("Now that you have \n\nthe basics down, \n\ndrive through these \n\ncorners by yourself!!!");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 5) {
-                tutorialText.setText("we're done");
+                tutorialText.setText("Congratulations, you've \n\ncompleted the Tutorial \n\nand the main game \n\nwill start now");
                 tutorialTextBorder.setVisible(true); 
             } else if (onCheckpoint == 6) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
