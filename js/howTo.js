@@ -97,6 +97,7 @@ var howTo = new Phaser.Class({
 
         tutorialTextBorder = this.add.image(400, 400, 'tutorialTextBorder');
         tutorialTextBorder.setScrollFactor(0,0);
+        tutorialTextBorder.setInteractive();
 
         var buttonz = this.add.image(275, 600, 'NoButton');
         buttonz.setScrollFactor(0, 0);
@@ -187,22 +188,18 @@ var howTo = new Phaser.Class({
         checkpoint = false;
         p1Tile = MapLayer.getTileAtWorldXY(player.x, player.y, true);
 
-        if (p1Tile.index == 25 && seconds <= 6) {
+        if (p1Tile.index == 25) {
             checkpoint = true;
             if (checkpoint == true) {
-                count = count + 1;
-                if (count % 420 == 0) {
+                if (count == 0) {
                     onCheckpoint = onCheckpoint + 1;
-                    
+                    count = 1;
+                    tutorialText.setVisible(true);
+                    input = false;
+                    player.setAngularVelocity(0);
+                    player.body.moves = false
                 }
             }
-
-
-            //textValue = "This is placeholder text lol";
-            tutorialText.setVisible(true);
-            input = false;
-            player.setAngularVelocity(0);
-            player.body.moves = false
             if (onCheckpoint == 0) {
                 tutorialText.setText("Welcome to DriftR!!! \n\nPress the up-arrow key \n\nto accelerate and the \n\nright or left-arrow key \n\nto drift!!!");
                 tutorialTextBorder.setVisible(true); 
@@ -231,25 +228,16 @@ var howTo = new Phaser.Class({
                     tutorialTextBorder.setVisible(false); 
                 }
             }
-            timerEvent();
-
-
-        } else {
-            if (seconds >= 6 && p1Tile.index == 25) {
+            tutorialTextBorder.on(pointerDown, () => {
                 input = true;
                 player.body.moves = true;
                 tutorialText.setVisible(false);
-            }
-            if (seconds >= 6 && p1Tile.index != 25) {
-                timer = 0;
-                timez = 0;
-                seconds = 0;
-                input = true;
-                tutorialText.setVisible(false);
-            }
+            })
+        } else {
+            count = 0;
             input = true;
-            player.body.moves = true;
             tutorialText.setVisible(false);
+            player.body.moves = true;
             if (firstTime == false) {
                 tutorialTextBorder.setVisible(false);
             }

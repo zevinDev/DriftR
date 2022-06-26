@@ -145,7 +145,7 @@ var loading = new Phaser.Class({
         }
     },
     create: function() {
-        if(1 == 1) {
+        if(!firstTime) {
         this.scene.start('howTo')
         this.scene.stop();
         }else{
