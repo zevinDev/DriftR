@@ -1,5 +1,5 @@
 var count = 0;
-var onCheckpoint = 0;
+var onCheckpoint = -1;
 var howTo = new Phaser.Class({
 
 
