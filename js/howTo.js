@@ -80,7 +80,7 @@ var howTo = new Phaser.Class({
         timez = 0;
         seconds = 0;
         milliseconds = 0;
-        tutorialText3 = this.add.text(200, 600, "click me to continue", {
+        tutorialText3 = this.add.text(250, 600, "(click me to continue)", {
             fontFamily: 'Dogica',
             fontSize: '18px'
         });
@@ -208,49 +208,39 @@ var howTo = new Phaser.Class({
                     player.body.moves = false
                 }
             }
-            if (onCheckpoint == 1) {
+            if (onCheckpoint == 0) {
                 tutorialText.setText("Welcome to DriftR!!! \n\nPress the up-arrow key \n\nto accelerate and the \n\nright or left-arrow key \n\nto drift!!!");
                 tutorialTextBorder.setVisible(true); 
                 tutorialText3.setVisible(true);
-            } else if (onCheckpoint == 2) {
+            } else if (onCheckpoint == 1) {
                 tutorialText.setText("For normal turning, \n\naccelerate, \n\nlet go of the up-arrow \n\nkey, and press the right \n\nor left-arrow key");
                 tutorialTextBorder.setVisible(true);
                 tutorialText3.setVisible(true); 
-            } else if (onCheckpoint == 3) {
+            } else if (onCheckpoint == 2) {
                 tutorialText.setText("Be cautious, \n\nnormal turning is \n\nsharper than drifting, \n\nbut slower");
                 tutorialTextBorder.setVisible(true);
                 tutorialText3.setVisible(true); 
-            } else if (onCheckpoint == 4) {
+            } else if (onCheckpoint == 3) {
                 tutorialText.setText("Ahead there is a \n\nboost pad, driving over \n\nthese will give you a \n\nshort burst of speed");
                 tutorialTextBorder.setVisible(true); 
                 tutorialText3.setVisible(true);
-            } else if (onCheckpoint == 5) {
+            } else if (onCheckpoint == 4) {
                 tutorialText.setText("Now that you have \n\nthe basics down, \n\ndrive through these \n\ncorners by yourself!!!");
                 tutorialTextBorder.setVisible(true);
                 tutorialText3.setVisible(true); 
-            } else if (onCheckpoint == 6) {
+            } else if (onCheckpoint == 5) {
                 tutorialText.setText("Congratulations, you've \n\ncompleted the Tutorial \n\nand the main game \n\nwill start now");
                 tutorialTextBorder.setVisible(true); 
                 tutorialText3.setVisible(true);
-            } else if (tutorialFinished == true) {
-                this.cameras.main.fadeOut(1000, 0, 0, 0)
-                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
-                    this.scene.start('menu')
-                    this.scene.stop();
-                });
-                if (firstTime == false){
-                    tutorialTextBorder.setVisible(false); 
-                    tutorialText3.setVisible(false);
-                }
             }
             tutorialTextBorder.on(pointerDown, () => {
                 input = true;
                 player.body.moves = true;
                 tutorialText.setVisible(false);
                 tutorialText3.setVisible(false);
-                if (onCheckpoint == 6){
+                if (onCheckpoint == 5){
                     this.cameras.main.fadeOut(1000, 0, 0, 0)
-                this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
+                    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
                     this.scene.start('menu')
                     this.scene.stop();
                 });
