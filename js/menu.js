@@ -20,7 +20,7 @@ var menu = new Phaser.Class({
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');
         var logo = this.add.image(400, 200, 'logo');
-        var miata = this.add.image(400, 300, 'miata');
+        var miata = this.add.image(400, 375, 'miata');
         let fadeOut = (sceneChoice) => {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
