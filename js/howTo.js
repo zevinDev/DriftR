@@ -85,6 +85,7 @@ var howTo = new Phaser.Class({
             fontSize: '18px'
         });
         tutorialText3.setVisible(false);
+        tutorialText3.setScrollFactor(0, 0);
 
         tutorialText = this.add.text(200, 200, "Welcome to DriftR!!! \nPress the up arrow to accelerate\nand the left and right arrows to navigate!!!", {
             fontFamily: 'Dogica',
@@ -210,7 +211,6 @@ var howTo = new Phaser.Class({
             if (onCheckpoint == 0) {
                 tutorialText.setText("Welcome to DriftR!!! \n\nPress the up-arrow key \n\nto accelerate and the \n\nright or left-arrow key \n\nto drift!!!");
                 tutorialTextBorder.setVisible(true); 
-                tutorialText3.setText("poopy");
                 tutorialText3.setVisible(true);
             } else if (onCheckpoint == 1) {
                 tutorialText.setText("For normal turning, \n\naccelerate, \n\nlet go of the up-arrow \n\nkey, and press the right \n\nor left-arrow key");
