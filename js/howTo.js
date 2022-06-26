@@ -80,6 +80,11 @@ var howTo = new Phaser.Class({
         timez = 0;
         seconds = 0;
         milliseconds = 0;
+        tutorialText3 = this.add.text(200, 600, "click me to continue", {
+            fontFamily: 'Dogica',
+            fontSize: '18px'
+        });
+        tutorialText3.setVisible(false);
 
         tutorialText = this.add.text(200, 200, "Welcome to DriftR!!! \nPress the up arrow to accelerate\nand the left and right arrows to navigate!!!", {
             fontFamily: 'Dogica',
@@ -121,6 +126,7 @@ var howTo = new Phaser.Class({
             continueButtonz.setVisible(false);
             buttonz.setVisible(false);
             tutorialText2.setVisible(false);
+            tutorialText3.setVisible(false);
             tutorialTextBorder.setVisible(false); 
             firstTime = false; 
         })
@@ -144,7 +150,7 @@ var howTo = new Phaser.Class({
         this.physics.add.collider(player, CollideLayer);
 
         const layer = this.add.layer();
-        layer.add([boostpad1, player,  tutorialTextBorder, buttonz, continueButtonz, tutorialText2, tutorialText]);
+        layer.add([boostpad1, player,  tutorialTextBorder, buttonz, continueButtonz, tutorialText2, tutorialText, tutorialText3]);
 
         //Defines Keyboard Keys
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -195,6 +201,7 @@ var howTo = new Phaser.Class({
                     onCheckpoint = onCheckpoint + 1;
                     count = 1;
                     tutorialText.setVisible(true);
+                    tutorialText3.setVisible(true);
                     input = false;
                     player.setAngularVelocity(0);
                     player.body.moves = false
@@ -203,21 +210,28 @@ var howTo = new Phaser.Class({
             if (onCheckpoint == 0) {
                 tutorialText.setText("Welcome to DriftR!!! \n\nPress the up-arrow key \n\nto accelerate and the \n\nright or left-arrow key \n\nto drift!!!");
                 tutorialTextBorder.setVisible(true); 
+                tutorialText3.setText("poopy");
+                tutorialText3.setVisible(true);
             } else if (onCheckpoint == 1) {
                 tutorialText.setText("For normal turning, \n\naccelerate, \n\nlet go of the up-arrow \n\nkey, and press the right \n\nor left-arrow key");
-                tutorialTextBorder.setVisible(true); 
+                tutorialTextBorder.setVisible(true);
+                tutorialText3.setVisible(true); 
             } else if (onCheckpoint == 2) {
                 tutorialText.setText("Be cautious, \n\nnormal turning is \n\nsharper than drifting, \n\nbut slower");
-                tutorialTextBorder.setVisible(true); 
+                tutorialTextBorder.setVisible(true);
+                tutorialText3.setVisible(true); 
             } else if (onCheckpoint == 3) {
                 tutorialText.setText("Ahead there is a \n\nboost pad, driving over \n\nthese will give you a \n\nshort burst of speed");
                 tutorialTextBorder.setVisible(true); 
+                tutorialText3.setVisible(true);
             } else if (onCheckpoint == 4) {
                 tutorialText.setText("Now that you have \n\nthe basics down, \n\ndrive through these \n\ncorners by yourself!!!");
-                tutorialTextBorder.setVisible(true); 
+                tutorialTextBorder.setVisible(true);
+                tutorialText3.setVisible(true); 
             } else if (onCheckpoint == 5) {
                 tutorialText.setText("Congratulations, you've \n\ncompleted the Tutorial \n\nand the main game \n\nwill start now");
                 tutorialTextBorder.setVisible(true); 
+                tutorialText3.setVisible(true);
             } else if (onCheckpoint == 6) {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {
@@ -226,12 +240,14 @@ var howTo = new Phaser.Class({
                 });
                 if (firstTime == false){
                     tutorialTextBorder.setVisible(false); 
+                    tutorialText3.setVisible(false);
                 }
             }
             tutorialTextBorder.on(pointerDown, () => {
                 input = true;
                 player.body.moves = true;
                 tutorialText.setVisible(false);
+                tutorialText3.setVisible(false);
             })
         } else {
             count = 0;
@@ -240,6 +256,7 @@ var howTo = new Phaser.Class({
             player.body.moves = true;
             if (firstTime == false) {
                 tutorialTextBorder.setVisible(false);
+                tutorialText3.setVisible(false);
             }
         }
 
