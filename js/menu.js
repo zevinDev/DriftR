@@ -10,24 +10,19 @@ var menu = new Phaser.Class({
         gamePaused = false;
     },
     create: function() {
-         deviceHeight = localStorage.getItem('Heightlol');
-         P1 = localStorage.getItem('P1');
-         deviceWidth = localStorage.getItem('Widthlol');
-console.log(deviceHeight);
-console.log(localStorage.getItem('Widthlol'));
-console.log(deviceWidth);
-console.log(localStorage.getItem('MSFade'));
+        scaleRatio = window.devicePixelRatio;
+        console.log(window.devicePixelRatio);
         var backimage = this.add.graphics();
         backimage.fillStyle(0x37313b, 1);
-        backimage.fillRect(0, 0, 4000, 4000);
+        backimage.fillRect(0, 0, window.innerWidth * window.devicePixelRatio,window.innerHeight * window.devicePixelRatio);
         this.cameras.main.fadeIn(1000, 0, 0, 0)
-
         var startButton = this.add.image(this.cameraX, this.cameraY, 'start');
         var exitButton = this.add.image(200, 700, 'exit');
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');
         var logo = this.add.image(400, 200, 'logo');
-        var miata = this.add.image(400, 375, 'miata');
+        var miata = this.add.image(window.innerWidth * window.devicePixelRatio/2, window.innerHeight * window.devicePixelRatio/4, 'miata');
+        miata.setScale(1);
         let fadeOut = (sceneChoice) => {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) => {

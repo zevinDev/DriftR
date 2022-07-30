@@ -38,17 +38,15 @@ function setDefault(){
     localStorage.setItem("P2", false);
     localStorage.setItem("P3", false);
     localStorage.setItem("P4", false);
-    localStorage.setItem("MGC", false);
+    localStorage.setItem("MGC", false); 
     localStorage.setItem("DBM", false);
     localStorage.setItem("grassMap", false);
     localStorage.setItem("snowMap", false);
     localStorage.setItem("busyBeach", false);
     localStorage.setItem("MSFade", 0);
     localStorage.setItem("GFade", 0);
-
-    localStorage.setItem("Widthlol", 80);
-    localStorage.setItem("Heightlol", window.innerHeight);
-
+    localStorage.setItem("DH", 5);
+    localStorage.setItem("DW", 5);
     var map1Leader = [0, 0, 0, 0, 0]
     var map1Leadername = ["none", "none", "none", "none", "none"]
     var map1Leaderlist = [0, 0, 0, 0, 0]
