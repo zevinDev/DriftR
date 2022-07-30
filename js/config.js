@@ -1,11 +1,11 @@
 var config = {
-    type: Phaser.AUTO,
+    type: Phaser.CANVAS,
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         parent: "DriftR",
-        width: 800,
-        height: 800
+        width: window.innerWidth * window.devicePixelRatio,
+        height: window.innerHeight * window.devicePixelRatio,
     },
     input: {
         gamepad: true
