@@ -10,12 +10,19 @@ var menu = new Phaser.Class({
         gamePaused = false;
     },
     create: function() {
+         deviceHeight = localStorage.getItem('Heightlol');
+         P1 = localStorage.getItem('P1');
+         deviceWidth = localStorage.getItem('Widthlol');
+console.log(deviceHeight);
+console.log(localStorage.getItem('Widthlol'));
+console.log(deviceWidth);
+console.log(localStorage.getItem('MSFade'));
         var backimage = this.add.graphics();
         backimage.fillStyle(0x37313b, 1);
-        backimage.fillRect(0, 0, 800, 800);
+        backimage.fillRect(0, 0, 4000, 4000);
         this.cameras.main.fadeIn(1000, 0, 0, 0)
 
-        var startButton = this.add.image(200, 600, 'start');
+        var startButton = this.add.image(this.cameraX, this.cameraY, 'start');
         var exitButton = this.add.image(200, 700, 'exit');
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');

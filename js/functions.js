@@ -28,6 +28,7 @@ function getTile(map, twoPlayer) {
     }
 }
 function setDefault(){
+
     localStorage.setItem("first_time", "1");
     localStorage.setItem("car", "assets/images/Cars/Player.png");
     localStorage.setItem("MainVolume", 50);
@@ -44,6 +45,10 @@ function setDefault(){
     localStorage.setItem("busyBeach", false);
     localStorage.setItem("MSFade", 0);
     localStorage.setItem("GFade", 0);
+
+    localStorage.setItem("Widthlol", 80);
+    localStorage.setItem("Heightlol", window.innerHeight);
+
     var map1Leader = [0, 0, 0, 0, 0]
     var map1Leadername = ["none", "none", "none", "none", "none"]
     var map1Leaderlist = [0, 0, 0, 0, 0]

@@ -131,7 +131,8 @@ var map3 = new Phaser.Class({            //initalizes and creates the scene for 
          player.setMaxVelocity(1000,1000);
         if (player.body.speed > 15 && (keyLEFT.isDown)) {
             player.setAngularVelocity(-150);
-        } else if (player.body.speed > 15 && (keyRIGHT.isDown)) {
+        } else if (player.body.speed > 15 &&
+            + (keyRIGHT.isDown)) {
             player.setAngularVelocity(150);
         } else {
             player.setAngularVelocity(0);

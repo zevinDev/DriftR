@@ -47,27 +47,11 @@ var map1 = new Phaser.Class(function(){
         boostpad1.setScale(.5);
         boostpad1.angle = 90;
 
-        //Enables Multiplayer
-        if (twoPlayer == true) {
-            canMove = false;
-            player2 = this.physics.add.sprite(435, 3300, 'player2');
-            player2.setBounce(0.2);
-            player2.setCollideWorldBounds(false);
-            player2.body.setMaxSpeed(500);
-            player2.angle = -90;
-            camera = this.cameras.main;
-            camera.setSize(camera.width, (camera.height / 2) - 4);
-            camera.startFollow(player);
-            var camera1 = this.cameras.add();
-            camera1.setSize(camera1.width, (camera1.height / 2) - 4);
-            camera1.setPosition(0, 400);
-            camera1.startFollow(player2);
-            this.physics.add.collider(player, player2)
-        } else {
+    
             camera = this.cameras.main;
             camera.startFollow(player);
             canMove = true;
-        };
+    
 
 
         const tileMap1 = this.make.tilemap({
@@ -157,13 +141,7 @@ var map1 = new Phaser.Class(function(){
         cars.add(player);
         const layer = this.add.layer();
         layer.add([boostpad1, player])
-        if (twoPlayer == true) {
-            layer.add([player2]);
-            cars.add(player2);
-            this.physics.add.collider(player2, borderLayer);
-            camera1.ignore(timerText)
-            camera1.ignore(timerBox)
-        }
+       
 
         //Handles BoostPads and BoostPad Collision
         this.physics.add.overlap(cars, boostpads, function(user, boostpad) {
@@ -180,31 +158,7 @@ var map1 = new Phaser.Class(function(){
             }
         });
 
-        if (twoPlayer == true) {
-            countDown = this.add.text(370, 3150, "", {
-                fontFamily: 'Dogica',
-                fontSize: 40,
-                color: '#ffbe00'
-            });
-            layer.add([countDown]);
-            setTimeout(function() {
-                countDown.setText(" 3");
-            }, 1000);
-            setTimeout(function() {
-                countDown.setText(" 2");
-            }, 2000);
-            setTimeout(function() {
-                countDown.setText(" 1");
-            }, 3000);
-            setTimeout(function() {
-                countDown.setText("GO!");
-                canMove = true;
-                timerOn = true;
-            }, 4000);
-            setTimeout(function() {
-                countDown.destroy();
-            }, 5000);
-        }
+
         good.setVolume(.6)
         first.setVolume(.6)
         second.setVolume(.6)
