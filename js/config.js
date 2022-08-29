@@ -10,7 +10,7 @@ var config = {
     input: {
         gamepad: true
     },
-    scene: [loading, menu, mapSelect, map3, map2, map1, garage, howTo, lapsComplete, LeaderBoardEnter, pauseMenu, options],
+    scene: [loading, menu, creditsScene, mapSelect, map3, map2, map1, garage, howTo, lapsComplete, LeaderBoardEnter, pauseMenu, options],
     physics: {
         default: 'arcade',
         arcade: {

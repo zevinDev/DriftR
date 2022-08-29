@@ -16,7 +16,7 @@ var menu = new Phaser.Class({
         this.cameras.main.fadeIn(1000, 0, 0, 0)
 
         var startButton = this.add.image(200, 600, 'start');
-        var exitButton = this.add.image(200, 700, 'exit');
+        var creditsButton = this.add.image(200, 700, 'credits');
         var garageButton = this.add.image(600, 600, 'garage');
         var optionButton = this.add.image(600, 700, 'options');
         var logo = this.add.image(400, 200, 'logo');
@@ -34,13 +34,11 @@ var menu = new Phaser.Class({
         startButton.on(pointerOut, () => {startButton.setFrame(0)});
         startButton.on(pointerDown, () => {fadeOut('mapSelect')})
 
-        exitButton.setInteractive();
-        exitButton.on(pointerOver, () => {exitButton.setFrame(1)})
-        exitButton.on(pointerOut, () => {exitButton.setFrame(0)})
-        exitButton.on(pointerDown, () => {
-            if (confirm("Are You Sure You Want To EXIT?")) {
-                window.close();
-            }
+        creditsButton.setInteractive();
+        creditsButton.on(pointerOver, () => {creditsButton.setFrame(1)})
+        creditsButton.on(pointerOut, () => {creditsButton.setFrame(0)})
+        creditsButton.on(pointerDown, () => {
+        fadeOut('creditsScene')
         })
 
         garageButton.setInteractive();
@@ -54,6 +52,6 @@ var menu = new Phaser.Class({
         optionButton.on(pointerDown, () => {fadeOut('options')})
 
         const layer = this.add.layer();
-        layer.add([backimage, exitButton, startButton, garageButton, optionButton, logo, miata])
+        layer.add([backimage, creditsButton, startButton, garageButton, optionButton, logo, miata])
     }
 });

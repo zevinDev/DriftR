@@ -130,7 +130,7 @@ var loading = new Phaser.Class({
         this.load.spritesheet('backButton', 'assets/images/UI/BackButton.png', {frameWidth: 165,frameHeight: 80});
         this.load.spritesheet('garageIcon', 'assets/images/Garage/CarButton.png', {frameWidth: 144,frameHeight: 160});
         this.load.spritesheet('start', 'assets/images/UI/START.png', {frameWidth: 213,frameHeight: 80});
-        this.load.spritesheet('exit', 'assets/images/UI/EXIT.png', {frameWidth: 213,frameHeight: 80});
+        this.load.spritesheet('credits', 'assets/images/UI/credits.png', {frameWidth: 213,frameHeight: 80});
         this.load.spritesheet('garage', 'assets/images/UI/GARAGE.png', {frameWidth: 213,frameHeight: 80});
         this.load.spritesheet('options', 'assets/images/UI/OPTIONS.png', {frameWidth: 213,frameHeight: 80});
         this.load.spritesheet('check_box', 'assets/images/UI/check_box.png', {frameWidth: 40,frameHeight: 40});
