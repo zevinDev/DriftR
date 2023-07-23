@@ -11,9 +11,11 @@ var menu = new Phaser.Class({
     },
     create: function() {
         var backimage = this.add.graphics();
+        const music = this.sound.add('corgi');
+        music.play();
         backimage.fillStyle(0x37313b, 1);
         backimage.fillRect(0, 0, 800, 800);
-        this.cameras.main.fadeIn(1000, 0, 0, 0)
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         var startButton = this.add.image(200, 600, 'start');
         var creditsButton = this.add.image(200, 700, 'credits');
