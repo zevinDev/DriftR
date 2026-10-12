@@ -11,7 +11,7 @@
 
 ## ![howToPlay](https://drive.google.com/uc?export=view&id=1YOksuORFheXxJICgzAsizfDGreMRjpbd)
 
-This game was coded using (JS, HTML, and CSS) therefore all you need to do is click on this [link!](https://realziez.github.io/DriftR/) 
+This game was coded using (JS, HTML, and CSS) therefore all you need to do is click on this [link!](https://taggart.lorenzana.org/DriftR-main/) 
 
 ## ![authors](https://drive.google.com/uc?export=view&id=1-0kpFA4_154Zl7_9nfUpqiHBfFjqbX25)
 
